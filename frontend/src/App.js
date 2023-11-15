@@ -50,7 +50,7 @@ function App() {
         <div class="flex-col">
           <Nav />
         </div>
-        <div class="flex-col">
+        <div class="flex-col w-full">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/server" element={<Server />} />
