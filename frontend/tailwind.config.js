@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       colors: {
         stat: {
+          gray: '#D3D3D3',
           orange: '#F4C48B',
           skyblue: '#7BB8F1',
           grass: '#A7F98B',
