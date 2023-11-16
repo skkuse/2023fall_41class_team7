@@ -48,7 +48,7 @@ function Info() {
         </div>
 
         <div class="container p-4 m-4 bg-white shadow-lg rounded text-center">
-          <h2 class="text-2xl mb-2 text-black-600 text-center">More Information</h2>
+          <h2 class="text-2xl mb-2 text-black-600 text-center">Code / More Information</h2>
           <a href="https://github.com/skkuse/2023fall_41class_team7" target="_blank" rel="noopener noreferrer" class="text-blue-500 underline">
             GitHub
           </a>
