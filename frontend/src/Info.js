@@ -43,8 +43,8 @@ function Info() {
         </div>
 
         <div class="container p-4 m-4 bg-white shadow-lg rounded">
-          <h2 class="text-2xl mb-2 text-black-600 text-center">입력 데이터 형식</h2>
-          <p class="text-gray-700 mb-2 text-center">입력 데이터 형식</p>
+          <h2 class="text-2xl mb-2 text-black-600 text-center">입력 데이터 형식 설명</h2>
+          <p class="text-gray-700 mb-2 text-center">입력 데이터 형식 설명</p>
         </div>
 
         <div class="container p-4 m-4 bg-white shadow-lg rounded text-center">
