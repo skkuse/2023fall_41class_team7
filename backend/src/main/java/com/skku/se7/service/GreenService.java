@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class HelloService {
+public class GreenService {
     private final ViolationChecker violationChecker;
     private final JavaCodeCompiler javaCodeCompiler;
     private final JavaRunner javaRunner;

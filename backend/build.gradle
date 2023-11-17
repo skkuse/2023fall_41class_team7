@@ -8,11 +8,8 @@ plugins {
 group = 'com.skku'
 version = '0.0.1-SNAPSHOT'
 
-java {
-	sourceCompatibility = '17'
-}
-
 configurations {
+	asciidoctorExt
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
@@ -23,7 +20,18 @@ repositories {
 }
 
 ext {
-	set('snippetsDir', file("build/generated-snippets"))
+	snippetsDir = file('build/generated-snippets')
+}
+
+test {
+	outputs.dir snippetsDir
+	useJUnitPlatform()
+}
+
+asciidoctor {
+	inputs.dir snippetsDir
+	configurations 'asciidoctorExt'
+	dependsOn test
 }
 
 dependencies {
@@ -32,6 +40,14 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	//Bean Validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	//RestDocs
+	testImplementation "org.mockito:mockito-core"
+	testImplementation 'org.mockito:mockito-junit-jupiter'
+	asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
@@ -43,4 +59,19 @@ tasks.named('test') {
 tasks.named('asciidoctor') {
 	inputs.dir snippetsDir
 	dependsOn test
+}
+
+clean {
+	delete file('src/main/resources/static/docs')
+}
+
+jar {
+	enabled = false
+}
+
+bootJar {
+	dependsOn asciidoctor
+	from ("${asciidoctor.outputDir}/html5") {
+		into 'static/docs'
+	}
 }
