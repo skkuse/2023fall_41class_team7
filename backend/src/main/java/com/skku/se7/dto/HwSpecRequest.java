@@ -1,17 +1,22 @@
 package com.skku.se7.dto;
 
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Optional;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class HwSpecRequest {
-    private CpuSpecRequest cpuSpecRequest;
-    private GpuSpecRequest gpuSpecRequest;
+    private Optional<ProcessorSpecRequest> cpuSpecRequest;
+    private Optional<ProcessorSpecRequest> gpuSpecRequest;
+    @Min(1)
     private Integer memoryGigaByte;
-    private Double pragmaScalingFactor;
+    @Min(1)
+    private Double psf = 1.0;
 }
