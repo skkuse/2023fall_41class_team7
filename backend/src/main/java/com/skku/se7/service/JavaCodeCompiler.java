@@ -1,14 +1,13 @@
 package com.skku.se7.service;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.lang.model.SourceVersion;
 import javax.tools.*;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Writer;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.Locale;
 import java.util.Set;
@@ -16,29 +15,47 @@ import java.util.Set;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class JavaCodeCompiler implements JavaCompiler{
-    @Override
-    public CompilationTask getTask(Writer out, JavaFileManager fileManager, DiagnosticListener<? super JavaFileObject> diagnosticListener, Iterable<String> options, Iterable<String> classes, Iterable<? extends JavaFileObject> compilationUnits) {
-        return null;
+public class JavaCodeCompiler {
+    private static String curPath = JavaCodeCompiler.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+
+    public String getCurPath(){
+        return  curPath;
     }
 
-    @Override
-    public StandardJavaFileManager getStandardFileManager(DiagnosticListener<? super JavaFileObject> diagnosticListener, Locale locale, Charset charset) {
-        return null;
+    public static String findClassName(String code){
+        String[] arr = code.split("[.]|[)]|[(]| |[{]|[}]");
+        String className = null;
+        for(int idx=0; idx<arr.length; idx++){
+            if(arr[idx].equals("class") && idx+1<arr.length){
+                className = arr[idx+1];
+            }
+            if (arr[idx].equals("main")) break;
+        }
+        return className;
     }
 
-    @Override
-    public int isSupportedOption(String option) {
-        return 0;
+    public static String createFile(String className, String code){
+        //String curPath = JavaCodeCompiler.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        String filePath = curPath + className + ".java";
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
+            writer.write(code);//파일에 코드 내용 작성
+            //System.out.println("자바 파일 생성" + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return filePath;
     }
 
-    @Override
-    public int run(InputStream in, OutputStream out, OutputStream err, String... arguments) {
-        return 0;
+    public static void compileSourceFile(String filePath){
+        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+        File sourceFile = new File(filePath);
+
+        try {
+            compiler.run(null, System.out, System.out, sourceFile.getPath());
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public Set<SourceVersion> getSourceVersions() {
-        return null;
-    }
 }
