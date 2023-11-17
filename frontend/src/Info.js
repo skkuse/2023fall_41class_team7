@@ -1,8 +1,8 @@
 import "./index.css";
-
+import "./info.css";
 function Info() {
   return (
-    <div class="flex justify-center min-h-screen pt-10">
+    <div class="flex justify-center min-h-screen pt-10 info_area">
       <div class="flex flex-col w-full max-w-7xl">
         <div class="text-3xl font-extrabold ml-10 mb-10 text-gray-800 text-center">Service Information</div>
         <div class="container p-4 m-4 bg-blue-100 shadow-lg rounded">

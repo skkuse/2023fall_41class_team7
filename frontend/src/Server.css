@@ -1,0 +1,14 @@
+@keyframes smoothAppear {
+    from {
+      opacity: 0;
+      transform: translateY(-5%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+
+.server_area {
+    animation: smoothAppear 1s;
+}
