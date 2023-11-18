@@ -1,0 +1,1 @@
+operation::view/location/continent[snippets='http-request,http-response,response-fields']

@@ -92,7 +92,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/required")
+                        document("green/exception/required")
                 )
                 .andReturn();
 
@@ -161,7 +161,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/range")
+                        document("green/exception/range")
                 )
                 .andReturn();
 
@@ -212,7 +212,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/noProcessor")
+                        document("green/exception/noProcessor")
                 )
                 .andReturn();
 
@@ -283,7 +283,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/cpuTdpWithName")
+                        document("green/exception/cpuTdpWithName")
                 )
                 .andReturn();
 
@@ -353,7 +353,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/gpuTdpWithName")
+                        document("green/exception/gpuTdpWithName")
                 )
                 .andReturn();
 
@@ -412,7 +412,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/badCpuName")
+                        document("green/exception/badCpuName")
                 )
                 .andReturn();
 
@@ -473,7 +473,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/badGpuName")
+                        document("green/exception/badGpuName")
                 )
                 .andReturn();
 
@@ -536,7 +536,7 @@ class GreenControllerExceptionTest {
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
                 .andDo(
-                        document("/exception/infer")
+                        document("green/exception/infer")
                 )
                 .andReturn();
 

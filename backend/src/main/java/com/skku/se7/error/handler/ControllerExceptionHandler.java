@@ -11,6 +11,7 @@ import org.springframework.util.StreamUtils;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -90,6 +91,16 @@ public class ControllerExceptionHandler {
                 .field("modelName, tdp")
                 .given("none")
                 .reasonMessage("모델명도, tdp도 입력되지 않았습니다.")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ExceptionResponse> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e, HttpServletRequest request) {
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field(e.getPropertyName())
+                .given(e.getValue().toString())
+                .reasonMessage(e.getMessage())
                 .build();
         return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
     }
