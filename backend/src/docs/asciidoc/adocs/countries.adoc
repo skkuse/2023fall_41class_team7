@@ -1,0 +1,1 @@
+operation::view/location/country[snippets='http-request,path-parameters,http-response,response-fields']

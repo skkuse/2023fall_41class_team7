@@ -479,10 +479,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel0">
 <li><a href="#_탄소_배출량_조회_api">탄소 배출량 조회 API</a>
 <ul class="sectlevel1">
-<li><a href="#_post_green">Post - /green</a>
+<li><a href="#_정상_흐름">정상 흐름</a>
+<ul class="sectlevel4">
+<li><a href="#_모든_데이터_입력의_경우">모든 데이터 입력의 경우</a></li>
+<li><a href="#_모델_이름만_입력_시no_tdp">모델 이름만 입력 시(no tdp)</a></li>
+<li><a href="#_tdp값만_입력_시no_model_name">tdp값만 입력 시(no model name)</a></li>
+</ul>
+</li>
+<li><a href="#_예외_목록">예외 목록</a>
 <ul class="sectlevel2">
-<li><a href="#_정상_흐름">정상 흐름</a></li>
-<li><a href="#_예외_목록">예외 목록</a></li>
+<li><a href="#_필수값_누락">필수값 누락</a></li>
+<li><a href="#_범위_이탈">범위 이탈</a></li>
+<li><a href="#_cpu_gpu_모두_누락">Cpu, Gpu 모두 누락</a></li>
+<li><a href="#_cpu_모델명과_tdp값이_같이_옴">Cpu 모델명과 Tdp값이 같이 옴</a></li>
+<li><a href="#_gpu_모델명과_tdp값이_같이_옴">Gpu 모델명과 Tdp값이 같이 옴</a></li>
+<li><a href="#_목록에_없는_cpu_모델명">목록에 없는 Cpu 모델명</a></li>
+<li><a href="#_목록에_없는_gpu_모델명">목록에 없는 Gpu 모델명</a></li>
+<li><a href="#_cpugpu의_모델명과_tdp_모두_누락">Cpu/Gpu의 모델명과 tdp 모두 누락</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_화면_송출_데이터_조회_api">화면 송출 데이터 조회 API</a>
+<ul class="sectlevel2">
+<li><a href="#_cpu_모델명_리스트_조회">Cpu 모델명 리스트 조회</a></li>
+<li><a href="#_gpu_모델명_리스트_조회">Gpu 모델명 리스트 조회</a></li>
+<li><a href="#_대륙_리스트_조회">대륙 리스트 조회</a></li>
+<li><a href="#_국가_리스트_조회">국가 리스트 조회</a></li>
+<li><a href="#_지역_리스트_조회">지역 리스트 조회</a></li>
+<li><a href="#_예외">예외</a>
+<ul class="sectlevel2">
+<li><a href="#_목록에_없는_대륙">목록에 없는 대륙</a></li>
 </ul>
 </li>
 </ul>
@@ -492,11 +519,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <h1 id="_탄소_배출량_조회_api" class="sect0"><a class="link" href="#_탄소_배출량_조회_api">탄소 배출량 조회 API</a></h1>
+<div class="openblock partintro">
+<div class="content">
+<div class="paragraph">
+<p>Post /green</p>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="_post_green"><a class="link" href="#_post_green">Post - /green</a></h2>
+<h2 id="_정상_흐름"><a class="link" href="#_정상_흐름">정상 흐름</a></h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_정상_흐름"><a class="link" href="#_정상_흐름">정상 흐름</a></h3>
 <div class="sect4">
 <h5 id="_모든_데이터_입력의_경우"><a class="link" href="#_모든_데이터_입력의_경우">모든 데이터 입력의 경우</a></h5>
 <div class="sect5">
@@ -713,10 +745,6 @@ Content-Length: 252
 </div>
 </div>
 <div class="sect4">
-<h5 id="_post_green_2"><a class="link" href="#_post_green_2">Post - /green</a></h5>
-
-</div>
-<div class="sect4">
 <h5 id="_모델_이름만_입력_시no_tdp"><a class="link" href="#_모델_이름만_입력_시no_tdp">모델 이름만 입력 시(no tdp)</a></h5>
 <div class="sect5">
 <h6 id="_모델_이름만_입력_시no_tdp_http_request"><a class="link" href="#_모델_이름만_입력_시no_tdp_http_request">HTTP request</a></h6>
@@ -907,10 +935,6 @@ Content-Length: 251
 </tbody>
 </table>
 </div>
-</div>
-<div class="sect4">
-<h5 id="_post_green_3"><a class="link" href="#_post_green_3">Post - /green</a></h5>
-
 </div>
 <div class="sect4">
 <h5 id="_tdp값만_입력_시no_model_name"><a class="link" href="#_tdp값만_입력_시no_model_name">tdp값만 입력 시(no model name)</a></h5>
@@ -1105,12 +1129,16 @@ Content-Length: 251
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_예외_목록"><a class="link" href="#_예외_목록">예외 목록</a></h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_예외_목록"><a class="link" href="#_예외_목록">예외 목록</a></h3>
+<h3 id="_필수값_누락"><a class="link" href="#_필수값_누락">필수값 누락</a></h3>
 <div class="sect4">
-<h5 id="_필수값_누락_bindexception"><a class="link" href="#_필수값_누락_bindexception">필수값 누락 BindException</a></h5>
+<h5 id="_bindexception"><a class="link" href="#_bindexception">BindException</a></h5>
 <div class="sect5">
-<h6 id="_필수값_누락_bindexception_http_request"><a class="link" href="#_필수값_누락_bindexception_http_request">HTTP request</a></h6>
+<h6 id="_bindexception_http_request"><a class="link" href="#_bindexception_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1136,10 +1164,13 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_범위_이탈"><a class="link" href="#_범위_이탈">범위 이탈</a></h3>
 <div class="sect4">
-<h5 id="_범위_이탈_bindexception"><a class="link" href="#_범위_이탈_bindexception">범위 이탈 BindException</a></h5>
+<h5 id="_bindexception_2"><a class="link" href="#_bindexception_2">BindException</a></h5>
 <div class="sect5">
-<h6 id="_범위_이탈_bindexception_http_request"><a class="link" href="#_범위_이탈_bindexception_http_request">HTTP request</a></h6>
+<h6 id="_bindexception_2_http_request"><a class="link" href="#_bindexception_2_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1170,10 +1201,13 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_cpu_gpu_모두_누락"><a class="link" href="#_cpu_gpu_모두_누락">Cpu, Gpu 모두 누락</a></h3>
 <div class="sect4">
-<h5 id="_cpu_gpu_모두_누락_withoutprocessorexception"><a class="link" href="#_cpu_gpu_모두_누락_withoutprocessorexception">Cpu, Gpu 모두 누락 WithoutProcessorException</a></h5>
+<h5 id="_withoutprocessorexception"><a class="link" href="#_withoutprocessorexception">WithoutProcessorException</a></h5>
 <div class="sect5">
-<h6 id="_cpu_gpu_모두_누락_withoutprocessorexception_http_request"><a class="link" href="#_cpu_gpu_모두_누락_withoutprocessorexception_http_request">HTTP request</a></h6>
+<h6 id="_withoutprocessorexception_http_request"><a class="link" href="#_withoutprocessorexception_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1194,10 +1228,13 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_cpu_모델명과_tdp값이_같이_옴"><a class="link" href="#_cpu_모델명과_tdp값이_같이_옴">Cpu 모델명과 Tdp값이 같이 옴</a></h3>
 <div class="sect4">
-<h5 id="_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception"><a class="link" href="#_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception">Cpu 모델명과 Tdp값이 같이 옴 CpuTdpWithModelNameException</a></h5>
+<h5 id="_cputdpwithmodelnameexception"><a class="link" href="#_cputdpwithmodelnameexception">CpuTdpWithModelNameException</a></h5>
 <div class="sect5">
-<h6 id="_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception_http_request"><a class="link" href="#_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception_http_request">HTTP request</a></h6>
+<h6 id="_cputdpwithmodelnameexception_http_request"><a class="link" href="#_cputdpwithmodelnameexception_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1228,10 +1265,13 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_gpu_모델명과_tdp값이_같이_옴"><a class="link" href="#_gpu_모델명과_tdp값이_같이_옴">Gpu 모델명과 Tdp값이 같이 옴</a></h3>
 <div class="sect4">
-<h5 id="_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception"><a class="link" href="#_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception">Gpu 모델명과 Tdp값이 같이 옴 GpuTdpWithModelNameException</a></h5>
+<h5 id="_gputdpwithmodelnameexception"><a class="link" href="#_gputdpwithmodelnameexception">GpuTdpWithModelNameException</a></h5>
 <div class="sect5">
-<h6 id="_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception_http_request"><a class="link" href="#_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception_http_request">HTTP request</a></h6>
+<h6 id="_gputdpwithmodelnameexception_http_request"><a class="link" href="#_gputdpwithmodelnameexception_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1262,10 +1302,13 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_목록에_없는_cpu_모델명"><a class="link" href="#_목록에_없는_cpu_모델명">목록에 없는 Cpu 모델명</a></h3>
 <div class="sect4">
-<h5 id="_목록에_없는_cpu_모델명_nomatchcpumodelnameexception"><a class="link" href="#_목록에_없는_cpu_모델명_nomatchcpumodelnameexception">목록에 없는 Cpu 모델명 NoMatchCpuModelNameException</a></h5>
+<h5 id="_nomatchcpumodelnameexception"><a class="link" href="#_nomatchcpumodelnameexception">NoMatchCpuModelNameException</a></h5>
 <div class="sect5">
-<h6 id="_목록에_없는_cpu_모델명_nomatchcpumodelnameexception_http_request"><a class="link" href="#_목록에_없는_cpu_모델명_nomatchcpumodelnameexception_http_request">HTTP request</a></h6>
+<h6 id="_nomatchcpumodelnameexception_http_request"><a class="link" href="#_nomatchcpumodelnameexception_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1291,10 +1334,13 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_목록에_없는_gpu_모델명"><a class="link" href="#_목록에_없는_gpu_모델명">목록에 없는 Gpu 모델명</a></h3>
 <div class="sect4">
-<h5 id="_목록에_없는_gpu_모델명_nomatchgpumodelnameexception"><a class="link" href="#_목록에_없는_gpu_모델명_nomatchgpumodelnameexception">목록에 없는 Gpu 모델명 NoMatchGpuModelNameException</a></h5>
+<h5 id="_nomatchgpumodelnameexception"><a class="link" href="#_nomatchgpumodelnameexception">NoMatchGpuModelNameException</a></h5>
 <div class="sect5">
-<h6 id="_목록에_없는_gpu_모델명_nomatchgpumodelnameexception_http_request"><a class="link" href="#_목록에_없는_gpu_모델명_nomatchgpumodelnameexception_http_request">HTTP request</a></h6>
+<h6 id="_nomatchgpumodelnameexception_http_request"><a class="link" href="#_nomatchgpumodelnameexception_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1320,10 +1366,13 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_cpugpu의_모델명과_tdp_모두_누락"><a class="link" href="#_cpugpu의_모델명과_tdp_모두_누락">Cpu/Gpu의 모델명과 tdp 모두 누락</a></h3>
 <div class="sect4">
-<h5 id="_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception"><a class="link" href="#_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception">Cpu/Gpu의 모델명과 tdp 모두 누락 CannotInferTdpException</a></h5>
+<h5 id="_cannotinfertdpexception"><a class="link" href="#_cannotinfertdpexception">CannotInferTdpException</a></h5>
 <div class="sect5">
-<h6 id="_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception_http_request"><a class="link" href="#_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception_http_request">HTTP request</a></h6>
+<h6 id="_cannotinfertdpexception_http_request"><a class="link" href="#_cannotinfertdpexception_http_request">HTTP request</a></h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
@@ -1352,10 +1401,384 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+<h1 id="_화면_송출_데이터_조회_api" class="sect0"><a class="link" href="#_화면_송출_데이터_조회_api">화면 송출 데이터 조회 API</a></h1>
+<div class="sect2">
+<h3 id="_cpu_모델명_리스트_조회"><a class="link" href="#_cpu_모델명_리스트_조회">Cpu 모델명 리스트 조회</a></h3>
+<div class="sect3">
+<h4 id="_get_modelcpu"><a class="link" href="#_get_modelcpu">Get /model/cpu</a></h4>
+<div class="sect4">
+<h5 id="_get_modelcpu_http_request"><a class="link" href="#_get_modelcpu_http_request">HTTP request</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /model/cpu HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_modelcpu_http_response"><a class="link" href="#_get_modelcpu_http_response">HTTP response</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 4171
+
+{"count":186,"data":["AMD Athlon 64 (Desktop) FX-62","Intel Core i5-8600K","AMD Athlon 64 X2 (Desktop) FX-60","Intel Core i9-9900T","Intel Core i7-2600K","Intel Pentium 4 P4 3.0","Intel Core i9-14900K","Intel Core i9-9980XE","Intel Core i9-10980XE","AMD Ryzen 7 PRO 5750G","Intel Core i9-9900K","Intel Celeron J4005","Intel Core i5-14600K","AMD Ryzen 7 3700X","Intel Celeron J4125","AMD A8-5600K","AMD A6-6400K","Intel Core i3-3220","Intel Core i7-5960X","AMD Ryzen 7 2700","Intel Core i7-8700","Intel Core i7-975","AMD Ryzen 5 1600","Intel Core i7-990X EE","Intel Xeon E5-2697 v2","Intel Xeon E3-1226 v3","AMD Ryzen 5 5600X","Intel Core i5-8400","Intel Core i5-3470","AMD Athlon 64 X2 (Desktop) 4600+","Intel Core i9-10910","Intel Core i7-11700","Intel Core i7-4790T","Intel Core i7-4790S","Intel Core i5-11400T","Intel Xeon E3-1230 v3","Intel Celeron N5105","AMD Ryzen 3 3300X","AMD Ryzen 7 7700X","Intel Core i5-10600K","Intel Core i7-8700K","AMD A10-7850K","AMD Ryzen 7 1700X","Intel Celeron J4115","Intel Core i7-3770K","Intel Core i5-6500","AMD A4-5300","AMD Ryzen 5 5600G","AMD Ryzen 7 5800X3D","Intel Core i5-2500K","Intel Core i7-11700K","Intel Core i7-3960X","Intel Xeon X5670","AMD A8-3850","Intel Core i7-4790K","Intel Core i9-7900X","Intel Core i5-13400F","AMD Ryzen 9 3900","Intel Core i7-8086K","AMD Ryzen 3 1200","Intel Core 2 Extreme (Desktop) QX6700","Intel Core i7-12700","AMD Ryzen 3 1300X","Intel Xeon E-2176G","Intel Pentium D 820","Intel Core i7-6950X","AMD A10-5800K","Intel Core i5-4590","AMD FX-8350","Intel Pentium Silver J5040","AMD Ryzen 3 3100","AMD A8-7650K","Intel Celeron J4025","AMD Ryzen 9 7950X3D","Intel Pentium 4 560","Intel Core i5-7500","Intel Core i5-9400F","Intel Core i5-13400","Intel Core i5-7500T","Intel Core i7-6700","Intel Core i5-3570K","Intel Core i7-13700K","AMD Phenom II X4 905e","AMD Ryzen 5 7600","Intel Core i5-11400F","Intel Core i5-4460","Intel Xeon E5-2680 v4","Intel Core 2 Quad (Desktop) Q9550","Intel Core i5-6600K","AMD Ryzen 7 5800X","Intel Core i5-6600T","AMD Athlon 64 X2 (Desktop) 4800+","Intel Core i5-6400","Intel Core i3-10100F","Intel Core i9-11900K","Intel Core i9-9900KS","Intel Celeron N4505","Intel Pentium 4 660","Intel Core i7-920","Intel Core i7-9700","Intel Core i3-10320","Intel Xeon E3-1280 v5","Intel Core 2 Quad (Desktop) Q6600","AMD Ryzen 5 7600X","Intel Core i5-13600K","AMD Ryzen 9 3900X","Intel Core i7-10700K","Intel Pentium G4500T","Intel Core i9-12900","AMD A8-6600K","AMD Ryzen 7 1800X","AMD Ryzen 5 2600X","Intel Xeon E3-1231 v3","Intel Core i5-9600K","Intel Core 2 Extreme (Desktop) X6800","AMD Ryzen 7 3800XT","AMD Ryzen 9 5900X","Intel Core i7-10700","Intel Core i5-11600K","AMD Ryzen 7 2700X","Intel Core i7-5775C","Intel Core i9-13900K","AMD Ryzen 5 1400","Intel Core 2 Duo (Desktop) E6700","Intel Core i7-7700K","Intel Core i5-3550","Intel Core i7-2700K","Intel Core i9-10850K","Intel Core i7-12700K","Intel Core i7-4960X","Intel Core i5-6400T","Intel Core i7-12700F","Intel Core i7-4790","Intel Core i7-7700T","Intel Core i5-8500T","Intel Core i7-4770K","AMD Ryzen 7 1700","Intel Core i7-940","Intel Core i7-7740X","Intel Core i5-750","AMD Ryzen 9 7900X","Intel Core i3-10100","Intel Core i7-9700K","Intel Core i7-7700","AMD Ryzen 9 3950X","AMD Ryzen 5 1500X","AMD Ryzen 5 2600","Intel Celeron J4105","Intel Core i5-4430","Intel Celeron N5095","Intel Core 2 Duo (Desktop) E6850","AMD A10-7700K","AMD Ryzen 3 2200G","Intel Core i9-10900K","Intel Core i5-12400F","Intel Core i5-6500T","AMD Ryzen 9 7900","Intel Core i7-14700K","Intel Core i7-6700K","Intel Pentium 4 630","Intel Pentium 4 2.4 GHz","Intel Core i7-950","Intel Core i7-6700T","AMD Ryzen 5 2400G","AMD Ryzen 9 5950X","Intel Core i5-8500","Intel Core i3-9100F","Intel Core 2 Duo (Desktop) E6600","AMD Athlon 64 X2 (Desktop) 4400+","AMD Ryzen 7 7700","Intel Core i7-980X EE","Intel Celeron N6211","Intel Core i7-13700","Intel Core 2 Extreme (Desktop) QX6850","Intel Core i5-2400","Intel Core i9-11900KB","Intel Core i9-12900K","Intel Core i5-10400F","Intel Core i5-12600K","Intel Core i7-960","Intel Pentium G860","Intel Core i5-7600K","AMD A10-6800K","AMD Ryzen 7 5700G","Intel Xeon E5-2680","AMD Ryzen 9 7950X"]}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_modelcpu_response_fields"><a class="link" href="#_get_modelcpu_response_fields">Response fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">변수명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cpu 모델명 총 개수</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">186</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cpu 모델명</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Intel Core i7-14700K</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gpu_모델명_리스트_조회"><a class="link" href="#_gpu_모델명_리스트_조회">Gpu 모델명 리스트 조회</a></h3>
+<div class="sect3">
+<h4 id="_get_modelgpu"><a class="link" href="#_get_modelgpu">Get /model/gpu</a></h4>
+<div class="sect4">
+<h5 id="_get_modelgpu_http_request"><a class="link" href="#_get_modelgpu_http_request">HTTP request</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /model/gpu HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_modelgpu_http_response"><a class="link" href="#_get_modelgpu_http_response">HTTP response</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 5667
+
+{"count":207,"data":["WGeForce RTX 2080 Super Max-Q (Laptop)","WGeForce RTX 3080 Ti (Laptop)","WGeForce RTX 2080 Super (Laptop)","WRadeon RX 6950 XT","WGeForce GTX 1050 Ti (Laptop)","WGeForce RTX 2070 Max-Q (Laptop)","WRadeon RX 6600 XT","WGeForce RTX 2080 (TU104-400A)","WGeForce GTX 1050 Max-Q (2 GB) (Laptop)","WGeForce GTX 1650 Super","WGeForce GTX 1660 Ti (Laptop)","WGeForce GTX 1050 (2 GB)","WRadeon RX 550X (512 SP)","WRadeon RX 6800 XT","WGeForce GTX 1080 Ti","WGeForce GTX 1050 (4 GB) (Laptop)","WGeForce GTX 1060 (3 GB)","WRadeon RX 550X (640 SP)","WRadeon RX Vega 64","WGeForce RTX 4070 TI","WRadeon 530 (384 SP)","WRadeon RX 550X (Laptop)","WNvidia Titan X","WGeForce RTX 4060 Ti (16 GB)","WGeForce GTX 1660","WIntel A730M (Laptop)","WRadeon RX Vega 56","WIntel A380","WGeForce GT 1030 (GDDR5)","WGeForce GTX 1070 Max-Q (Laptop)","WGeForce RTX 4090","WGeForce RTX 3050 (GA106)","WGeForce RTX 2050 (Laptop)","WGeForce GTX 1060 Max-Q (6 GB) (Laptop)","WGeForce RTX 2070 Refresh (Laptop)","WGeForce RTX 3060 Ti (GA104-200)","WGeForce RTX 4080","WRadeon RX 7600S (Laptop)","WRadeon RX 7700S (Laptop)","WGeForce RTX 3080 (12 GB)","WGeForce RTX 3070 Ti (Laptop)","WRadeon RX 7800 XT","WGeForce RTX 2070 Super","WNvidia Titan Xp","WIntel A770 (8 GB)","WRadeon 530 (DDR3) (384 SP)","WRadeon 530 (Laptop)","WRadeon 630","WGeForce GTX 1060 (GDDR5X)","WGeForce GTX 1650 (GDDR5)","WGeForce GTX 1660 Ti","WRadeon 625 (Laptop)","WGeForce RTX 4070","WGeForce RTX 3080 (16 GB) (Laptop)","WGeForce GTX 1050 Ti Max-Q (Laptop)","WRadeon 610 (Laptop)","WGeForce GTX 1650 Ti (Laptop)","WRadeon 520 (Laptop)","WRadeon RX 5700","WGeForce RTX 3050 (6 GB) (Laptop)","WGeForce RTX 3060 Ti (GA104-202)","WGeForce RTX 2080 Ti (TU102-300A)","WGeForce RTX 4060","WIntel A550M (Laptop)","WRadeon RX 640","WGeForce RTX 3090","WGeForce RTX 4060 (Laptop)","WGeForce GTX 1070 Ti","WGeForce RTX 2060 (Laptop)","WGeForce GTX 1650 (TU106)","WIntel A350M (Laptop)","WRadeon RX 570X","WGeForce RTX 2070 (TU106-400A)","WRadeon RX 5500 XT","WGeForce RTX 2080 (TU104-400)","WRadeon RX 6800","WGeForce GT 1030 (DDR4)","WRadeon RX 5600 XT (12 GT/s)","WGeForce RTX 4070 (Laptop)","WRadeon RX 640 (Laptop)","WGeForce RTX 3080","WGeForce RTX 2070 (Laptop)","WRadeon 530 (DDR3) (320 SP)","WRadeon RX 6550M (Laptop)","WGeForce GTX 1060 Max-Q (3 GB) (Laptop)","WRadeon RX 6800S (Laptop)","WGeForce RTX 3050 (GA107-150)","WRadeon RX 5600","WRadeon RX 5600M (Laptop)","WIntel A770M (Laptop)","WIntel A750","WGeForce GTX 1060 (9 GT/s)","WGeForce RTX 3070","WGeForce RTX 3070 Ti (GA102-150)","WRadeon RX 540","WGeForce RTX 3060 (12 GB) (GA106-302)","WRadeon RX 6600S (Laptop)","WRadeon RX 6850M XT (Laptop)","WRadeon RX 560D","WRadeon RX Vega 64 Liquid","WGeForce RTX 3060 Ti (GDDR6X)","WRadeon RX 5600 XT (14 GT/s)","WRadeon RX 6700","WGeForce GTX 1650 (GDDR6) (Laptop)","WGeForce RTX 2060 (12 GB)","WGeForce GTX 1660 Super","WGeForce RTX 2060 (6 GB) (TU106)","WNvidia Titan RTX","WRadeon RX 7900 XTX","WGeForce RTX 3050 (4 GB) (Laptop)","WRadeon RX 6500 XT","WIntel A370M (Laptop)","WRadeon RX 7900 XT","WRadeon RX 5500","WGeForce GTX 1060 (8 GT/s)","WGeForce GTX 1650 (GDDR5) (Laptop)","WGeForce RTX 2070 Super Max-Q (Laptop)","WGeForce GTX 1080 (11 GT/s)","WGeForce RTX 3080 Ti","WGeForce RTX 4090 (Laptop)","WGeForce RTX 2060 Super","WGeForce RTX 2080 Super","WRadeon RX 6600","WRadeon RX 6550S (Laptop)","WRadeon RX 6900 XT","WRadeon RX 570","WGeForce RTX 2080 Max-Q (Laptop)","WGeForce RTX 3050 (GA106-150)","WGeForce GTX 1060 (6 GB) (Laptop)","WGeForce GTX 1650 (TU117)","WGeForce RTX 2070 Super (Laptop)","WGeForce RTX 3080 (8 GB) (Laptop)","WGeForce RTX 2060 (6 GB) (TU104)","WRadeon 520","WRadeon RX 6800M (Laptop)","WRadeon RX 6500M (Laptop)","WGeForce GTX 1070 (Laptop)","WGeForce RTX 3060 (GA104-150)","WGeForce GTX 1080 (10 GT/s)","WRadeon RX 6700M (Laptop)","WGeForce RTX 4080 (Laptop)","WRadeon RX 560 (896 SP)","WRadeon RX 580","WIntel A310","WRadeon RX 6600M (Laptop)","WGeForce RTX 2080 (Laptop)","WRadeon 530 (320 SP)","WRadeon RX 550 (512 SP)","WGeForce GTX 1650 (TU116)","WGeForce RTX 3050 Ti (Laptop)","WRadeon RX 6300M (Laptop)","WRadeon RX 6650 XT","WRadeon RX 550 (640 SP)","WRadeon 520 (DDR3)","WRadeon RX 7600M XT (Laptop)","WGeForce GTX 1050 Max-Q (4 GB) (Laptop)","WGeForce RTX 4060 Ti","WGeForce RTX 3090 Ti","WGeForce GTX 1080 (Laptop)","WRadeon RX 590 GME","WRadeon RX 590","WGeForce GTX 1630","WGeForce GTX 1050 Ti","WRadeon RX 5300","WRadeon RX 7600","WGeForce RTX 4050 (Laptop)","WRadeon RX 5700 XT","WGeForce RTX 2060 Max-Q (Laptop)","WRadeon VII","WGeForce GTX 1650 Max-Q (GDDR6) (Laptop)","WGeForce GTX 1080 Max-Q (Laptop)","WRadeon RX 6400","WRadeon 620 (Laptop)","WGeForce GTX 1050 (2 GB) (Laptop)","WGeForce RTX 3060 (Laptop)","WGeForce RTX 3060 Ti (GA103-200)","WGeForce RTX 2060 Refresh (Laptop)","WGeForce RTX 3070 Ti (GA104-400)","WGeForce GTX 1650 Max-Q (GDDR5) (Laptop)","WRadeon RX 5700 XT 50th Anniversary","WGeForce RTX 2070 (TU106-400)","WRadeon RX 7700 XT","WGeForce RTX 3060 (8 GB) (GA106-302)","WIntel A580","WRadeon RX 6750 XT","WRadeon 630 (Laptop)","WRadeon RX 560 (1024 SP)","WRadeon RX 6450M (Laptop)","WGeForce RTX 3070 (Laptop)","WRadeon RX 6650M (Laptop)","WIntel A770 (16 GB)","WRadeon RX 6650M XT (Laptop)","WRadeon RX 540 (Laptop)","WRadeon RX 6700S (Laptop)","WRadeon RX 5700M (Laptop)","WGeForce GTX 1650 Ti Max-Q (Laptop)","WGeForce GTX 1660 Ti Max-Q (Laptop)","WGeForce GTX 1060 (3 GB) (Laptop)","WRadeon RX 5500M (Laptop)","WGeForce GTX 1050 (3 GB)","WGeForce RTX 3060 (GA106-300)","WRadeon RX 7600M (Laptop)","WGeForce RTX 2080 Ti (TU102-300)","WRadeon RX 6700 XT","WRadeon RX 5300M (Laptop)","WRadeon RX 7900 GRE","WGeForce GTX 1070"]}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_modelgpu_response_fields"><a class="link" href="#_get_modelgpu_response_fields">Response fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">변수명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gpu 모델명 총 개수</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">207</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gpu 모델명</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WGeForce GT 1030 (GDDR5)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_대륙_리스트_조회"><a class="link" href="#_대륙_리스트_조회">대륙 리스트 조회</a></h3>
+<div class="sect3">
+<h4 id="_get_location"><a class="link" href="#_get_location">Get /location</a></h4>
+<div class="sect4">
+<h5 id="_get_location_http_request"><a class="link" href="#_get_location_http_request">HTTP request</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /location HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_location_http_response"><a class="link" href="#_get_location_http_response">HTTP response</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 95
+
+{"count":7,"data":["EUROPE","NORTH_AMERICA","AFRICA","ASIA","OCEANIA","WORLD","SOUTH_AMERICA"]}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_location_response_fields"><a class="link" href="#_get_location_response_fields">Response fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">변수명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙명 총 개수</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙명</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ASIA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_국가_리스트_조회"><a class="link" href="#_국가_리스트_조회">국가 리스트 조회</a></h3>
+<div class="sect3">
+<h4 id="_get_locationcontinent"><a class="link" href="#_get_locationcontinent">Get /location/{continent}</a></h4>
+<div class="sect4">
+<h5 id="_get_locationcontinent_http_request"><a class="link" href="#_get_locationcontinent_http_request">HTTP request</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /location/NORTH_AMERICA HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_locationcontinent_path_parameters"><a class="link" href="#_get_locationcontinent_path_parameters">Path parameters</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">변수명</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>continent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NORTH_AMERICA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_get_locationcontinent_http_response"><a class="link" href="#_get_locationcontinent_http_response">HTTP response</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 65
+
+{"count":3,"data":["Canada","United States of America","Mexico"]}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_locationcontinent_response_fields"><a class="link" href="#_get_locationcontinent_response_fields">Response fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">변수명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙에 속하는 국가명 총 개수</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙에 속하는 국가명</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brazil</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_지역_리스트_조회"><a class="link" href="#_지역_리스트_조회">지역 리스트 조회</a></h3>
+<div class="sect3">
+<h4 id="_get_locationcontinentcountry"><a class="link" href="#_get_locationcontinentcountry">Get /location/{continent}/{country}</a></h4>
+<div class="sect4">
+<h5 id="_get_locationcontinentcountry_http_request"><a class="link" href="#_get_locationcontinentcountry_http_request">HTTP request</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /location/NORTH_AMERICA/Canada HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_locationcontinentcountry_path_parameters"><a class="link" href="#_get_locationcontinentcountry_path_parameters">Path parameters</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">변수명</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>continent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NORTH_AMERICA</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>country</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙에 속하는 국가</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Canada</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_get_locationcontinentcountry_http_response"><a class="link" href="#_get_locationcontinentcountry_http_response">HTTP response</a></h5>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 234
+
+{"count":14,"data":["New Brunswick","Northwest Territories","Manitoba","Prince Edward Island","Alberta","Quebec","British Columbia","Saskatchewan","Any","Nunavut","Yukon Territory","Nova Scotia","Ontario","Newfoundland and Labrador"]}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_get_locationcontinentcountry_response_fields"><a class="link" href="#_get_locationcontinentcountry_response_fields">Response fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">변수명</th>
+<th class="tableblock halign-left valign-top">타입</th>
+<th class="tableblock halign-left valign-top">설명</th>
+<th class="tableblock halign-left valign-top">예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙명 총 개수</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Array</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙명</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_예외"><a class="link" href="#_예외">예외</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_목록에_없는_대륙"><a class="link" href="#_목록에_없는_대륙">목록에 없는 대륙</a></h3>
+<div class="sect4">
+<h5 id="_methodargumenttypemismatchexception"><a class="link" href="#_methodargumenttypemismatchexception">MethodArgumentTypeMismatchException</a></h5>
+<div class="sect5">
+<h6 id="_methodargumenttypemismatchexception_http_request"><a class="link" href="#_methodargumenttypemismatchexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /location/badContinent/Canada HTTP/1.1
+Host: localhost:8080</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-11-18 21:33:41 +0900
+Last updated 2023-11-19 03:05:57 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

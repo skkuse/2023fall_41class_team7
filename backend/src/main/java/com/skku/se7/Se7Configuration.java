@@ -1,5 +1,6 @@
 package com.skku.se7;
 
+import com.skku.se7.service.LocationHandler;
 import com.skku.se7.service.ProcessorTdpHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +12,11 @@ import java.io.IOException;
 @Configuration
 public class Se7Configuration {
     @Bean
-    public ProcessorTdpHandler xmlReader() throws ParserConfigurationException, IOException, SAXException {
+    public ProcessorTdpHandler processorTdpHandler() throws ParserConfigurationException, IOException, SAXException {
         return new ProcessorTdpHandler();
+    }
+    @Bean
+    public LocationHandler locationHandler() throws ParserConfigurationException, IOException, SAXException {
+        return new LocationHandler();
     }
 }

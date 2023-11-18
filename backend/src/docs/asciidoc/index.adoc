@@ -9,38 +9,73 @@
 :docinfo: shared-head
 
 = 탄소 배출량 조회 API
-== Post - /green
+Post /green
 
-=== 정상 흐름
+== 정상 흐름
 include::adocs/normal-full.adoc[]
 
 include::adocs/normal-model.adoc[]
 
 include::adocs/normal-tdp.adoc[]
 
-=== 예외 목록
+== 예외 목록
 
-===== 필수값 누락 BindException
-operation::exception/required[snippets='http-request']
+=== 필수값 누락
+===== BindException
+operation::/green/exception/required[snippets='http-request']
 
-===== 범위 이탈 BindException
-operation::exception/range[snippets='http-request']
+=== 범위 이탈
+===== BindException
+operation::/green/exception/range[snippets='http-request']
 
-===== Cpu, Gpu 모두 누락 WithoutProcessorException
-operation::exception/noProcessor[snippets='http-request']
+=== Cpu, Gpu 모두 누락
+===== WithoutProcessorException
+operation::/green/exception/noProcessor[snippets='http-request']
 
-===== Cpu 모델명과 Tdp값이 같이 옴 CpuTdpWithModelNameException
-operation::exception/cpuTdpWithName[snippets='http-request']
+=== Cpu 모델명과 Tdp값이 같이 옴
+===== CpuTdpWithModelNameException
+operation::/green/exception/cpuTdpWithName[snippets='http-request']
 
-===== Gpu 모델명과 Tdp값이 같이 옴 GpuTdpWithModelNameException
-operation::exception/gpuTdpWithName[snippets='http-request']
+=== Gpu 모델명과 Tdp값이 같이 옴
+===== GpuTdpWithModelNameException
+operation::/green/exception/gpuTdpWithName[snippets='http-request']
 
-===== 목록에 없는 Cpu 모델명 NoMatchCpuModelNameException
-operation::exception/badCpuName[snippets='http-request']
+=== 목록에 없는 Cpu 모델명
+===== NoMatchCpuModelNameException
+operation::/green/exception/badCpuName[snippets='http-request']
 
-===== 목록에 없는 Gpu 모델명 NoMatchGpuModelNameException
-operation::exception/badGpuName[snippets='http-request']
+=== 목록에 없는 Gpu 모델명
+===== NoMatchGpuModelNameException
+operation::/green/exception/badGpuName[snippets='http-request']
 
-===== Cpu/Gpu의 모델명과 tdp 모두 누락 CannotInferTdpException
-operation::exception/infer[snippets='http-request']
+=== Cpu/Gpu의 모델명과 tdp 모두 누락
+===== CannotInferTdpException
+operation::/green/exception/infer[snippets='http-request']
 
+= 화면 송출 데이터 조회 API
+
+=== Cpu 모델명 리스트 조회
+==== Get /model/cpu
+include::adocs/cpus.adoc[]
+
+=== Gpu 모델명 리스트 조회
+==== Get /model/gpu
+include::adocs/gpus.adoc[]
+
+=== 대륙 리스트 조회
+==== Get /location
+include::adocs/contients.adoc[]
+
+=== 국가 리스트 조회
+==== Get /location/{continent}
+include::adocs/countries.adoc[]
+
+=== 지역 리스트 조회
+==== Get /location/{continent}/{country}
+include::adocs/regions.adoc[]
+
+== 예외
+
+=== 목록에 없는 대륙
+===== MethodArgumentTypeMismatchException
+operation::/view/exception/badContinent[snippets='http-request']

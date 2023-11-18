@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <row>
+    <continentName>WORLD</continentName>
+    <countryName>Any</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>475</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>China</countryName>
+    <regionName>Taiwan</regionName>
+    <carbonIntensity>509</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Israel</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>558</carbonIntensity>
+  </row>
+  <row>
+    <continentName>AFRICA</continentName>
+    <countryName>South Africa</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>900.6</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>China</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>537.4</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>China</countryName>
+    <regionName>Hong Kong (HK Electricity Company)</regionName>
+    <carbonIntensity>710</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>China</countryName>
+    <regionName>Hong Kong (CLP Group)</regionName>
+    <carbonIntensity>650</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>India</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>708.2</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Indonesia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>717.7</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Japan</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>465.8</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Korea</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>415.6</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Saudi Arabia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>505.9</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Singapore</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>408</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Thailand</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>481</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>Turkey</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>375</carbonIntensity>
+  </row>
+  <row>
+    <continentName>ASIA</continentName>
+    <countryName>United Arab Emirates</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>417.89</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Austria</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>111.18</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Belgium</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>161.89</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Bulgaria</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>372.12</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Croatia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>226.96</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Cyprus</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>642.9</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Czech Republic</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>495.49</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Denmark</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>142.52</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Estonia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>598.69</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Finland</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>95.32</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>France</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>51.28</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Germany</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>338.66</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Greece</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>410.01</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Hungary</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>243.75</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Iceland</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>0.13</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Ireland</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>335.99</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Italy</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>323.84</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Latvia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>215.67</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Lithuania</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>253.56</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Luxembourg</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>101.36</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Malta</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>390.62</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Netherlands</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>374.34</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Norway</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>7.62</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Poland</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>759.62</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Portugal</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>201.55</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Romania</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>261.84</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Russian Federation</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>310.2</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Serbia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>776.69</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Slovakia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>155.48</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Slovenia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>224.05</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Spain</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>171.03</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Sweden</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>5.67</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>Switzerland</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>11.52</carbonIntensity>
+  </row>
+  <row>
+    <continentName>EUROPE</continentName>
+    <countryName>United Kingdom</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>231.12</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>120</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Alberta</regionName>
+    <carbonIntensity>670</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>British Columbia</regionName>
+    <carbonIntensity>19.7</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Manitoba</regionName>
+    <carbonIntensity>1.3</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>New Brunswick</regionName>
+    <carbonIntensity>270</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Newfoundland and Labrador</regionName>
+    <carbonIntensity>29</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Nova Scotia</regionName>
+    <carbonIntensity>810</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Northwest Territories</regionName>
+    <carbonIntensity>200</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Nunavut</regionName>
+    <carbonIntensity>900</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Ontario</regionName>
+    <carbonIntensity>30</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Prince Edward Island</regionName>
+    <carbonIntensity>2</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Quebec</regionName>
+    <carbonIntensity>1.5</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Saskatchewan</regionName>
+    <carbonIntensity>710</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Canada</countryName>
+    <regionName>Yukon Territory</regionName>
+    <carbonIntensity>111</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>Mexico</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>431.4</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>423.94</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Alaska</regionName>
+    <carbonIntensity>462.33</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Alabama</regionName>
+    <carbonIntensity>344.37</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Arkansas</regionName>
+    <carbonIntensity>454.4</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Arizona</regionName>
+    <carbonIntensity>351.99</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>California</regionName>
+    <carbonIntensity>216.43</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Colorado</regionName>
+    <carbonIntensity>582.34</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Connecticut</regionName>
+    <carbonIntensity>253</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Washington DC</regionName>
+    <carbonIntensity>382.68</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Delaware</regionName>
+    <carbonIntensity>360.68</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Florida</regionName>
+    <carbonIntensity>402.2</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Georgia</regionName>
+    <carbonIntensity>345.58</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Hawaii</regionName>
+    <carbonIntensity>731.21</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Iowa</regionName>
+    <carbonIntensity>293.85</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Idaho</regionName>
+    <carbonIntensity>101.89</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Illinois</regionName>
+    <carbonIntensity>265.8</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Indiana</regionName>
+    <carbonIntensity>740.02</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Kansas</regionName>
+    <carbonIntensity>384.08</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Kentucky</regionName>
+    <carbonIntensity>804.75</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Louisiana</regionName>
+    <carbonIntensity>363.82</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Massachusetts</regionName>
+    <carbonIntensity>420.32</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Maryland</regionName>
+    <carbonIntensity>308.21</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Maine</regionName>
+    <carbonIntensity>109</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Michigan</regionName>
+    <carbonIntensity>448.08</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Minnesota</regionName>
+    <carbonIntensity>367.93</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Missouri</regionName>
+    <carbonIntensity>773</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Mississip</regionName>
+    <carbonIntensity>427.07</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Montana</regionName>
+    <carbonIntensity>435.87</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>North Carolina</regionName>
+    <carbonIntensity>309.73</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>North Dakota</regionName>
+    <carbonIntensity>663.05</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Nebraska</regionName>
+    <carbonIntensity>573.51</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>New Hampshire</regionName>
+    <carbonIntensity>118.44</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>New Jersey</regionName>
+    <carbonIntensity>235.1</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>New Mexico</regionName>
+    <carbonIntensity>601.77</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Nevada</regionName>
+    <carbonIntensity>342.25</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>New York</regionName>
+    <carbonIntensity>199.01</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Ohio</regionName>
+    <carbonIntensity>598.58</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Oklahoma</regionName>
+    <carbonIntensity>338.44</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Oregon</regionName>
+    <carbonIntensity>163.15</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Pennsylvania</regionName>
+    <carbonIntensity>333.19</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Rhode Island</regionName>
+    <carbonIntensity>395.27</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>South Carolina</regionName>
+    <carbonIntensity>245.48</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>South Dakota</regionName>
+    <carbonIntensity>162.69</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Tennessee</regionName>
+    <carbonIntensity>272.89</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Texas</regionName>
+    <carbonIntensity>409.16</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Utah</regionName>
+    <carbonIntensity>747.82</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Virginia</regionName>
+    <carbonIntensity>308</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Vermont</regionName>
+    <carbonIntensity>14.45</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Washington</regionName>
+    <carbonIntensity>101.84</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Wisconsin</regionName>
+    <carbonIntensity>569.39</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>West Virginia</regionName>
+    <carbonIntensity>919.34</carbonIntensity>
+  </row>
+  <row>
+    <continentName>NORTH_AMERICA</continentName>
+    <countryName>United States of America</countryName>
+    <regionName>Wyoming</regionName>
+    <carbonIntensity>950.5</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>840</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Australian Capital Territory</regionName>
+    <carbonIntensity>870</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>New South Wales</regionName>
+    <carbonIntensity>870</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Northern Territory</regionName>
+    <carbonIntensity>620</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Northern Territory (Darwin Katherine Interconnected System)</regionName>
+    <carbonIntensity>540</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Queensland</regionName>
+    <carbonIntensity>920</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>South Australia</regionName>
+    <carbonIntensity>420</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Tasmania</regionName>
+    <carbonIntensity>180</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Victoria</regionName>
+    <carbonIntensity>1060</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Western Australia (North Western Interconnected System)</regionName>
+    <carbonIntensity>580</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>Australia</countryName>
+    <regionName>Western Australia (South West Interconnected System)</regionName>
+    <carbonIntensity>700</carbonIntensity>
+  </row>
+  <row>
+    <continentName>OCEANIA</continentName>
+    <countryName>New Zealand</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>110.1</carbonIntensity>
+  </row>
+  <row>
+    <continentName>SOUTH_AMERICA</continentName>
+    <countryName>Argentina</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>307</carbonIntensity>
+  </row>
+  <row>
+    <continentName>SOUTH_AMERICA</continentName>
+    <countryName>Brazil</countryName>
+    <regionName>Any</regionName>
+    <carbonIntensity>61.7</carbonIntensity>
+  </row>
+</root>
