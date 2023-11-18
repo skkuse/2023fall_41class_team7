@@ -2,7 +2,7 @@ package com.skku.se7.service;
 
 import com.skku.se7.dto.LocationIntensity;
 import com.skku.se7.dto.enums.Continent;
-import com.skku.se7.error.exceptions.NoMatchLocationSetException;
+import com.skku.se7.error.exceptions.NoMatchCountryException;
 import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -13,7 +13,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -88,7 +87,7 @@ public class LocationHandler {
                 .filter(l -> l.getCountry().equals(country))
                 .filter(l -> l.getRegion().equals(region))
                 .findFirst()
-                .orElseThrow(NoMatchLocationSetException::new)
+                .orElseThrow(NoMatchCountryException::new)
                 .getCarbonIntensity();
     }
 }

@@ -2,17 +2,22 @@ package com.skku.se7.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.skku.se7.Se7Configuration;
 import com.skku.se7.dto.*;
+import com.skku.se7.dto.enums.Continent;
 import com.skku.se7.service.GreenService;
+import com.skku.se7.service.LocationHandler;
 import com.skku.se7.service.ProcessorTdpHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +25,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Optional;
 
+import static com.skku.se7.controller.ControllerTestUtils.LINK_CONTINENT_TYPE;
 import static com.skku.se7.controller.ControllerTestUtils.example;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -32,14 +38,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Slf4j
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
+@Import(Se7Configuration.class)
 @WebMvcTest(controllers = GreenController.class)
 public class GreenControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
     @MockBean
     private GreenService greenService;
     @MockBean
     private ProcessorTdpHandler processorTdpHandler;
+    @InjectMocks
+    private LocationHandler locationHandler;
 
     @BeforeEach
     public void beforeEach() {
@@ -76,6 +86,12 @@ public class GreenControllerTest {
         Double psf = 2.7;
         HwSpecRequest hwSpecRequest = new HwSpecRequest(cpuSpecRequest, gpuSpecRequest, memory, psf);
 
+        Continent continent = Continent.NORTH_AMERICA;
+        String country = "Canada";
+        String region = "Nunavut";
+        LocationRequest locationRequest = new LocationRequest(continent, country, region);
+
+
         String javaCode = """
                 public class Main {
                     public static void main(String[] args) {
@@ -92,7 +108,7 @@ public class GreenControllerTest {
                     }
                 }
                 """;
-        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, javaCode);
+        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, locationRequest, javaCode);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
@@ -137,6 +153,10 @@ public class GreenControllerTest {
                         "/green/normal/full",
                         requestFields(
                                 fieldWithPath("javaCode").type(JsonFieldType.STRING).description("실행할 자바 코드").attributes(example(javaCode)),
+
+                                fieldWithPath("locationRequest.continent").type(JsonFieldType.STRING).description("대륙 정보").optional().attributes(example(LINK_CONTINENT_TYPE)),
+                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country.toString())),
+                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region.toString())),
 
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.STRING).description("Processor(CPU or GPU) model 이름").optional().attributes(example("Intel Core i7-14700K")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example("0.8")),
@@ -196,6 +216,11 @@ public class GreenControllerTest {
         Double psf = 2.7;
         HwSpecRequest hwSpecRequest = new HwSpecRequest(cpuSpecRequest, gpuSpecRequest, memory, psf);
 
+        Continent continent = Continent.NORTH_AMERICA;
+        String country = "Canada";
+        String region = "Nunavut";
+        LocationRequest locationRequest = new LocationRequest(continent, country, region);
+
         String javaCode = """
                 public class Main {
                     public static void main(String[] args) {
@@ -212,7 +237,7 @@ public class GreenControllerTest {
                     }
                 }
                 """;
-        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, javaCode);
+        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, locationRequest, javaCode);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
@@ -274,6 +299,11 @@ public class GreenControllerTest {
         Double psf = 2.7;
         HwSpecRequest hwSpecRequest = new HwSpecRequest(cpuSpecRequest, null, memory, psf);
 
+        Continent continent = Continent.NORTH_AMERICA;
+        String country = "Canada";
+        String region = "Nunavut";
+        LocationRequest locationRequest = new LocationRequest(continent, country, region);
+
         String javaCode = """
                 public class Main {
                     public static void main(String[] args) {
@@ -290,7 +320,7 @@ public class GreenControllerTest {
                     }
                 }
                 """;
-        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, javaCode);
+        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, locationRequest, javaCode);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
@@ -333,6 +363,10 @@ public class GreenControllerTest {
                         "/green/normal/no-gpu/model",
                         requestFields(
                                 fieldWithPath("javaCode").type(JsonFieldType.STRING).description("실행할 자바 코드").attributes(example(javaCode)),
+
+                                fieldWithPath("locationRequest.continent").type(JsonFieldType.STRING).description("대륙 정보").optional().attributes(example(LINK_CONTINENT_TYPE)),
+                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country.toString())),
+                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region.toString())),
 
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.STRING).description("Processor(CPU or GPU) model 이름").optional().attributes(example("Intel Core i7-14700K")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example("0.8")),
@@ -380,6 +414,11 @@ public class GreenControllerTest {
         Double psf = 2.7;
         HwSpecRequest hwSpecRequest = new HwSpecRequest(cpuSpecRequest, null, memory, psf);
 
+        Continent continent = Continent.NORTH_AMERICA;
+        String country = "Canada";
+        String region = "Nunavut";
+        LocationRequest locationRequest = new LocationRequest(continent, country, region);
+
         String javaCode = """
                 public class Main {
                     public static void main(String[] args) {
@@ -396,7 +435,7 @@ public class GreenControllerTest {
                     }
                 }
                 """;
-        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, javaCode);
+        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, locationRequest, javaCode);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
@@ -439,6 +478,10 @@ public class GreenControllerTest {
                         "/green/normal/no-gpu/tdp",
                         requestFields(
                                 fieldWithPath("javaCode").type(JsonFieldType.STRING).description("실행할 자바 코드").attributes(example(javaCode)),
+
+                                fieldWithPath("locationRequest.continent").type(JsonFieldType.STRING).description("대륙 정보").optional().attributes(example(LINK_CONTINENT_TYPE)),
+                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country.toString())),
+                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region.toString())),
 
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.tdp").type(JsonFieldType.NUMBER).description("Processor 코어 한개의 설계 전력(최소값 1").optional().attributes(example(tdp.toString())),
@@ -484,6 +527,11 @@ public class GreenControllerTest {
         Double psf = 2.7;
         HwSpecRequest hwSpecRequest = new HwSpecRequest(cpuSpecRequest, null, memory, psf);
 
+        Continent continent = Continent.NORTH_AMERICA;
+        String country = "Canada";
+        String region = "Nunavut";
+        LocationRequest locationRequest = new LocationRequest(continent, country, region);
+
         String javaCode = """
                 public class Main {
                     public static void main(String[] args) {
@@ -500,7 +548,7 @@ public class GreenControllerTest {
                     }
                 }
                 """;
-        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, javaCode);
+        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, locationRequest, javaCode);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
@@ -558,6 +606,11 @@ public class GreenControllerTest {
         Integer memory = 8;
         HwSpecRequest hwSpecRequest = new HwSpecRequest(cpuSpecRequest, null, memory, null);
 
+        Continent continent = Continent.NORTH_AMERICA;
+        String country = "Canada";
+        String region = "Nunavut";
+        LocationRequest locationRequest = new LocationRequest(continent, country, region);
+
         String javaCode = """
                 public class Main {
                     public static void main(String[] args) {
@@ -574,7 +627,7 @@ public class GreenControllerTest {
                     }
                 }
                 """;
-        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, javaCode);
+        GreenRequest greenRequest = new GreenRequest(hwSpecRequest, locationRequest, javaCode);
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
