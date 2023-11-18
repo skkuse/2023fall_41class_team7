@@ -1,13 +1,8 @@
 package com.skku.se7.controller;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.gson.Gson;
-import com.skku.se7.controller.validator.EnvironmentValidator;
-import com.skku.se7.controller.validator.HwValidator;
 import com.skku.se7.dto.*;
-import com.skku.se7.dto.enums.PlatformType;
 import com.skku.se7.service.GreenService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -35,17 +30,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Slf4j
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@Import({HwValidator.class, EnvironmentValidator.class})
 @WebMvcTest(controllers = GreenController.class)
 public class GreenControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
     private GreenService greenService;
-    @Autowired
-    private HwValidator hwValidator;
-    @Autowired
-    private EnvironmentValidator environmentValidator;
 
 
     /**
