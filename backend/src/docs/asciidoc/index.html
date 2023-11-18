@@ -500,6 +500,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="_모든_데이터_입력의_경우"><a class="link" href="#_모든_데이터_입력의_경우">모든 데이터 입력의 경우</a></h5>
 <div class="sect5">
+<h6 id="_모든_데이터_입력의_경우_http_request"><a class="link" href="#_모든_데이터_입력의_경우_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 736
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : null
+    },
+    "gpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.7,
+      "coreNumber" : 7,
+      "tdp" : 25.0
+    },
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
 <h6 id="_모든_데이터_입력의_경우_request_fields"><a class="link" href="#_모든_데이터_입력의_경우_request_fields">Request fields</a></h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -600,6 +631,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect5">
+<h6 id="_모든_데이터_입력의_경우_http_response"><a class="link" href="#_모든_데이터_입력의_경우_http_response">HTTP response</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 252
+
+{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":42.51,"memoryCarbonFootprint":52.26},"convertedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
 <h6 id="_모든_데이터_입력의_경우_response_fields"><a class="link" href="#_모든_데이터_입력의_경우_response_fields">Response fields</a></h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -676,6 +719,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="_모델_이름만_입력_시no_tdp"><a class="link" href="#_모델_이름만_입력_시no_tdp">모델 이름만 입력 시(no tdp)</a></h5>
 <div class="sect5">
+<h6 id="_모델_이름만_입력_시no_tdp_http_request"><a class="link" href="#_모델_이름만_입력_시no_tdp_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 632
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : null
+    },
+    "gpuSpecRequest" : null,
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
 <h6 id="_모델_이름만_입력_시no_tdp_request_fields"><a class="link" href="#_모델_이름만_입력_시no_tdp_request_fields">Request fields</a></h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -737,27 +806,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.modelName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.usageFactor</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.4</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.coreNumber</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">활용 가능한 코어 개수(최소값 1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.tdp</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Processor 코어 한개의 설계 전력(최소값 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">25</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -774,6 +825,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect5">
+<h6 id="_모델_이름만_입력_시no_tdp_http_response"><a class="link" href="#_모델_이름만_입력_시no_tdp_http_response">HTTP response</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 251
+
+{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"convertedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_모델_이름만_입력_시no_tdp_response_fields"><a class="link" href="#_모델_이름만_입력_시no_tdp_response_fields">Response fields</a></h6>
@@ -807,9 +870,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.gpuCarbonFootprint</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Gpu(입력시)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">42.51</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Null</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.memoryCarbonFootprint</code></p></td>
@@ -852,6 +915,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect4">
 <h5 id="_tdp값만_입력_시no_model_name"><a class="link" href="#_tdp값만_입력_시no_model_name">tdp값만 입력 시(no model name)</a></h5>
 <div class="sect5">
+<h6 id="_tdp값만_입력_시no_model_name_http_request"><a class="link" href="#_tdp값만_입력_시no_model_name_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 622
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : 25.0
+    },
+    "gpuSpecRequest" : null,
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect5">
 <h6 id="_tdp값만_입력_시no_model_name_request_fields"><a class="link" href="#_tdp값만_입력_시no_model_name_request_fields">Request fields</a></h6>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -890,8 +979,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.cpuSpecRequest.modelName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Processor(CPU or GPU) model 이름</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Intel Core i7-14700K</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.cpuSpecRequest.tdp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Processor 코어 한개의 설계 전력(최소값 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">25.0</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -907,33 +1002,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.cpuSpecRequest.tdp</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest</code></p></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.modelName</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.usageFactor</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.4</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.coreNumber</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">활용 가능한 코어 개수(최소값 1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwSpecRequest.gpuSpecRequest.tdp</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Processor 코어 한개의 설계 전력(최소값 1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">25</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -950,6 +1021,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect5">
+<h6 id="_tdp값만_입력_시no_model_name_http_response"><a class="link" href="#_tdp값만_입력_시no_model_name_http_response">HTTP response</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 251
+
+{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"convertedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_tdp값만_입력_시no_model_name_response_fields"><a class="link" href="#_tdp값만_입력_시no_model_name_response_fields">Response fields</a></h6>
@@ -983,9 +1066,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.gpuCarbonFootprint</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Gpu(입력시)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">42.51</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Null</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.memoryCarbonFootprint</code></p></td>
@@ -1024,14 +1107,255 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="sect2">
 <h3 id="_예외_목록"><a class="link" href="#_예외_목록">예외 목록</a></h3>
+<div class="sect4">
+<h5 id="_필수값_누락_bindexception"><a class="link" href="#_필수값_누락_bindexception">필수값 누락 BindException</a></h5>
+<div class="sect5">
+<h6 id="_필수값_누락_bindexception_http_request"><a class="link" href="#_필수값_누락_bindexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 268
+Host: localhost:8080
 
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : null,
+    "gpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.7,
+      "coreNumber" : null,
+      "tdp" : 25.0
+    },
+    "memoryGigaByte" : null,
+    "psf" : 2.7
+  },
+  "javaCode" : null
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_범위_이탈_bindexception"><a class="link" href="#_범위_이탈_bindexception">범위 이탈 BindException</a></h5>
+<div class="sect5">
+<h6 id="_범위_이탈_bindexception_http_request"><a class="link" href="#_범위_이탈_bindexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 737
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 1.8,
+      "coreNumber" : 1,
+      "tdp" : null
+    },
+    "gpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.7,
+      "coreNumber" : -2,
+      "tdp" : 25.0
+    },
+    "memoryGigaByte" : 0,
+    "psf" : 0.8
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cpu_gpu_모두_누락_withoutprocessorexception"><a class="link" href="#_cpu_gpu_모두_누락_withoutprocessorexception">Cpu, Gpu 모두 누락 WithoutProcessorException</a></h5>
+<div class="sect5">
+<h6 id="_cpu_gpu_모두_누락_withoutprocessorexception_http_request"><a class="link" href="#_cpu_gpu_모두_누락_withoutprocessorexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 518
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : null,
+    "gpuSpecRequest" : null,
+    "memoryGigaByte" : 2,
+    "psf" : 1.6
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception"><a class="link" href="#_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception">Cpu 모델명과 Tdp값이 같이 옴 CpuTdpWithModelNameException</a></h5>
+<div class="sect5">
+<h6 id="_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception_http_request"><a class="link" href="#_cpu_모델명과_tdp값이_같이_옴_cputdpwithmodelnameexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 736
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : 25.0
+    },
+    "gpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.7,
+      "coreNumber" : 7,
+      "tdp" : 25.0
+    },
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception"><a class="link" href="#_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception">Gpu 모델명과 Tdp값이 같이 옴 GpuTdpWithModelNameException</a></h5>
+<div class="sect5">
+<h6 id="_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception_http_request"><a class="link" href="#_gpu_모델명과_tdp값이_같이_옴_gputdpwithmodelnameexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 735
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : 3.0
+    },
+    "gpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 0.7,
+      "coreNumber" : 7,
+      "tdp" : 25.0
+    },
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_목록에_없는_cpu_모델명_nomatchcpumodelnameexception"><a class="link" href="#_목록에_없는_cpu_모델명_nomatchcpumodelnameexception">목록에 없는 Cpu 모델명 NoMatchCpuModelNameException</a></h5>
+<div class="sect5">
+<h6 id="_목록에_없는_cpu_모델명_nomatchcpumodelnameexception_http_request"><a class="link" href="#_목록에_없는_cpu_모델명_nomatchcpumodelnameexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 632
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : null
+    },
+    "gpuSpecRequest" : null,
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_목록에_없는_gpu_모델명_nomatchgpumodelnameexception"><a class="link" href="#_목록에_없는_gpu_모델명_nomatchgpumodelnameexception">목록에 없는 Gpu 모델명 NoMatchGpuModelNameException</a></h5>
+<div class="sect5">
+<h6 id="_목록에_없는_gpu_모델명_nomatchgpumodelnameexception_http_request"><a class="link" href="#_목록에_없는_gpu_모델명_nomatchgpumodelnameexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 633
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : null,
+    "gpuSpecRequest" : {
+      "modelName" : "testModelName",
+      "usageFactor" : 0.7,
+      "coreNumber" : 7,
+      "tdp" : null
+    },
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception"><a class="link" href="#_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception">Cpu/Gpu의 모델명과 tdp 모두 누락 CannotInferTdpException</a></h5>
+<div class="sect5">
+<h6 id="_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception_http_request"><a class="link" href="#_cpugpu의_모델명과_tdp_모두_누락_cannotinfertdpexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 622
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : null
+    },
+    "gpuSpecRequest" : null,
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-11-18 20:46:17 +0900
+Last updated 2023-11-18 21:33:41 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

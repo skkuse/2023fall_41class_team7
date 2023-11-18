@@ -20,3 +20,27 @@ include::adocs/normal-tdp.adoc[]
 
 === 예외 목록
 
+===== 필수값 누락 BindException
+operation::exception/required[snippets='http-request']
+
+===== 범위 이탈 BindException
+operation::exception/range[snippets='http-request']
+
+===== Cpu, Gpu 모두 누락 WithoutProcessorException
+operation::exception/noProcessor[snippets='http-request']
+
+===== Cpu 모델명과 Tdp값이 같이 옴 CpuTdpWithModelNameException
+operation::exception/cpuTdpWithName[snippets='http-request']
+
+===== Gpu 모델명과 Tdp값이 같이 옴 GpuTdpWithModelNameException
+operation::exception/gpuTdpWithName[snippets='http-request']
+
+===== 목록에 없는 Cpu 모델명 NoMatchCpuModelNameException
+operation::exception/badCpuName[snippets='http-request']
+
+===== 목록에 없는 Gpu 모델명 NoMatchGpuModelNameException
+operation::exception/badGpuName[snippets='http-request']
+
+===== Cpu/Gpu의 모델명과 tdp 모두 누락 CannotInferTdpException
+operation::exception/infer[snippets='http-request']
+

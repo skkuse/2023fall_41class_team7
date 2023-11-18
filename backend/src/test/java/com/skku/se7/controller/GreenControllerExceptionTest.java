@@ -20,19 +20,24 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -48,13 +53,8 @@ class GreenControllerExceptionTest {
     private GreenService greenService;
     @MockBean
     private ProcessorTdpHandler processorTdpHandler;
-    @InjectMocks
+    @MockBean
     private ControllerExceptionHandler controllerExceptionHandler;
-
-    @BeforeEach
-    public void beforeEach() throws NoSuchMethodException {
-    }
-
 
     /**
      * input : No java Code, No memory, No Gpu CoreNum(Only Gpu Given)
@@ -81,12 +81,19 @@ class GreenControllerExceptionTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
+        //mocking
+        given(controllerExceptionHandler.bindException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
+
         //when
         MvcResult missingRequestFieldsResult = mockMvc.perform(
                         post("/green")
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/required")
+                )
                 .andReturn();
 
         //then
@@ -143,6 +150,9 @@ class GreenControllerExceptionTest {
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
         String content = ow.writeValueAsString(greenRequest);
 
+        //mocking
+        given(controllerExceptionHandler.bindException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult missingRequestFieldsResult = mockMvc.perform(
@@ -150,6 +160,9 @@ class GreenControllerExceptionTest {
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/range")
+                )
                 .andReturn();
 
         //then
@@ -189,6 +202,8 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
+        given(controllerExceptionHandler.withoutProcessorException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult missingRequestFieldsResult = mockMvc.perform(
@@ -196,6 +211,9 @@ class GreenControllerExceptionTest {
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/noProcessor")
+                )
                 .andReturn();
 
         //then
@@ -255,6 +273,8 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
+        given(controllerExceptionHandler.cpuTdpWithModelNameException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult tdpWithModelNameResult = mockMvc.perform(
@@ -262,6 +282,9 @@ class GreenControllerExceptionTest {
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/cpuTdpWithName")
+                )
                 .andReturn();
 
         //then
@@ -275,11 +298,11 @@ class GreenControllerExceptionTest {
     @Test
     public void getGreen_InputGpuTdpWithModelName_GpuTdpWithModelNameException() throws Exception{
         //given
-        String cpuModelName = "testCpuModel";
         Double cpuUsageFactor = 0.8;
         Integer cpuCoreNumber = 8;
+        Double cpuTdp = 3.0;
         ProcessorSpecRequest cpuSpecRequest = ProcessorSpecRequest.builder()
-                .modelName(cpuModelName)
+                .tdp(cpuTdp)
                 .usageFactor(cpuUsageFactor)
                 .coreNumber(cpuCoreNumber)
                 .build();
@@ -320,6 +343,8 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
+        given(controllerExceptionHandler.gpuTdpWithModelNameException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult tdpWithModelNameResult = mockMvc.perform(
@@ -327,6 +352,9 @@ class GreenControllerExceptionTest {
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/gpuTdpWithName")
+                )
                 .andReturn();
 
         //then
@@ -374,6 +402,8 @@ class GreenControllerExceptionTest {
 
         //mocking
         given(processorTdpHandler.validateCpuModel(cpuModelName)).willReturn(false);
+        given(controllerExceptionHandler.noMatchCpuModelNameException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult badCpuModelNameResult = mockMvc.perform(
@@ -381,6 +411,9 @@ class GreenControllerExceptionTest {
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/badCpuName")
+                )
                 .andReturn();
 
         //then
@@ -430,6 +463,8 @@ class GreenControllerExceptionTest {
 
         //mocking
         given(processorTdpHandler.validateGpuModel(modelName)).willReturn(false);
+        given(controllerExceptionHandler.noMatchGpuModelNameException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult badGpuModelNameResult = mockMvc.perform(
@@ -437,6 +472,9 @@ class GreenControllerExceptionTest {
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/badGpuName")
+                )
                 .andReturn();
 
         //then
@@ -488,6 +526,8 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
+        given(controllerExceptionHandler.cannotInferTdpException(any(), any()))
+                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult cannotInferTdpResult = mockMvc.perform(
@@ -495,10 +535,15 @@ class GreenControllerExceptionTest {
                                 .content(content)
                                 .contentType(MediaType.APPLICATION_JSON)
                 ).andExpect(status().isBadRequest())
+                .andDo(
+                        document("/exception/infer")
+                )
                 .andReturn();
 
         //then
         assertThat(cannotInferTdpResult.getResolvedException()).isExactlyInstanceOf(CannotInferTdpException.class);
+
+
 
     }
 
