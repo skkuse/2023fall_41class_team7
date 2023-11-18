@@ -34,9 +34,14 @@ public class JavaCodeCompiler {
         return className;
     }
 
-    public static String createFile(String className, String code){
+    public static String[] createFile(String className, String code){
         //String curPath = JavaCodeCompiler.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         String filePath = curPath + className + ".java";
+        String delPath = curPath + className + ".class";
+        String[] arrPath = new String[2];
+        arrPath[0] = filePath;
+        arrPath[1] = delPath;
+
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
             writer.write(code);//파일에 코드 내용 작성
             //System.out.println("자바 파일 생성" + filePath);
@@ -44,7 +49,7 @@ public class JavaCodeCompiler {
             e.printStackTrace();
         }
 
-        return filePath;
+        return arrPath;
     }
 
     public static void compileSourceFile(String filePath){
