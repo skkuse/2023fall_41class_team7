@@ -1,11 +1,9 @@
 package com.skku.se7.controller;
 
-import com.skku.se7.dto.GreenRequest;
-import com.skku.se7.dto.GreenResourceResponse;
-import com.skku.se7.dto.HwSpecRequest;
-import com.skku.se7.dto.ProcessorSpecRequest;
+import com.skku.se7.dto.*;
 import com.skku.se7.error.exceptions.*;
 import com.skku.se7.service.GreenService;
+import com.skku.se7.service.LocationHandler;
 import com.skku.se7.service.ProcessorTdpHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +16,20 @@ import org.springframework.web.bind.annotation.*;
 public class GreenController {
     private final GreenService greenService;
     private final ProcessorTdpHandler processorTdpHandler;
+    private final LocationHandler locationHandler;
 
     @PostMapping("/green")
     public GreenResourceResponse getGreen(@Valid @RequestBody GreenRequest greenRequest) {
         validateHw(greenRequest.getHwSpecRequest());
+        validateLocation(greenRequest.getLocationRequest());
         return greenService.calculateGreen(greenRequest);
+    }
+
+    private void validateLocation(LocationRequest locationRequest) throws NoMatchRegionException, NoMatchCountryException {
+        if(!locationHandler.validateCountry(locationRequest.getContinent(), locationRequest.getCountry()))
+            throw new NoMatchCountryException();
+        if(!locationHandler.validateRegion(locationRequest.getContinent(), locationRequest.getCountry(), locationRequest.getRegion()))
+            throw new NoMatchRegionException();
     }
 
     private void validateHw(HwSpecRequest hwSpecRequest) throws WithoutProcessorException {

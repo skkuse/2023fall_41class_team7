@@ -105,6 +105,28 @@ public class ControllerExceptionHandler {
         return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
     }
 
+    @ExceptionHandler(NoMatchCountryException.class)
+    public ResponseEntity<ExceptionResponse> noMatchCountryException(NoMatchCountryException e, HttpServletRequest request) throws IOException {
+        LocationRequest locationRequest = getRequestJson(request, GreenRequest.class).getLocationRequest();
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field("locationRequest.country")
+                .given(locationRequest.getCountry())
+                .reasonMessage("입력한 대륙 정보에 일치하는 국가 정보가 존재하지 않습니다.")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
+    @ExceptionHandler(NoMatchRegionException.class)
+    public ResponseEntity<ExceptionResponse> noMatchRegionException(NoMatchRegionException e, HttpServletRequest request) throws IOException {
+        LocationRequest locationRequest = getRequestJson(request, GreenRequest.class).getLocationRequest();
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field("locationRequest.region")
+                .given(locationRequest.getRegion())
+                .reasonMessage("입력한 대륙, 국가 정보에 일치하는 지역 정보가 존재하지 않습니다.")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
     private <T> T getRequestJson(HttpServletRequest request, Class<T> jsonType) throws IOException {
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream,

@@ -496,8 +496,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_목록에_없는_cpu_모델명">목록에 없는 Cpu 모델명</a></li>
 <li><a href="#_목록에_없는_gpu_모델명">목록에 없는 Gpu 모델명</a></li>
 <li><a href="#_cpugpu의_모델명과_tdp_모두_누락">Cpu/Gpu의 모델명과 tdp 모두 누락</a></li>
+<li><a href="#_대륙_정보와_맞지_않는_국가_정보_입력">대륙 정보와 맞지 않는 국가 정보 입력</a></li>
+<li><a href="#_대륙국가_정보와_맞지_않는_지역_정보_입력">대륙,국가 정보와 맞지 않는 지역 정보 입력</a></li>
 </ul>
 </li>
+<li><a href="#">----------------------------------------------</a></li>
 </ul>
 </li>
 <li><a href="#_화면_송출_데이터_조회_api">화면 송출 데이터 조회 API</a>
@@ -537,7 +540,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 736
+Content-Length: 856
 Host: localhost:8080
 
 {
@@ -556,6 +559,11 @@ Host: localhost:8080
     },
     "memoryGigaByte" : 8,
     "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
   },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
@@ -597,6 +605,24 @@ Host: localhost:8080
         System. out.println(c);
     }
 }</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.continent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙 정보</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="common/continent.html" class="popup">대륙 정보</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.country</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">국가 정보(Any 포함)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Canada</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역 정보(Any 포함)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nunavut</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
 </tr>
 <tr>
@@ -752,7 +778,7 @@ Content-Length: 252
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 632
+Content-Length: 752
 Host: localhost:8080
 
 {
@@ -766,6 +792,11 @@ Host: localhost:8080
     "gpuSpecRequest" : null,
     "memoryGigaByte" : 8,
     "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
   },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
@@ -807,6 +838,24 @@ Host: localhost:8080
         System. out.println(c);
     }
 }</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.continent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙 정보</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="common/continent.html" class="popup">대륙 정보</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.country</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">국가 정보(Any 포함)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Canada</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역 정보(Any 포함)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nunavut</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
 </tr>
 <tr>
@@ -944,7 +993,7 @@ Content-Length: 251
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 622
+Content-Length: 742
 Host: localhost:8080
 
 {
@@ -958,6 +1007,11 @@ Host: localhost:8080
     "gpuSpecRequest" : null,
     "memoryGigaByte" : 8,
     "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
   },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
@@ -999,6 +1053,24 @@ Host: localhost:8080
         System. out.println(c);
     }
 }</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.continent</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">대륙 정보</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="common/continent.html" class="popup">대륙 정보</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.country</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">국가 정보(Any 포함)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Canada</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>locationRequest.region</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">지역 정보(Any 포함)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nunavut</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">필수!!</p></td>
 </tr>
 <tr>
@@ -1143,7 +1215,7 @@ Content-Length: 251
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 268
+Content-Length: 388
 Host: localhost:8080
 
 {
@@ -1157,6 +1229,11 @@ Host: localhost:8080
     },
     "memoryGigaByte" : null,
     "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
   },
   "javaCode" : null
 }</code></pre>
@@ -1175,7 +1252,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 737
+Content-Length: 857
 Host: localhost:8080
 
 {
@@ -1195,6 +1272,11 @@ Host: localhost:8080
     "memoryGigaByte" : 0,
     "psf" : 0.8
   },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
+  },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
 </div>
@@ -1212,7 +1294,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 518
+Content-Length: 638
 Host: localhost:8080
 
 {
@@ -1221,6 +1303,11 @@ Host: localhost:8080
     "gpuSpecRequest" : null,
     "memoryGigaByte" : 2,
     "psf" : 1.6
+  },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
   },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
@@ -1239,7 +1326,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 736
+Content-Length: 856
 Host: localhost:8080
 
 {
@@ -1259,6 +1346,11 @@ Host: localhost:8080
     "memoryGigaByte" : 8,
     "psf" : 2.7
   },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
+  },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
 </div>
@@ -1276,7 +1368,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 735
+Content-Length: 855
 Host: localhost:8080
 
 {
@@ -1296,6 +1388,11 @@ Host: localhost:8080
     "memoryGigaByte" : 8,
     "psf" : 2.7
   },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
+  },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
 </div>
@@ -1313,7 +1410,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 632
+Content-Length: 752
 Host: localhost:8080
 
 {
@@ -1327,6 +1424,11 @@ Host: localhost:8080
     "gpuSpecRequest" : null,
     "memoryGigaByte" : 8,
     "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
   },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
@@ -1345,7 +1447,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 633
+Content-Length: 753
 Host: localhost:8080
 
 {
@@ -1359,6 +1461,11 @@ Host: localhost:8080
     },
     "memoryGigaByte" : 8,
     "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
   },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
@@ -1377,7 +1484,7 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
 Content-Type: application/json;charset=UTF-8
-Content-Length: 622
+Content-Length: 742
 Host: localhost:8080
 
 {
@@ -1392,6 +1499,11 @@ Host: localhost:8080
     "memoryGigaByte" : 8,
     "psf" : 2.7
   },
+  "locationRequest" : {
+    "continent" : "NORTH_AMERICA",
+    "country" : "Canada",
+    "region" : "Nunavut"
+  },
   "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
 }</code></pre>
 </div>
@@ -1399,6 +1511,96 @@ Host: localhost:8080
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_대륙_정보와_맞지_않는_국가_정보_입력"><a class="link" href="#_대륙_정보와_맞지_않는_국가_정보_입력">대륙 정보와 맞지 않는 국가 정보 입력</a></h3>
+<div class="sect4">
+<h5 id="_nomatchcountryexception"><a class="link" href="#_nomatchcountryexception">NoMatchCountryException</a></h5>
+<div class="sect5">
+<h6 id="_nomatchcountryexception_http_request"><a class="link" href="#_nomatchcountryexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 847
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : null
+    },
+    "gpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.7,
+      "coreNumber" : 7,
+      "tdp" : 25.0
+    },
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "EUROPE",
+    "country" : "China",
+    "region" : "Taiwan"
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_대륙국가_정보와_맞지_않는_지역_정보_입력"><a class="link" href="#_대륙국가_정보와_맞지_않는_지역_정보_입력">대륙,국가 정보와 맞지 않는 지역 정보 입력</a></h3>
+<div class="sect4">
+<h5 id="_nomatchregionexception"><a class="link" href="#_nomatchregionexception">NoMatchRegionException</a></h5>
+<div class="sect5">
+<h6 id="_nomatchregionexception_http_request"><a class="link" href="#_nomatchregionexception_http_request">HTTP request</a></h6>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /green HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Content-Length: 845
+Host: localhost:8080
+
+{
+  "hwSpecRequest" : {
+    "cpuSpecRequest" : {
+      "modelName" : "testCpuModel",
+      "usageFactor" : 0.8,
+      "coreNumber" : 8,
+      "tdp" : null
+    },
+    "gpuSpecRequest" : {
+      "modelName" : null,
+      "usageFactor" : 0.7,
+      "coreNumber" : 7,
+      "tdp" : 25.0
+    },
+    "memoryGigaByte" : 8,
+    "psf" : 2.7
+  },
+  "locationRequest" : {
+    "continent" : "ASIA",
+    "country" : "China",
+    "region" : "Quebec"
+  },
+  "javaCode" : "public class Main {\n    public static void main(String[] args) {\n        int i = 1;\n        float f = 1.1f;\n        double d = 1.2;\n        boolean b = true;\n        char c = 'a';\n        System. out.println(i);\n        System. out.println(f);\n        System. out.println(d);\n        System. out.println(b);\n        System. out.println(c);\n    }\n}\n"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id=""><a class="link" href="#">----------------------------------------------</a></h2>
+<div class="sectionbody">
+
 </div>
 </div>
 <h1 id="_화면_송출_데이터_조회_api" class="sect0"><a class="link" href="#_화면_송출_데이터_조회_api">화면 송출 데이터 조회 API</a></h1>
@@ -1778,7 +1980,7 @@ Host: localhost:8080</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-11-19 03:05:57 +0900
+Last updated 2023-11-19 04:09:35 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

@@ -1,0 +1,8 @@
+:doctype: book
+:icons: font
+==== API로도 조회 가능
+==== GET, /location
+
+[[ordering]]
+include::{snippets}/code/continent.adoc[]
+
