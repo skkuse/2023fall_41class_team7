@@ -124,36 +124,4 @@ class GreenControllerExceptionTest {
 
     }
 
-    /**
-     * input :
-     * expect result :
-     */
-    @Test
-    public void getGreen_InputPueWithSomeCloudService_PueWithCloudServiceException() throws Exception{
-        //given
-
-        //mocking
-
-        //when
-
-        //then
-
-    }
-
-    /**
-     * input :
-     * expect result :
-     */
-    @Test
-    public void getGreen_InvalidRegionWithContinent_ContinentNotContainRegionException() throws Exception{
-        //given
-
-        //mocking
-
-        //when
-
-        //then
-
-    }
-
 }
