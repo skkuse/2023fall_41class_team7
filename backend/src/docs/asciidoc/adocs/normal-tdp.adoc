@@ -1,0 +1,3 @@
+===== Post - /green
+===== tdp값만 입력 시(no model name)
+operation::green/normal/full[snippets='request-fields,response-fields']

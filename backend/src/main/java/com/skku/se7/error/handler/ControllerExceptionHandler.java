@@ -84,6 +84,16 @@ public class ControllerExceptionHandler {
         return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
     }
 
+    @ExceptionHandler(CannotInferTdpException.class)
+    public ResponseEntity<ExceptionResponse> cannotInferTdpException(CannotInferTdpException e, HttpServletRequest request) {
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field("modelName, tdp")
+                .given("none")
+                .reasonMessage("모델명도, tdp도 입력되지 않았습니다.")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
     private <T> T getRequestJson(HttpServletRequest request, Class<T> jsonType) throws IOException {
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream,

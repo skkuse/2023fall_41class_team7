@@ -9,9 +9,14 @@
 :docinfo: shared-head
 
 = 탄소 배출량 조회 API
+== Post - /green
 
 === 정상 흐름
-include::adocs/Club-Create.adoc[]
+include::adocs/normal-full.adoc[]
+
+include::adocs/normal-model.adoc[]
+
+include::adocs/normal-tdp.adoc[]
 
 === 예외 목록
 

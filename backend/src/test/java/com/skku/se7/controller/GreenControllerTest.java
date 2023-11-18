@@ -4,14 +4,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.skku.se7.dto.*;
 import com.skku.se7.service.GreenService;
+import com.skku.se7.service.ProcessorTdpHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +21,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.Optional;
 
 import static com.skku.se7.controller.ControllerTestUtils.example;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
@@ -36,7 +38,14 @@ public class GreenControllerTest {
     private MockMvc mockMvc;
     @MockBean
     private GreenService greenService;
+    @MockBean
+    private ProcessorTdpHandler processorTdpHandler;
 
+    @BeforeEach
+    public void beforeEach() {
+        given(processorTdpHandler.validateCpuModel(any())).willReturn(true);
+        given(processorTdpHandler.validateGpuModel(any())).willReturn(true);
+    }
 
     /**
      * input :모든 정보 입력
@@ -101,7 +110,7 @@ public class GreenControllerTest {
         ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
         GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
 
-        given(greenService.calculateGreen(javaCode)).willReturn(greenResourceResponse);
+        given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
         //when
         ResultActions actions = mockMvc.perform(
@@ -132,7 +141,9 @@ public class GreenControllerTest {
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.STRING).description("Processor(CPU or GPU) model 이름").optional().attributes(example("Intel Core i7-14700K")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example("0.8")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.coreNumber").type(JsonFieldType.NUMBER).description("활용 가능한 코어 개수(최소값 1)").attributes(example("8")),
+                                fieldWithPath("hwSpecRequest.cpuSpecRequest.tdp").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
 
+                                fieldWithPath("hwSpecRequest.gpuSpecRequest.modelName").type(JsonFieldType.NULL).description("").optional().attributes(example("")),
                                 fieldWithPath("hwSpecRequest.gpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example("0.4")),
                                 fieldWithPath("hwSpecRequest.gpuSpecRequest.coreNumber").type(JsonFieldType.NUMBER).description("활용 가능한 코어 개수(최소값 1)").attributes(example("4")),
                                 fieldWithPath("hwSpecRequest.gpuSpecRequest.tdp").type(JsonFieldType.NUMBER).description("Processor 코어 한개의 설계 전력(최소값 1").optional().attributes(example("25")),
@@ -219,7 +230,7 @@ public class GreenControllerTest {
         ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
         GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
 
-        given(greenService.calculateGreen(javaCode)).willReturn(greenResourceResponse);
+        given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
         //when
         ResultActions actions = mockMvc.perform(
@@ -296,7 +307,7 @@ public class GreenControllerTest {
         ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
         GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
 
-        given(greenService.calculateGreen(javaCode)).willReturn(greenResourceResponse);
+        given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
         //when
         ResultActions actions = mockMvc.perform(
@@ -326,6 +337,9 @@ public class GreenControllerTest {
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.STRING).description("Processor(CPU or GPU) model 이름").optional().attributes(example("Intel Core i7-14700K")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example("0.8")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.coreNumber").type(JsonFieldType.NUMBER).description("활용 가능한 코어 개수(최소값 1)").attributes(example("8")),
+                                fieldWithPath("hwSpecRequest.cpuSpecRequest.tdp").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
+
+                                fieldWithPath("hwSpecRequest.gpuSpecRequest").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
 
                                 fieldWithPath("hwSpecRequest.memoryGigaByte").type(JsonFieldType.NUMBER).description("사용 가능 메모리 양(최소값 1)").attributes(example("4")),
                                 fieldWithPath("hwSpecRequest.psf").type(JsonFieldType.NUMBER).description("프라그마 스케일링 팩터(기본값 1, 최소값 1)").optional().attributes(example("1.5"))
@@ -334,6 +348,7 @@ public class GreenControllerTest {
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
 
                                 fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
                                 fieldWithPath("convertedFootprint.energyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지").attributes(example(energyNeeded.toString())),
@@ -398,7 +413,7 @@ public class GreenControllerTest {
         ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
         GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
 
-        given(greenService.calculateGreen(javaCode)).willReturn(greenResourceResponse);
+        given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
         //when
         ResultActions actions = mockMvc.perform(
@@ -425,9 +440,12 @@ public class GreenControllerTest {
                         requestFields(
                                 fieldWithPath("javaCode").type(JsonFieldType.STRING).description("실행할 자바 코드").attributes(example(javaCode)),
 
+                                fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.tdp").type(JsonFieldType.NUMBER).description("Processor 코어 한개의 설계 전력(최소값 1").optional().attributes(example(tdp.toString())),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example(cpuUsageFactor.toString())),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.coreNumber").type(JsonFieldType.NUMBER).description("활용 가능한 코어 개수(최소값 1)").attributes(example(cpuCoreNumber.toString())),
+
+                                fieldWithPath("hwSpecRequest.gpuSpecRequest").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
 
                                 fieldWithPath("hwSpecRequest.memoryGigaByte").type(JsonFieldType.NUMBER).description("사용 가능 메모리 양(최소값 1)").attributes(example("4")),
                                 fieldWithPath("hwSpecRequest.psf").type(JsonFieldType.NUMBER).description("프라그마 스케일링 팩터(기본값 1, 최소값 1)").optional().attributes(example("1.5"))
@@ -436,6 +454,7 @@ public class GreenControllerTest {
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
 
                                 fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
                                 fieldWithPath("convertedFootprint.energyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지").attributes(example(energyNeeded.toString())),
@@ -498,7 +517,7 @@ public class GreenControllerTest {
         ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
         GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
 
-        given(greenService.calculateGreen(javaCode)).willReturn(greenResourceResponse);
+        given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
         //when
         ResultActions actions = mockMvc.perform(
@@ -572,7 +591,7 @@ public class GreenControllerTest {
         ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
         GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
 
-        given(greenService.calculateGreen(javaCode)).willReturn(greenResourceResponse);
+        given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
         //when
         ResultActions actions = mockMvc.perform(
