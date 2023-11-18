@@ -1,0 +1,12 @@
+:doctype: book
+:icons: font
+==== 중첩 가능 ex : sort=name,asc&sort=campus,desc
+==== sort=keyword(,asc) 사이에 공백이 있으면 안됨
+==== 있든 없든 제일 마지막에 name으로 정렬됨
+
+[[club-keyowrd]]
+include::{snippets}/code/sorting/pending-keyword.adoc[]
+
+[[ordering]]
+include::{snippets}/code/sorting/ordering.adoc[]
+

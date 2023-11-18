@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <row>
+    <tdp>20</tdp>
+    <model>WGeForce GT 1030 (DDR4)</model>
+  </row>
+  <row>
+    <tdp>25</tdp>
+    <model>WRadeon RX 6300M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>30</tdp>
+    <model>WGeForce GT 1030 (GDDR5)</model>
+  </row>
+  <row>
+    <tdp>30</tdp>
+    <model>WGeForce GTX 1650 Max-Q (GDDR6) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>35</tdp>
+    <model>WGeForce GTX 1650 Max-Q (GDDR5) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>35</tdp>
+    <model>WGeForce GTX 1650 Ti Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>35</tdp>
+    <model>WIntel A350M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>40</tdp>
+    <model>WGeForce GTX 1050 Max-Q (2 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>40</tdp>
+    <model>WGeForce GTX 1050 Max-Q (4 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>45</tdp>
+    <model>WGeForce RTX 2050 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>46</tdp>
+    <model>WGeForce GTX 1050 Ti Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WGeForce GTX 1650 (GDDR5) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WGeForce GTX 1650 (GDDR6) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WIntel A370M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 520</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 520 (DDR3)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 520 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 530 (320 SP)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 530 (384 SP)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 530 (DDR3) (320 SP)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 530 (DDR3) (384 SP)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 530 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 610 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 620 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 625 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 630</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon 630 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 540</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 540 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 550 (512 SP)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 550X (512 SP)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 550X (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 640</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 640 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 6450M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 6500M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>50</tdp>
+    <model>WRadeon RX 6550S (Laptop)</model>
+  </row>
+  <row>
+    <tdp>53</tdp>
+    <model>WGeForce GTX 1050 (2 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>53</tdp>
+    <model>WGeForce GTX 1050 (4 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>53</tdp>
+    <model>WRadeon RX 6400</model>
+  </row>
+  <row>
+    <tdp>55</tdp>
+    <model>WGeForce GTX 1650 Ti (Laptop)</model>
+  </row>
+  <row>
+    <tdp>60</tdp>
+    <model>WGeForce GTX 1660 Ti Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>60</tdp>
+    <model>WRadeon RX 550 (640 SP)</model>
+  </row>
+  <row>
+    <tdp>60</tdp>
+    <model>WRadeon RX 550X (640 SP)</model>
+  </row>
+  <row>
+    <tdp>60</tdp>
+    <model>WRadeon RX 550X (Laptop)</model>
+  </row>
+  <row>
+    <tdp>60</tdp>
+    <model>WRadeon RX 560 (896 SP)</model>
+  </row>
+  <row>
+    <tdp>64</tdp>
+    <model>WGeForce GTX 1050 Ti (Laptop)</model>
+  </row>
+  <row>
+    <tdp>65</tdp>
+    <model>WGeForce RTX 2060 Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>65</tdp>
+    <model>WRadeon RX 5300M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>65</tdp>
+    <model>WRadeon RX 560D</model>
+  </row>
+  <row>
+    <tdp>70</tdp>
+    <model>WGeForce GTX 1060 Max-Q (3 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>70</tdp>
+    <model>WGeForce GTX 1060 Max-Q (6 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WGeForce GTX 1050 (2 GB)</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WGeForce GTX 1050 (3 GB)</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WGeForce GTX 1050 Ti</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WGeForce GTX 1630</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WGeForce GTX 1650 (GDDR5)</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WGeForce GTX 1650 (TU117)</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WIntel A310</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WIntel A380</model>
+  </row>
+  <row>
+    <tdp>75</tdp>
+    <model>WRadeon RX 7600S (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce GTX 1060 (3 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce GTX 1060 (6 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce GTX 1650 (TU116)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce GTX 1660 Ti (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce RTX 2070 Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce RTX 2070 Super Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce RTX 2080 Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce RTX 2080 Super Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce RTX 3050 (4 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce RTX 3050 (6 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WGeForce RTX 3050 Ti (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WIntel A550M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WRadeon RX 560 (1024 SP)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WRadeon RX 6550M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WRadeon RX 6600S (Laptop)</model>
+  </row>
+  <row>
+    <tdp>80</tdp>
+    <model>WRadeon RX 6700S (Laptop)</model>
+  </row>
+  <row>
+    <tdp>85</tdp>
+    <model>WRadeon RX 5500M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>85</tdp>
+    <model>WRadeon RX 5600M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>90</tdp>
+    <model>WGeForce GTX 1070 Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>90</tdp>
+    <model>WGeForce GTX 1650 (TU106)</model>
+  </row>
+  <row>
+    <tdp>90</tdp>
+    <model>WGeForce RTX 2060 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>90</tdp>
+    <model>WRadeon RX 7600M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>100</tdp>
+    <model>WGeForce GTX 1650 Super</model>
+  </row>
+  <row>
+    <tdp>100</tdp>
+    <model>WRadeon RX 5300</model>
+  </row>
+  <row>
+    <tdp>100</tdp>
+    <model>WRadeon RX 6600M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>100</tdp>
+    <model>WRadeon RX 6800S (Laptop)</model>
+  </row>
+  <row>
+    <tdp>100</tdp>
+    <model>WRadeon RX 7700S (Laptop)</model>
+  </row>
+  <row>
+    <tdp>110</tdp>
+    <model>WGeForce GTX 1080 Max-Q (Laptop)</model>
+  </row>
+  <row>
+    <tdp>113</tdp>
+    <model>WRadeon RX 6500 XT</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce GTX 1070 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 2060 Refresh (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 2070 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 2070 Refresh (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 2070 Super (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 3050 (GA107-150)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 3060 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 4050 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 4060</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 4060 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>115</tdp>
+    <model>WGeForce RTX 4070 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WGeForce GTX 1060 (3 GB)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WGeForce GTX 1060 (8 GT/s)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WGeForce GTX 1060 (9 GT/s)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WGeForce GTX 1060 (GDDR5X)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WGeForce GTX 1660</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WGeForce GTX 1660 Ti</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WIntel A730M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WRadeon RX 5700M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WRadeon RX 6650M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WRadeon RX 6650M XT (Laptop)</model>
+  </row>
+  <row>
+    <tdp>120</tdp>
+    <model>WRadeon RX 7600M XT (Laptop)</model>
+  </row>
+  <row>
+    <tdp>125</tdp>
+    <model>WGeForce GTX 1660 Super</model>
+  </row>
+  <row>
+    <tdp>125</tdp>
+    <model>WGeForce RTX 3070 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>125</tdp>
+    <model>WGeForce RTX 3070 Ti (Laptop)</model>
+  </row>
+  <row>
+    <tdp>130</tdp>
+    <model>WGeForce RTX 3050 (GA106)</model>
+  </row>
+  <row>
+    <tdp>130</tdp>
+    <model>WGeForce RTX 3050 (GA106-150)</model>
+  </row>
+  <row>
+    <tdp>130</tdp>
+    <model>WRadeon RX 5500 XT</model>
+  </row>
+  <row>
+    <tdp>132</tdp>
+    <model>WRadeon RX 6600</model>
+  </row>
+  <row>
+    <tdp>135</tdp>
+    <model>WRadeon RX 6700M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>145</tdp>
+    <model>WRadeon RX 6800M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce GTX 1070</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce GTX 1080 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce RTX 2080 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce RTX 2080 Super (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce RTX 3080 (16 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce RTX 3080 (8 GB) (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce RTX 3080 Ti (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce RTX 4080 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WGeForce RTX 4090 (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WIntel A770M (Laptop)</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WRadeon RX 5500</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WRadeon RX 5600</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WRadeon RX 570</model>
+  </row>
+  <row>
+    <tdp>150</tdp>
+    <model>WRadeon RX 570X</model>
+  </row>
+  <row>
+    <tdp>160</tdp>
+    <model>WGeForce RTX 2060 (6 GB) (TU104)</model>
+  </row>
+  <row>
+    <tdp>160</tdp>
+    <model>WGeForce RTX 2060 (6 GB) (TU106)</model>
+  </row>
+  <row>
+    <tdp>160</tdp>
+    <model>WGeForce RTX 4060 Ti</model>
+  </row>
+  <row>
+    <tdp>160</tdp>
+    <model>WGeForce RTX 4060 Ti (16 GB)</model>
+  </row>
+  <row>
+    <tdp>160</tdp>
+    <model>WRadeon RX 5600 XT (12 GT/s)</model>
+  </row>
+  <row>
+    <tdp>160</tdp>
+    <model>WRadeon RX 5600 XT (14 GT/s)</model>
+  </row>
+  <row>
+    <tdp>160</tdp>
+    <model>WRadeon RX 6600 XT</model>
+  </row>
+  <row>
+    <tdp>165</tdp>
+    <model>WRadeon RX 6850M XT (Laptop)</model>
+  </row>
+  <row>
+    <tdp>165</tdp>
+    <model>WRadeon RX 7600</model>
+  </row>
+  <row>
+    <tdp>170</tdp>
+    <model>WGeForce RTX 3060 (12 GB) (GA106-302)</model>
+  </row>
+  <row>
+    <tdp>170</tdp>
+    <model>WGeForce RTX 3060 (8 GB) (GA106-302)</model>
+  </row>
+  <row>
+    <tdp>170</tdp>
+    <model>WGeForce RTX 3060 (GA104-150)</model>
+  </row>
+  <row>
+    <tdp>170</tdp>
+    <model>WGeForce RTX 3060 (GA106-300)</model>
+  </row>
+  <row>
+    <tdp>175</tdp>
+    <model>WGeForce RTX 2060 Super</model>
+  </row>
+  <row>
+    <tdp>175</tdp>
+    <model>WGeForce RTX 2070 (TU106-400)</model>
+  </row>
+  <row>
+    <tdp>175</tdp>
+    <model>WGeForce RTX 2070 (TU106-400A)</model>
+  </row>
+  <row>
+    <tdp>175</tdp>
+    <model>WIntel A580</model>
+  </row>
+  <row>
+    <tdp>175</tdp>
+    <model>WRadeon RX 590 GME</model>
+  </row>
+  <row>
+    <tdp>175</tdp>
+    <model>WRadeon RX 6700</model>
+  </row>
+  <row>
+    <tdp>180</tdp>
+    <model>WGeForce GTX 1070 Ti</model>
+  </row>
+  <row>
+    <tdp>180</tdp>
+    <model>WGeForce GTX 1080 (10 GT/s)</model>
+  </row>
+  <row>
+    <tdp>180</tdp>
+    <model>WGeForce GTX 1080 (11 GT/s)</model>
+  </row>
+  <row>
+    <tdp>180</tdp>
+    <model>WRadeon RX 5700</model>
+  </row>
+  <row>
+    <tdp>180</tdp>
+    <model>WRadeon RX 6650 XT</model>
+  </row>
+  <row>
+    <tdp>185</tdp>
+    <model>WGeForce RTX 2060 (12 GB)</model>
+  </row>
+  <row>
+    <tdp>185</tdp>
+    <model>WRadeon RX 580</model>
+  </row>
+  <row>
+    <tdp>200</tdp>
+    <model>WGeForce RTX 3060 Ti (GA103-200)</model>
+  </row>
+  <row>
+    <tdp>200</tdp>
+    <model>WGeForce RTX 3060 Ti (GA104-200)</model>
+  </row>
+  <row>
+    <tdp>200</tdp>
+    <model>WGeForce RTX 3060 Ti (GA104-202)</model>
+  </row>
+  <row>
+    <tdp>200</tdp>
+    <model>WGeForce RTX 3060 Ti (GDDR6X)</model>
+  </row>
+  <row>
+    <tdp>200</tdp>
+    <model>WGeForce RTX 4070</model>
+  </row>
+  <row>
+    <tdp>210</tdp>
+    <model>WRadeon RX Vega 56</model>
+  </row>
+  <row>
+    <tdp>215</tdp>
+    <model>WGeForce RTX 2070 Super</model>
+  </row>
+  <row>
+    <tdp>215</tdp>
+    <model>WGeForce RTX 2080 (TU104-400)</model>
+  </row>
+  <row>
+    <tdp>215</tdp>
+    <model>WGeForce RTX 2080 (TU104-400A)</model>
+  </row>
+  <row>
+    <tdp>220</tdp>
+    <model>WGeForce RTX 3070</model>
+  </row>
+  <row>
+    <tdp>225</tdp>
+    <model>WIntel A750</model>
+  </row>
+  <row>
+    <tdp>225</tdp>
+    <model>WIntel A770 (16 GB)</model>
+  </row>
+  <row>
+    <tdp>225</tdp>
+    <model>WIntel A770 (8 GB)</model>
+  </row>
+  <row>
+    <tdp>225</tdp>
+    <model>WRadeon RX 5700 XT</model>
+  </row>
+  <row>
+    <tdp>225</tdp>
+    <model>WRadeon RX 590</model>
+  </row>
+  <row>
+    <tdp>230</tdp>
+    <model>WRadeon RX 6700 XT</model>
+  </row>
+  <row>
+    <tdp>235</tdp>
+    <model>WRadeon RX 5700 XT 50th Anniversary</model>
+  </row>
+  <row>
+    <tdp>245</tdp>
+    <model>WRadeon RX 7700 XT</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WGeForce GTX 1080 Ti</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WGeForce RTX 2080 Super</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WGeForce RTX 2080 Ti (TU102-300)</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WGeForce RTX 2080 Ti (TU102-300A)</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WNvidia Titan X</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WNvidia Titan Xp</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WRadeon RX 6750 XT</model>
+  </row>
+  <row>
+    <tdp>250</tdp>
+    <model>WRadeon RX 6800</model>
+  </row>
+  <row>
+    <tdp>260</tdp>
+    <model>WRadeon RX 7900 GRE</model>
+  </row>
+  <row>
+    <tdp>263</tdp>
+    <model>WRadeon RX 7800 XT</model>
+  </row>
+  <row>
+    <tdp>280</tdp>
+    <model>WNvidia Titan RTX</model>
+  </row>
+  <row>
+    <tdp>285</tdp>
+    <model>WGeForce RTX 4070 TI</model>
+  </row>
+  <row>
+    <tdp>290</tdp>
+    <model>WGeForce RTX 3070 Ti (GA104-400)</model>
+  </row>
+  <row>
+    <tdp>295</tdp>
+    <model>WRadeon RX Vega 64</model>
+  </row>
+  <row>
+    <tdp>300</tdp>
+    <model>WRadeon RX 6800 XT</model>
+  </row>
+  <row>
+    <tdp>300</tdp>
+    <model>WRadeon RX 6900 XT</model>
+  </row>
+  <row>
+    <tdp>300</tdp>
+    <model>WRadeon RX 7900 XT</model>
+  </row>
+  <row>
+    <tdp>300</tdp>
+    <model>WRadeon VII</model>
+  </row>
+  <row>
+    <tdp>320</tdp>
+    <model>WGeForce RTX 3070 Ti (GA102-150)</model>
+  </row>
+  <row>
+    <tdp>320</tdp>
+    <model>WGeForce RTX 3080</model>
+  </row>
+  <row>
+    <tdp>320</tdp>
+    <model>WGeForce RTX 4080</model>
+  </row>
+  <row>
+    <tdp>335</tdp>
+    <model>WRadeon RX 6950 XT</model>
+  </row>
+  <row>
+    <tdp>345</tdp>
+    <model>WRadeon RX Vega 64 Liquid</model>
+  </row>
+  <row>
+    <tdp>350</tdp>
+    <model>WGeForce RTX 3080 (12 GB)</model>
+  </row>
+  <row>
+    <tdp>350</tdp>
+    <model>WGeForce RTX 3080 Ti</model>
+  </row>
+  <row>
+    <tdp>350</tdp>
+    <model>WGeForce RTX 3090</model>
+  </row>
+  <row>
+    <tdp>355</tdp>
+    <model>WRadeon RX 7900 XTX</model>
+  </row>
+  <row>
+    <tdp>450</tdp>
+    <model>WGeForce RTX 3090 Ti</model>
+  </row>
+  <row>
+    <tdp>450</tdp>
+    <model>WGeForce RTX 4090</model>
+  </row>
+</root>
