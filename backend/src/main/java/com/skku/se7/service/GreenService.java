@@ -1,5 +1,6 @@
 package com.skku.se7.service;
 
+import com.skku.se7.dto.GreenResourceResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public class GreenService {
     private final JavaRunner javaRunner;
     private final ResourceProcessor resourceProcessor;
 
-    public void calculateGreen(String javaCodeInput) {
-
+    public GreenResourceResponse calculateGreen(String javaCodeInput) {
+        return null;
     }
 }

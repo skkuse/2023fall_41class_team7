@@ -17,5 +17,4 @@ public class GreenResourceResponse {
     private HwFootprint hwFootprint;
 
     private ConvertedFootprint convertedFootprint;
-    private DifferentRegionFootprint differentRegionFootprint;
 }

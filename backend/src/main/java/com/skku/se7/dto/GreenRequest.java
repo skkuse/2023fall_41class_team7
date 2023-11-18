@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Optional;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocationInfo {
-    private String continent;
-    private String region;
+public class GreenRequest {
+    private HwSpecRequest hwSpecRequest;
+    private String javaCode;
 }

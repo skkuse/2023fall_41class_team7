@@ -13,8 +13,8 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HwSpecRequest {
-    private Optional<ProcessorSpecRequest> cpuSpecRequest;
-    private Optional<ProcessorSpecRequest> gpuSpecRequest;
+    private ProcessorSpecRequest cpuSpecRequest;
+    private ProcessorSpecRequest gpuSpecRequest;
     @Min(1)
     private Integer memoryGigaByte;
     @Min(1)

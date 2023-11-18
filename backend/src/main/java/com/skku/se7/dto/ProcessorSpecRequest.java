@@ -15,10 +15,11 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProcessorSpecRequest {
-    private Optional<String> modelName;
+    private String modelName;
     @Range(max = 1, min = 0)
     private Double usageFactor = 1.0;
     @Min(1)
     private Integer coreNumber;
-    private Optional<Double> tdp = Optional.of(1.0);
+    @Min(1)
+    private Double tdp;
 }
