@@ -4,5 +4,5 @@
 ==== GET, /location
 
 [[ordering]]
-include::{snippets}/code/continent.adoc[]
+include::./continent-type.adoc[]
 

@@ -1,6 +1,7 @@
 package com.skku.se7.service.dataHandler;
 
 import com.skku.se7.dto.LocationIntensity;
+import com.skku.se7.dto.LocationRequest;
 import com.skku.se7.dto.enums.Continent;
 import com.skku.se7.error.exceptions.NoMatchCountryException;
 import lombok.extern.slf4j.Slf4j;
@@ -81,7 +82,10 @@ public class LocationHandler {
                 .collect(Collectors.toSet()));
     }
 
-    public Double getCarbonIntensity(Continent continent, String country, String region) {
+    public Double getCarbonIntensity(LocationRequest locationRequest) {
+        Continent continent = locationRequest.getContinent();
+        String country = locationRequest.getCountry();
+        String region = locationRequest.getRegion();
         return locationIntensities.stream()
                 .filter(l -> l.getContinent().equals(continent))
                 .filter(l -> l.getCountry().equals(country))
@@ -90,4 +94,5 @@ public class LocationHandler {
                 .orElseThrow(NoMatchCountryException::new)
                 .getCarbonIntensity();
     }
+
 }

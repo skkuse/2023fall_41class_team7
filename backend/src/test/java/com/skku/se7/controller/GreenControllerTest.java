@@ -23,8 +23,6 @@ import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.util.Optional;
-
 import static com.skku.se7.controller.ControllerTestUtils.LINK_CONTINENT_TYPE;
 import static com.skku.se7.controller.ControllerTestUtils.example;
 import static org.mockito.ArgumentMatchers.any;
@@ -120,11 +118,11 @@ public class GreenControllerTest {
         Double energyNeeded = 11.111;
         Double treeMonths = 22.222;
         Double passengerCar = 33.333;
-        Double flightFromIncheonToLondon = 44.44;
+        Double flightFromIncheonToTokyo = 44.44;
 
-        HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.of(expectedGpuCarbonFootprint), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        HwFootprint hwFootprint = new HwFootprint(expectedCpuCarbonFootprint, expectedGpuCarbonFootprint, memoryCarbonFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(treeMonths, passengerCar, flightFromIncheonToTokyo);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, energyNeeded, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -137,16 +135,17 @@ public class GreenControllerTest {
 
         //then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()));
+                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()))
+                .andExpect(jsonPath("$.totalEnergyNeeded").value(energyNeeded.toString()));
 
         actions.andExpect(jsonPath("$.hwFootprint.cpuCarbonFootprint").value(expectedCpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.gpuCarbonFootprint").value(expectedGpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.memoryCarbonFootprint").value(memoryCarbonFootprint.toString()));
 
-        actions.andExpect(jsonPath("$.convertedFootprint.energyNeeded").value(energyNeeded.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.treeMonths").value(treeMonths.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.passengerCar").value(passengerCar.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.flightFromIncheonToLondon").value(flightFromIncheonToLondon.toString()));
+        actions
+                .andExpect(jsonPath("$.interpretedFootprint.treeMonths").value(treeMonths.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.passengerCar").value(passengerCar.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.flightFromIncheonToTokyo").value(flightFromIncheonToTokyo.toString()));
 
         actions.andDo(
                 document(
@@ -155,8 +154,8 @@ public class GreenControllerTest {
                                 fieldWithPath("javaCode").type(JsonFieldType.STRING).description("실행할 자바 코드").attributes(example(javaCode)),
 
                                 fieldWithPath("locationRequest.continent").type(JsonFieldType.STRING).description("대륙 정보").optional().attributes(example(LINK_CONTINENT_TYPE)),
-                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country.toString())),
-                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region.toString())),
+                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country)),
+                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region)),
 
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.STRING).description("Processor(CPU or GPU) model 이름").optional().attributes(example("Intel Core i7-14700K")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example("0.8")),
@@ -173,15 +172,15 @@ public class GreenControllerTest {
                         ),
                         responseFields(
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
+                                fieldWithPath("totalEnergyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)").attributes(example(energyNeeded.toString())),
 
-                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
-                                fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Gpu(입력시)").attributes(example(expectedGpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력안된 경우 0)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Gpu(입력안된 경우 0)").attributes(example(expectedGpuCarbonFootprint.toString())),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
-                                fieldWithPath("convertedFootprint.energyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지").attributes(example(energyNeeded.toString())),
-                                fieldWithPath("convertedFootprint.treeMonths").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 나무").attributes(example(treeMonths.toString())),
-                                fieldWithPath("convertedFootprint.passengerCar").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 자동차").attributes(example(passengerCar.toString())),
-                                fieldWithPath("convertedFootprint.flightFromIncheonToLondon").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 비행").attributes(example(flightFromIncheonToLondon.toString()))
+                                fieldWithPath("interpretedFootprint.treeMonths").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 나무(tree-months)").attributes(example(treeMonths.toString())),
+                                fieldWithPath("interpretedFootprint.passengerCar").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 자동차(km)").attributes(example(passengerCar.toString())),
+                                fieldWithPath("interpretedFootprint.flightFromIncheonToTokyo").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 비행(%)").attributes(example(flightFromIncheonToTokyo.toString()))
                         )
                 )
         );
@@ -249,11 +248,11 @@ public class GreenControllerTest {
         Double energyNeeded = 11.111;
         Double treeMonths = 22.222;
         Double passengerCar = 33.333;
-        Double flightFromIncheonToLondon = 44.44;
+        Double flightFromIncheonToTokyo = 44.44;
 
-        HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.of(expectedGpuCarbonFootprint), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        HwFootprint hwFootprint = new HwFootprint(expectedCpuCarbonFootprint, expectedGpuCarbonFootprint, memoryCarbonFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(treeMonths, passengerCar, flightFromIncheonToTokyo);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, energyNeeded, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -266,16 +265,16 @@ public class GreenControllerTest {
 
         //then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()));
+                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()))
+                .andExpect(jsonPath("$.totalEnergyNeeded").value(energyNeeded.toString()));
 
         actions.andExpect(jsonPath("$.hwFootprint.cpuCarbonFootprint").value(expectedCpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.gpuCarbonFootprint").value(expectedGpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.memoryCarbonFootprint").value(memoryCarbonFootprint.toString()));
 
-        actions.andExpect(jsonPath("$.convertedFootprint.energyNeeded").value(energyNeeded.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.treeMonths").value(treeMonths.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.passengerCar").value(passengerCar.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.flightFromIncheonToLondon").value(flightFromIncheonToLondon.toString()));
+        actions.andExpect(jsonPath("$.interpretedFootprint.treeMonths").value(treeMonths.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.passengerCar").value(passengerCar.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.flightFromIncheonToTokyo").value(flightFromIncheonToTokyo.toString()));
 
     }
 
@@ -331,11 +330,11 @@ public class GreenControllerTest {
         Double energyNeeded = 11.111;
         Double treeMonths = 22.222;
         Double passengerCar = 33.333;
-        Double flightFromIncheonToLondon = 44.44;
+        Double flightFromIncheonToTokyo = 44.44;
 
-        HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        HwFootprint hwFootprint = new HwFootprint(expectedCpuCarbonFootprint, null, memoryCarbonFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(treeMonths, passengerCar, flightFromIncheonToTokyo);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, energyNeeded, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -348,15 +347,15 @@ public class GreenControllerTest {
 
         //then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()));
+                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()))
+                .andExpect(jsonPath("$.totalEnergyNeeded").value(energyNeeded.toString()));
 
         actions.andExpect(jsonPath("$.hwFootprint.cpuCarbonFootprint").value(expectedCpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.memoryCarbonFootprint").value(memoryCarbonFootprint.toString()));
 
-        actions.andExpect(jsonPath("$.convertedFootprint.energyNeeded").value(energyNeeded.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.treeMonths").value(treeMonths.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.passengerCar").value(passengerCar.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.flightFromIncheonToLondon").value(flightFromIncheonToLondon.toString()));
+        actions.andExpect(jsonPath("$.interpretedFootprint.treeMonths").value(treeMonths.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.passengerCar").value(passengerCar.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.flightFromIncheonToTokyo").value(flightFromIncheonToTokyo.toString()));
 
         actions.andDo(
                 document(
@@ -365,8 +364,8 @@ public class GreenControllerTest {
                                 fieldWithPath("javaCode").type(JsonFieldType.STRING).description("실행할 자바 코드").attributes(example(javaCode)),
 
                                 fieldWithPath("locationRequest.continent").type(JsonFieldType.STRING).description("대륙 정보").optional().attributes(example(LINK_CONTINENT_TYPE)),
-                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country.toString())),
-                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region.toString())),
+                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country)),
+                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region)),
 
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.STRING).description("Processor(CPU or GPU) model 이름").optional().attributes(example("Intel Core i7-14700K")),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.usageFactor").type(JsonFieldType.NUMBER).description("Processor 코어 한개 가용률(기본값 1, 최소값 0, 최대값 1)").optional().attributes(example("0.8")),
@@ -380,15 +379,15 @@ public class GreenControllerTest {
                         ),
                         responseFields(
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
+                                fieldWithPath("totalEnergyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)").attributes(example(energyNeeded.toString())),
 
-                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력안된 경우 0)").attributes(example(expectedCpuCarbonFootprint.toString())),
                                 fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
-                                fieldWithPath("convertedFootprint.energyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지").attributes(example(energyNeeded.toString())),
-                                fieldWithPath("convertedFootprint.treeMonths").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 나무").attributes(example(treeMonths.toString())),
-                                fieldWithPath("convertedFootprint.passengerCar").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 자동차").attributes(example(passengerCar.toString())),
-                                fieldWithPath("convertedFootprint.flightFromIncheonToLondon").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 비행").attributes(example(flightFromIncheonToLondon.toString()))
+                                fieldWithPath("interpretedFootprint.treeMonths").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 나무(tree-months)").attributes(example(treeMonths.toString())),
+                                fieldWithPath("interpretedFootprint.passengerCar").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 자동차(km)").attributes(example(passengerCar.toString())),
+                                fieldWithPath("interpretedFootprint.flightFromIncheonToTokyo").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 비행(%)").attributes(example(flightFromIncheonToTokyo.toString()))
                         )
                 )
         );
@@ -446,11 +445,11 @@ public class GreenControllerTest {
         Double energyNeeded = 11.111;
         Double treeMonths = 22.222;
         Double passengerCar = 33.333;
-        Double flightFromIncheonToLondon = 44.44;
+        Double flightFromIncheonToTokyo = 44.44;
 
-        HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        HwFootprint hwFootprint = new HwFootprint(expectedCpuCarbonFootprint, null, memoryCarbonFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(treeMonths, passengerCar, flightFromIncheonToTokyo);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, energyNeeded, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -463,15 +462,15 @@ public class GreenControllerTest {
 
         //then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()));
+                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()))
+                .andExpect(jsonPath("$.totalEnergyNeeded").value(energyNeeded.toString()));
 
         actions.andExpect(jsonPath("$.hwFootprint.cpuCarbonFootprint").value(expectedCpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.memoryCarbonFootprint").value(memoryCarbonFootprint.toString()));
 
-        actions.andExpect(jsonPath("$.convertedFootprint.energyNeeded").value(energyNeeded.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.treeMonths").value(treeMonths.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.passengerCar").value(passengerCar.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.flightFromIncheonToLondon").value(flightFromIncheonToLondon.toString()));
+        actions.andExpect(jsonPath("$.interpretedFootprint.treeMonths").value(treeMonths.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.passengerCar").value(passengerCar.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.flightFromIncheonToTokyo").value(flightFromIncheonToTokyo.toString()));
 
         actions.andDo(
                 document(
@@ -480,8 +479,8 @@ public class GreenControllerTest {
                                 fieldWithPath("javaCode").type(JsonFieldType.STRING).description("실행할 자바 코드").attributes(example(javaCode)),
 
                                 fieldWithPath("locationRequest.continent").type(JsonFieldType.STRING).description("대륙 정보").optional().attributes(example(LINK_CONTINENT_TYPE)),
-                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country.toString())),
-                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region.toString())),
+                                fieldWithPath("locationRequest.country").type(JsonFieldType.STRING).description("국가 정보(Any 포함)").optional().attributes(example(country)),
+                                fieldWithPath("locationRequest.region").type(JsonFieldType.STRING).description("지역 정보(Any 포함)").attributes(example(region)),
 
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.modelName").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwSpecRequest.cpuSpecRequest.tdp").type(JsonFieldType.NUMBER).description("Processor 코어 한개의 설계 전력(최소값 1").optional().attributes(example(tdp.toString())),
@@ -495,15 +494,15 @@ public class GreenControllerTest {
                         ),
                         responseFields(
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
+                                fieldWithPath("totalEnergyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)").attributes(example(energyNeeded.toString())),
 
-                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력안된 경우 0)").attributes(example(expectedCpuCarbonFootprint.toString())),
                                 fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
-                                fieldWithPath("convertedFootprint.energyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지").attributes(example(energyNeeded.toString())),
-                                fieldWithPath("convertedFootprint.treeMonths").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 나무").attributes(example(treeMonths.toString())),
-                                fieldWithPath("convertedFootprint.passengerCar").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 자동차").attributes(example(passengerCar.toString())),
-                                fieldWithPath("convertedFootprint.flightFromIncheonToLondon").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 비행").attributes(example(flightFromIncheonToLondon.toString()))
+                                fieldWithPath("interpretedFootprint.treeMonths").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 나무(tree-months)").attributes(example(treeMonths.toString())),
+                                fieldWithPath("interpretedFootprint.passengerCar").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 자동차(km)").attributes(example(passengerCar.toString())),
+                                fieldWithPath("interpretedFootprint.flightFromIncheonToTokyo").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 비행(%)").attributes(example(flightFromIncheonToTokyo.toString()))
                         )
                 )
         );
@@ -559,11 +558,11 @@ public class GreenControllerTest {
         Double energyNeeded = 11.111;
         Double treeMonths = 22.222;
         Double passengerCar = 33.333;
-        Double flightFromIncheonToLondon = 44.44;
+        Double flightFromIncheonToTokyo = 44.44;
 
-        HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        HwFootprint hwFootprint = new HwFootprint(expectedCpuCarbonFootprint, null, memoryCarbonFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(treeMonths, passengerCar, flightFromIncheonToTokyo);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, energyNeeded, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -576,15 +575,15 @@ public class GreenControllerTest {
 
         //then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()));
+                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()))
+                .andExpect(jsonPath("$.totalEnergyNeeded").value(energyNeeded.toString()));
 
         actions.andExpect(jsonPath("$.hwFootprint.cpuCarbonFootprint").value(expectedCpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.memoryCarbonFootprint").value(memoryCarbonFootprint.toString()));
 
-        actions.andExpect(jsonPath("$.convertedFootprint.energyNeeded").value(energyNeeded.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.treeMonths").value(treeMonths.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.passengerCar").value(passengerCar.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.flightFromIncheonToLondon").value(flightFromIncheonToLondon.toString()));
+        actions.andExpect(jsonPath("$.interpretedFootprint.treeMonths").value(treeMonths.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.passengerCar").value(passengerCar.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.flightFromIncheonToTokyo").value(flightFromIncheonToTokyo.toString()));
     }
 
     /**
@@ -638,11 +637,11 @@ public class GreenControllerTest {
         Double energyNeeded = 11.111;
         Double treeMonths = 22.222;
         Double passengerCar = 33.333;
-        Double flightFromIncheonToLondon = 44.44;
+        Double flightFromIncheonToTokyo = 44.44;
 
-        HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        HwFootprint hwFootprint = new HwFootprint(expectedCpuCarbonFootprint, null, memoryCarbonFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(treeMonths, passengerCar, flightFromIncheonToTokyo);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, energyNeeded, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -655,15 +654,15 @@ public class GreenControllerTest {
 
         //then
         actions.andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()));
+                .andExpect(jsonPath("$.totalCarbonFootprint").value(expectedTotalCarbonFootprint.toString()))
+                .andExpect(jsonPath("$.totalEnergyNeeded").value(energyNeeded.toString()));
 
         actions.andExpect(jsonPath("$.hwFootprint.cpuCarbonFootprint").value(expectedCpuCarbonFootprint.toString()))
                 .andExpect(jsonPath("$.hwFootprint.memoryCarbonFootprint").value(memoryCarbonFootprint.toString()));
 
-        actions.andExpect(jsonPath("$.convertedFootprint.energyNeeded").value(energyNeeded.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.treeMonths").value(treeMonths.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.passengerCar").value(passengerCar.toString()))
-                .andExpect(jsonPath("$.convertedFootprint.flightFromIncheonToLondon").value(flightFromIncheonToLondon.toString()));
+        actions.andExpect(jsonPath("$.interpretedFootprint.treeMonths").value(treeMonths.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.passengerCar").value(passengerCar.toString()))
+                .andExpect(jsonPath("$.interpretedFootprint.flightFromIncheonToTokyo").value(flightFromIncheonToTokyo.toString()));
     }
 
 

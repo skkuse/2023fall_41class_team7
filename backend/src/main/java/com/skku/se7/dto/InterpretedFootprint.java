@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ConvertedFootprint {
-    private Double energyNeeded;
+public class InterpretedFootprint {
     private Double treeMonths;
     private Double passengerCar;
-    private Double flightFromIncheonToLondon;
+    private Double flightFromIncheonToTokyo;
 }
