@@ -123,8 +123,8 @@ public class GreenControllerTest {
         Double flightFromIncheonToLondon = 44.44;
 
         HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.of(expectedGpuCarbonFootprint), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -252,8 +252,8 @@ public class GreenControllerTest {
         Double flightFromIncheonToLondon = 44.44;
 
         HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.of(expectedGpuCarbonFootprint), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -334,8 +334,8 @@ public class GreenControllerTest {
         Double flightFromIncheonToLondon = 44.44;
 
         HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -449,8 +449,8 @@ public class GreenControllerTest {
         Double flightFromIncheonToLondon = 44.44;
 
         HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -562,8 +562,8 @@ public class GreenControllerTest {
         Double flightFromIncheonToLondon = 44.44;
 
         HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 
@@ -641,8 +641,8 @@ public class GreenControllerTest {
         Double flightFromIncheonToLondon = 44.44;
 
         HwFootprint hwFootprint = new HwFootprint(Optional.of(expectedCpuCarbonFootprint), Optional.empty(), memoryCarbonFootprint);
-        ConvertedFootprint convertedFootprint = new ConvertedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
-        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, convertedFootprint);
+        InterpretedFootprint interpretedFootprint = new InterpretedFootprint(energyNeeded, treeMonths, passengerCar, flightFromIncheonToLondon);
+        GreenResourceResponse greenResourceResponse = new GreenResourceResponse(expectedTotalCarbonFootprint, hwFootprint, interpretedFootprint);
 
         given(greenService.calculateGreen(greenRequest)).willReturn(greenResourceResponse);
 

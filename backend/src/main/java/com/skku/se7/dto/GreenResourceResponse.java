@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Optional;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,5 +14,5 @@ public class GreenResourceResponse {
 
     private HwFootprint hwFootprint;
 
-    private ConvertedFootprint convertedFootprint;
+    private InterpretedFootprint interpretedFootprint;
 }

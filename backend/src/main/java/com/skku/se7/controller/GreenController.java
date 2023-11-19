@@ -19,7 +19,7 @@ public class GreenController {
     private final LocationHandler locationHandler;
 
     @PostMapping("/green")
-    public GreenResourceResponse getGreen(@Valid @RequestBody GreenRequest greenRequest) {
+    public GreenResourceResponse getGreen(@Valid @RequestBody GreenRequest greenRequest) throws Exception {
         validateHw(greenRequest.getHwSpecRequest());
         validateLocation(greenRequest.getLocationRequest());
         return greenService.calculateGreen(greenRequest);

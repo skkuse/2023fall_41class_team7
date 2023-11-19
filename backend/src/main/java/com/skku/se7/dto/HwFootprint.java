@@ -12,7 +12,7 @@ import java.util.Optional;
 @NoArgsConstructor
 @AllArgsConstructor
 public class HwFootprint {
-    private Optional<Double> cpuCarbonFootprint;
-    private Optional<Double> gpuCarbonFootprint;
+    private Double cpuCarbonFootprint;
+    private Double gpuCarbonFootprint;
     private Double memoryCarbonFootprint;
 }

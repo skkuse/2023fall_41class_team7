@@ -696,7 +696,7 @@ Host: localhost:8080
 Content-Type: application/json
 Content-Length: 252
 
-{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":42.51,"memoryCarbonFootprint":52.26},"convertedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
+{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":42.51,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
 </div>
 </div>
 </div>
@@ -743,25 +743,25 @@ Content-Length: 252
 <td class="tableblock halign-left valign-top"><p class="tableblock">52.26</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.energyNeeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.energyNeeded</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.treeMonths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.treeMonths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">22.222</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.passengerCar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.passengerCar</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">33.333</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.flightFromIncheonToLondon</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.flightFromIncheonToLondon</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">44.44</p></td>
@@ -911,7 +911,7 @@ Host: localhost:8080
 Content-Type: application/json
 Content-Length: 251
 
-{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"convertedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
+{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
 </div>
 </div>
 </div>
@@ -958,25 +958,25 @@ Content-Length: 251
 <td class="tableblock halign-left valign-top"><p class="tableblock">52.26</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.energyNeeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.energyNeeded</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.treeMonths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.treeMonths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">22.222</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.passengerCar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.passengerCar</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">33.333</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.flightFromIncheonToLondon</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.flightFromIncheonToLondon</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">44.44</p></td>
@@ -1126,7 +1126,7 @@ Host: localhost:8080
 Content-Type: application/json
 Content-Length: 251
 
-{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"convertedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
+{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToLondon":44.44}}</code></pre>
 </div>
 </div>
 </div>
@@ -1173,25 +1173,25 @@ Content-Length: 251
 <td class="tableblock halign-left valign-top"><p class="tableblock">52.26</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.energyNeeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.energyNeeded</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.treeMonths</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.treeMonths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">22.222</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.passengerCar</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.passengerCar</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">33.333</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>convertedFootprint.flightFromIncheonToLondon</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.flightFromIncheonToLondon</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">44.44</p></td>
