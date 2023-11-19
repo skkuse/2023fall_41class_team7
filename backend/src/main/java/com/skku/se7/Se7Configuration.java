@@ -1,7 +1,7 @@
 package com.skku.se7;
 
-import com.skku.se7.service.LocationHandler;
-import com.skku.se7.service.ProcessorTdpHandler;
+import com.skku.se7.service.dataHandler.LocationHandler;
+import com.skku.se7.service.dataHandler.ProcessorTdpHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.xml.sax.SAXException;

@@ -1,4 +1,4 @@
-package com.skku.se7.service;
+package com.skku.se7.service.converter.code;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class synchronizedJavaRunner {
+public class CodeConverter {
     private final JavaCodeCompiler javaCodeCompiler;
     private final JavaRunner javaRunner;
+    private final JavaValidator javaValidator;
 
-    public synchronized long executeSynchronously(String code) throws Exception {
+    public synchronized Long executeSynchronously(String code) throws Exception {
         String curPath = javaCodeCompiler.getCurPath();
         String className = javaCodeCompiler.findClassName(code);
         String[] arrPath = javaCodeCompiler.createFile(className, code);

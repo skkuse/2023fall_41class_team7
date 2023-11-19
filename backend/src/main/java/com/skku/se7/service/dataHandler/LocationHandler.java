@@ -1,4 +1,4 @@
-package com.skku.se7.service;
+package com.skku.se7.service.dataHandler;
 
 import com.skku.se7.dto.LocationIntensity;
 import com.skku.se7.dto.enums.Continent;
