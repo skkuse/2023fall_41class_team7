@@ -57,4 +57,5 @@ public class GreenService {
     private Double convertMillisecToHour(Long codeRuntime) {
         return Double.valueOf(codeRuntime) / 3_600_000;
     }
+
 }
