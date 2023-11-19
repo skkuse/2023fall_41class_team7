@@ -172,20 +172,34 @@ function InnerComponent() {
     "NVIDIA Tesla P4",
     "NVIDIA Tesla K80",
   ];
+  const regions_lst = ["aa", "bb", "cc"];
 
-  const [oneContinent, setOneContinent] = useState("Asia");
-  const [countries, setCountries] = useState(continents[oneContinent]);
+  const [oneContinent, setOneContinent] = useState("Asia"); //country 리스트 정의를 위한 하나의 continent select
+  const [countries, setCountries] = useState(continents[oneContinent]); //country 리스트 정의
+  const [oneCountry, setOneCountry] = useState("Korea"); //region 리스트 정의를 위한 하나의 country select
+  const [regions, setRegions] = useState(regions_lst); //region 리스트 정의
 
   const changeContinent = (event) => {
     const chosenContinent = event.target.value;
-    setOneContinent(chosenContinent);
-    setCountries(continents[chosenContinent] || []);
+    setOneContinent(chosenContinent); //select 대륙 바꾸기
+    setCountries(continents[chosenContinent] || []); //country 리스트 바꾸기
   };
 
   const changeCountry = (event) => {
+    const chosenCountry = event.target.value;
+    setOneCountry(chosenCountry); //select 국가 바꾸기
+    //setRegions(countries[chosenCountry] || []); -> region도 바꿔야 되는데 일단 이건 api 적용할 때 바꾸자,,
+  };
+
+  const changeRegion = (event) => {
+    //region이 변경될 시에만 location 바꾸기..
+    changeLocation(oneContinent, oneCountry, event.target.value);
+  };
+
+  const changeLocation = (value1, value2, value3) => {
     setHWValue({
       ...HWValue,
-      location: { continent: oneContinent, country: event.target.value },
+      location: { continent: value1, country: value2, region: value3 },
     });
   };
 
@@ -280,7 +294,7 @@ function InnerComponent() {
 
             <div class="flex flex-col px-4 py-8 text-center">
               <dt class="mt-5 order-last text-lg font-medium text-gray-500">
-                psf
+                PSF
               </dt>
 
               <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
@@ -290,7 +304,7 @@ function InnerComponent() {
 
             <div class="flex flex-col px-4 py-8 text-center">
               <dt class="mt-5 order-last text-lg font-medium text-gray-500">
-                pue
+                PUE
               </dt>
 
               <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
@@ -304,7 +318,7 @@ function InnerComponent() {
             {(type === "cpu" || type === "both") && (
               <div class="flex flex-col px-4 py-8 text-center">
                 <dt class="mt-5 order-last text-lg font-medium text-gray-500">
-                  cpu
+                  CPU
                 </dt>
 
                 <dd class="text-xl font-extrabold text-blue-600 md:text-2xl">
@@ -317,7 +331,7 @@ function InnerComponent() {
             {(type === "gpu" || type === "both") && (
               <div class="flex flex-col px-4 py-8 text-center">
                 <dt class="mt-5 order-last text-lg font-medium text-gray-500">
-                  gpu
+                  GPU
                 </dt>
 
                 <dd class="text-xl font-extrabold text-blue-600 md:text-2xl">
@@ -330,7 +344,7 @@ function InnerComponent() {
 
             <div class="flex flex-col px-4 py-8 text-center">
               <dt class="mt-5 order-last text-lg font-medium text-gray-500">
-                location
+                Location
               </dt>
 
               <dd class="text-2xl font-extrabold text-blue-600 md:text-3xl">
@@ -347,7 +361,9 @@ function InnerComponent() {
             <Accordion.Title>Types of Core</Accordion.Title>
             <Accordion.Content>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div class="h-32 rounded-lg bg-gray-200 lg:col-span-2"></div>
+                <div class="h-32 rounded-lg flex text-center items-center justify-center font-extrabold text-gray-600 text-2xl lg:col-span-2">
+                  Type of Core
+                </div>
                 <div class="h-32 rounded-lg flex justify-center items-center">
                   <select
                     name="HeadlineAct"
@@ -679,7 +695,9 @@ function InnerComponent() {
             <Accordion.Title>Memory</Accordion.Title>
             <Accordion.Content>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div class="h-32 rounded-lg bg-gray-200 lg:col-span-2"></div>
+                <div class="h-32 rounded-lg lg:col-span-2 flex text-center items-center justify-center font-extrabold text-gray-600 text-2xl">
+                  Memory
+                </div>
                 <div class="h-32 rounded-lg flex justify-center items-center">
                   <div>
                     <label for="Quantity" class="sr-only">
@@ -720,10 +738,12 @@ function InnerComponent() {
             </Accordion.Content>
           </Accordion.Panel>
           <Accordion.Panel>
-            <Accordion.Title>Pue</Accordion.Title>
+            <Accordion.Title>PUE</Accordion.Title>
             <Accordion.Content>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div class="h-32 rounded-lg bg-gray-200 lg:col-span-2"></div>
+                <div class="h-32 rounded-lg flex text-center items-center justify-center font-extrabold text-gray-600 text-2xl lg:col-span-2">
+                  PUE
+                </div>
                 <div class="h-32 rounded-lg flex justify-center items-center">
                   <button
                     type="button"
@@ -759,10 +779,12 @@ function InnerComponent() {
             </Accordion.Content>
           </Accordion.Panel>
           <Accordion.Panel>
-            <Accordion.Title>Psf</Accordion.Title>
+            <Accordion.Title>PSF</Accordion.Title>
             <Accordion.Content>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div class="h-32 rounded-lg bg-gray-200 lg:col-span-2"></div>
+                <div class="h-32 rounded-lg flex text-center items-center justify-center font-extrabold text-gray-600 text-2xl lg:col-span-2">
+                  PSF
+                </div>
                 <div class="h-32 rounded-lg flex justify-center items-center">
                   <button
                     type="button"
@@ -800,33 +822,62 @@ function InnerComponent() {
             <Accordion.Title>Location</Accordion.Title>
             <Accordion.Content>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
-                <div class="h-32 rounded-lg bg-gray-200 lg:col-span-2"></div>
-                <div class="h-32 rounded-lg flex justify-center items-center">
-                  <select
-                    name="HeadlineAct"
-                    id="HeadlineAct"
-                    class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
-                    onChange={changeContinent}
-                  >
-                    <option value="Asia">Asia</option>
-                    <option value="NorthAmerica">North America</option>
-                    <option value="SouthAmerica">South America</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Oceania">Oceania</option>
-                  </select>
-                  <select
-                    name="Country"
-                    id="Country"
-                    class="ml-5 mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
-                    onChange={changeCountry}
-                  >
-                    {countries.map((country, index) => (
-                      <option key={index} value={country.toLowerCase()}>
-                        {country}
-                      </option>
-                    ))}
-                  </select>
+                <div class="h-32 rounded-lg flex text-center items-center justify-center font-extrabold text-gray-600 text-2xl lg:col-span-2">
+                  Location
+                </div>
+                <div class="h-32 rounded-lg justify-center items-center">
+                  <div class="grid grid-cols-2">
+                    <div class="font-bold text-lg text-center flex items-center justify-center text-gray-600">
+                      Continent
+                    </div>
+                    <select
+                      name="HeadlineAct"
+                      id="HeadlineAct"
+                      class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+                      onChange={changeContinent}
+                    >
+                      <option value="Asia">Asia</option>
+                      <option value="NorthAmerica">North America</option>
+                      <option value="SouthAmerica">South America</option>
+                      <option value="Europe">Europe</option>
+                      <option value="Africa">Africa</option>
+                      <option value="Oceania">Oceania</option>
+                    </select>
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <div class="font-bold text-lg text-center flex items-center justify-center text-gray-600">
+                      Country
+                    </div>
+                    <select
+                      name="Country"
+                      id="Country"
+                      class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+                      onChange={changeCountry}
+                    >
+                      {countries.map((country, index) => (
+                        <option key={index} value={country.toLowerCase()}>
+                          {country}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div class="grid grid-cols-2">
+                    <div class="font-bold text-lg text-center flex items-center justify-center text-gray-600">
+                      Region
+                    </div>
+                    <select
+                      name="Region"
+                      id="Region"
+                      class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
+                      onChange={changeRegion}
+                    >
+                      {regions.map((region, index) => (
+                        <option key={index} value={region.toLowerCase()}>
+                          {region}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             </Accordion.Content>

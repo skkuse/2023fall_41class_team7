@@ -8,6 +8,7 @@ const HWProvider = ({ children }) => {
     location: {
       continent: "Asia",
       country: "Korea",
+      region: null,
     },
     psf: 1.0,
     pue: 1.0,
