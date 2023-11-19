@@ -9,7 +9,28 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ResourceInterpreter {
+    //https://www.carbonfootprint.com/calculator.aspx
     public InterpretedFootprint interpretCarbonEmission(Double carbonEmission) {
-        return null;
+        Double treeMonths = interpretAsTreeMonths(carbonEmission);
+        Double passengerCar = interpretAsPassengerCar(carbonEmission);
+        Double flightFromIncheonToTokyo = interpretAsFlightFromIncheonToTokyo(carbonEmission);
+
+        return InterpretedFootprint.builder()
+                .treeMonths(treeMonths)
+                .passengerCar(passengerCar)
+                .flightFromIncheonToTokyo(flightFromIncheonToTokyo)
+                .build();
+    }
+
+    private Double interpretAsFlightFromIncheonToTokyo(Double carbonEmission) {
+        return carbonEmission / 210000 * 100;
+    }
+
+    private Double interpretAsPassengerCar(Double carbonEmission) {
+        return carbonEmission * 0.00600096015;
+    }
+
+    private Double interpretAsTreeMonths(Double carbonEmission) {
+        return carbonEmission / 917;
     }
 }

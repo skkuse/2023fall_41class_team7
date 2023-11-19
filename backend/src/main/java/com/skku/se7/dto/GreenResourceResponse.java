@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GreenResourceResponse {
     private Double totalCarbonFootprint;
+    private Double totalEnergyNeeded;
 
     private HwFootprint hwFootprint;
 

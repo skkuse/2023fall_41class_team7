@@ -13,18 +13,24 @@ import org.springframework.stereotype.Component;
 public class HwConverter {
     private final ProcessorTdpHandler processorTdpHandler;
     //use default pue
-    private final Double pue = 1.0;
+    private static final Double PUE = 1.0;
 
     //in W/GB from http://dl.acm.org/citation.cfm?doid=3076113.3076117 and https://www.tomshardware.com/uk/reviews/intel-core-i7-5960x-haswell-e-cpu,3918-13.html
-    private final Double memoryPower = 0.3725;
+    private static final Double MEMORY_POWER = 0.3725;
 
     public Double calculateCpuPowerNeeded(ProcessorSpecRequest cpuSpec) {
-        return null;
+        if(cpuSpec == null) return 0.0;
+        Double tdp = cpuSpec.getTdp();
+        if(tdp == null) tdp = processorTdpHandler.getCpuTdpByModelName(cpuSpec.getModelName());
+        return PUE * cpuSpec.getCoreNumber() * tdp * cpuSpec.getUsageFactor();
     }
     public Double calculateGpuPowerNeeded(ProcessorSpecRequest gpuSpec) {
-        return null;
+        if(gpuSpec == null) return 0.0;
+        Double tdp = gpuSpec.getTdp();
+        if(tdp == null) tdp = processorTdpHandler.getGpuTdpByModelName(gpuSpec.getModelName());
+        return PUE * gpuSpec.getCoreNumber() * tdp * gpuSpec.getUsageFactor();
     }
     public Double calculateMemoryPowerNeeded(Integer memory) {
-        return null;
+        return PUE * memory * MEMORY_POWER;
     }
 }

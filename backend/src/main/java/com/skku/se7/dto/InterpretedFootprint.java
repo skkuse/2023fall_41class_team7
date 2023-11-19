@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InterpretedFootprint {
-    private Double energyNeeded;
     private Double treeMonths;
     private Double passengerCar;
-    private Double flightFromIncheonToLondon;
+    private Double flightFromIncheonToTokyo;
 }

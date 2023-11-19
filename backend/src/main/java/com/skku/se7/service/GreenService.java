@@ -25,17 +25,20 @@ public class GreenService {
     private final LocationHandler locationHandler;
 
     public GreenResourceResponse calculateGreen(GreenRequest greenRequest) throws Exception {
-        Long codeRunTime = codeConverter.executeSynchronously(greenRequest.getJavaCode());
+        Long codeRuntime = codeConverter.executeSynchronously(greenRequest.getJavaCode());
+        Double runtime = convertMillisecToHour(codeRuntime);
 
         Double cpuPowerNeeded = hwConverter.calculateCpuPowerNeeded(greenRequest.getHwSpecRequest().getCpuSpecRequest());
-        Double gpuPowerNeeded = hwConverter.calculateCpuPowerNeeded(greenRequest.getHwSpecRequest().getGpuSpecRequest());
+        Double gpuPowerNeeded = hwConverter.calculateGpuPowerNeeded(greenRequest.getHwSpecRequest().getGpuSpecRequest());
         Double memoryPowerNeeded = hwConverter.calculateMemoryPowerNeeded(greenRequest.getHwSpecRequest().getMemoryGigaByte());
 
         Double psf = greenRequest.getHwSpecRequest().getPsf() / 1000;
 
-        Double cpuEnergyNeeded = codeRunTime * cpuPowerNeeded * psf;
-        Double gpuEnergyNeeded = codeRunTime * gpuPowerNeeded * psf;
-        Double memoryEnergyNeeded = codeRunTime * memoryPowerNeeded * psf;
+        Double cpuEnergyNeeded = runtime * cpuPowerNeeded * psf;
+        Double gpuEnergyNeeded = runtime * gpuPowerNeeded * psf;
+        Double memoryEnergyNeeded = runtime * memoryPowerNeeded * psf;
+
+        Double totalEnergyNeeded = cpuEnergyNeeded + gpuEnergyNeeded + memoryEnergyNeeded;
 
         Double carbonIntensity = locationHandler.getCarbonIntensity(greenRequest.getLocationRequest());
 
@@ -48,6 +51,10 @@ public class GreenService {
 
         InterpretedFootprint interpretedFootprint = resourceInterpreter.interpretCarbonEmission(totalCarbonEmission);
 
-        return new GreenResourceResponse(totalCarbonEmission, hwFootprint, interpretedFootprint);
+        return new GreenResourceResponse(totalCarbonEmission, totalEnergyNeeded, hwFootprint, interpretedFootprint);
+    }
+
+    private Double convertMillisecToHour(Long codeRuntime) {
+        return Double.valueOf(codeRuntime) / 3_600_000;
     }
 }
