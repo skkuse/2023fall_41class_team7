@@ -1,8 +1,8 @@
 package com.skku.se7;
 
-import com.skku.se7.service.JavaCodeCompiler;
-import com.skku.se7.service.JavaRunner;
-import com.skku.se7.service.synchronizedJavaRunner;
+import com.skku.se7.service.converter.code.JavaCodeCompiler;
+import com.skku.se7.service.converter.code.JavaRunner;
+import com.skku.se7.service.converter.code.CodeConverter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class JavaRunnerTest {
     JavaCodeCompiler javaCodeCompiler;
 
     @Autowired
-    synchronizedJavaRunner synchronizedJavaRunner;
+    CodeConverter CodeConverter;
     @Test
     void findClassNameTest() throws Exception{
         String javaCode = "public class TestJavaRunner{"
@@ -88,6 +88,6 @@ public class JavaRunnerTest {
                 + "System.out.println(\"Wow it woks!!\");"
                 + "}"
                 + "}";
-        synchronizedJavaRunner.executeSynchronously(javaCode);
+        CodeConverter.executeSynchronously(javaCode);
     }
 }

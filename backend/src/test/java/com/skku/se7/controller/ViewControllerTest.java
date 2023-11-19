@@ -2,8 +2,8 @@ package com.skku.se7.controller;
 
 import com.skku.se7.Se7Configuration;
 import com.skku.se7.dto.enums.Continent;
-import com.skku.se7.service.LocationHandler;
-import com.skku.se7.service.ProcessorTdpHandler;
+import com.skku.se7.service.dataHandler.LocationHandler;
+import com.skku.se7.service.dataHandler.ProcessorTdpHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -18,13 +18,10 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.skku.se7.controller.ControllerTestUtils.example;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
