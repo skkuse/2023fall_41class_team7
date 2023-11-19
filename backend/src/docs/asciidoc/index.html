@@ -694,9 +694,9 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 252
+Content-Length: 258
 
-{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":42.51,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToTokyo":44.44}}</code></pre>
+{"totalCarbonFootprint":126.78,"totalEnergyNeeded":11.111,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":42.51,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToTokyo":44.44}}</code></pre>
 </div>
 </div>
 </div>
@@ -725,15 +725,21 @@ Content-Length: 252
 <td class="tableblock halign-left valign-top"><p class="tableblock">126.78</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>totalEnergyNeeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.cpuCarbonFootprint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Cpu(입력시)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Cpu(입력안된 경우 0)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32.01</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.gpuCarbonFootprint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Gpu(입력시)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Gpu(입력안된 경우 0)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">42.51</p></td>
 </tr>
 <tr>
@@ -743,27 +749,21 @@ Content-Length: 252
 <td class="tableblock halign-left valign-top"><p class="tableblock">52.26</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.energyNeeded</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.treeMonths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무(tree-months)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">22.222</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.passengerCar</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차(km)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">33.333</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.flightFromIncheonToTokyo</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행(%)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">44.44</p></td>
 </tr>
 </tbody>
@@ -909,9 +909,9 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 251
+Content-Length: 257
 
-{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToTokyo":44.44}}</code></pre>
+{"totalCarbonFootprint":126.78,"totalEnergyNeeded":11.111,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToTokyo":44.44}}</code></pre>
 </div>
 </div>
 </div>
@@ -940,9 +940,15 @@ Content-Length: 251
 <td class="tableblock halign-left valign-top"><p class="tableblock">126.78</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>totalEnergyNeeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.cpuCarbonFootprint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Cpu(입력시)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Cpu(입력안된 경우 0)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32.01</p></td>
 </tr>
 <tr>
@@ -958,27 +964,21 @@ Content-Length: 251
 <td class="tableblock halign-left valign-top"><p class="tableblock">52.26</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.energyNeeded</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.treeMonths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무(tree-months)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">22.222</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.passengerCar</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차(km)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">33.333</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.flightFromIncheonToTokyo</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행(%)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">44.44</p></td>
 </tr>
 </tbody>
@@ -1124,9 +1124,9 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 251
+Content-Length: 257
 
-{"totalCarbonFootprint":126.78,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"energyNeeded":11.111,"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToTokyo":44.44}}</code></pre>
+{"totalCarbonFootprint":126.78,"totalEnergyNeeded":11.111,"hwFootprint":{"cpuCarbonFootprint":32.01,"gpuCarbonFootprint":null,"memoryCarbonFootprint":52.26},"interpretedFootprint":{"treeMonths":22.222,"passengerCar":33.333,"flightFromIncheonToTokyo":44.44}}</code></pre>
 </div>
 </div>
 </div>
@@ -1155,9 +1155,15 @@ Content-Length: 251
 <td class="tableblock halign-left valign-top"><p class="tableblock">126.78</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>totalEnergyNeeded</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>hwFootprint.cpuCarbonFootprint</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Cpu(입력시)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 - Cpu(입력안된 경우 0)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32.01</p></td>
 </tr>
 <tr>
@@ -1173,27 +1179,21 @@ Content-Length: 251
 <td class="tableblock halign-left valign-top"><p class="tableblock">52.26</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.energyNeeded</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 에너지</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">11.111</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.treeMonths</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 나무(tree-months)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">22.222</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.passengerCar</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 자동차(km)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">33.333</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>interpretedFootprint.flightFromIncheonToTokyo</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Number</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">탄소 배출량 변환 - 비행(%)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">44.44</p></td>
 </tr>
 </tbody>
@@ -1980,7 +1980,7 @@ Host: localhost:8080</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-11-19 04:09:35 +0900
+Last updated 2023-11-19 04:12:47 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>

@@ -174,8 +174,8 @@ public class GreenControllerTest {
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
                                 fieldWithPath("totalEnergyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)").attributes(example(energyNeeded.toString())),
 
-                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
-                                fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Gpu(입력시)").attributes(example(expectedGpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력안된 경우 0)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Gpu(입력안된 경우 0)").attributes(example(expectedGpuCarbonFootprint.toString())),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
                                 fieldWithPath("interpretedFootprint.treeMonths").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 나무(tree-months)").attributes(example(treeMonths.toString())),
@@ -381,7 +381,7 @@ public class GreenControllerTest {
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
                                 fieldWithPath("totalEnergyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)").attributes(example(energyNeeded.toString())),
 
-                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력안된 경우 0)").attributes(example(expectedCpuCarbonFootprint.toString())),
                                 fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
@@ -496,7 +496,7 @@ public class GreenControllerTest {
                                 fieldWithPath("totalCarbonFootprint").type(JsonFieldType.NUMBER).description("총 탄소 배출량(세부 탄소 배출량 총합)").attributes(example(expectedTotalCarbonFootprint.toString())),
                                 fieldWithPath("totalEnergyNeeded").type(JsonFieldType.NUMBER).description("탄소 배출량 변환 - 에너지(총 탄소 배출량 == 에너지 * intensity)").attributes(example(energyNeeded.toString())),
 
-                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력시)").attributes(example(expectedCpuCarbonFootprint.toString())),
+                                fieldWithPath("hwFootprint.cpuCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - Cpu(입력안된 경우 0)").attributes(example(expectedCpuCarbonFootprint.toString())),
                                 fieldWithPath("hwFootprint.gpuCarbonFootprint").type(JsonFieldType.NULL).description("").attributes(example("")).optional(),
                                 fieldWithPath("hwFootprint.memoryCarbonFootprint").type(JsonFieldType.NUMBER).description("탄소 배출량 - memory").attributes(example(memoryCarbonFootprint.toString())),
 
