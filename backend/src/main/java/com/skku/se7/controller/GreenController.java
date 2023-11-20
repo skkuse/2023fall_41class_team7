@@ -5,10 +5,15 @@ import com.skku.se7.error.exceptions.*;
 import com.skku.se7.service.GreenService;
 import com.skku.se7.service.dataHandler.LocationHandler;
 import com.skku.se7.service.dataHandler.ProcessorTdpHandler;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @RestController

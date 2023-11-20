@@ -23,8 +23,12 @@ public class LocationHandler {
     private List<LocationIntensity> locationIntensities = new ArrayList<>();
 
     public LocationHandler() throws ParserConfigurationException, IOException, SAXException {
-        Document document = getDocument(path + "intensity.xml");
+        String fileName = "intensity.xml";
+        Document document = getDocument(path + fileName);
+        log.info("======================= Opening Location - Intensity File... : {} =======================", fileName);
         convertDocToObject(document, locationIntensities);
+        log.info("total Information count : {}", locationIntensities.size());
+        log.info("======================= Finish Reading Location - Intensity File : {} =======================", fileName);
     }
 
     private static void convertDocToObject(Document document, List<LocationIntensity> locationIntensities) {
@@ -32,11 +36,13 @@ public class LocationHandler {
         NodeList countryNames = document.getElementsByTagName("countryName");
         NodeList regionNames = document.getElementsByTagName("regionName");
         NodeList carbonIntensities = document.getElementsByTagName("carbonIntensity");
+        log.info("continent, countryName, regionName : intensity");
         for (int i = 0; i < continentNames.getLength(); i++) {
             Continent continent = Continent.valueOf(continentNames.item(i).getChildNodes().item(0).getNodeValue());
             String countryName = countryNames.item(i).getChildNodes().item(0).getNodeValue();
             String regionName = regionNames.item(i).getChildNodes().item(0).getNodeValue();
             Double intensity = Double.valueOf(carbonIntensities.item(i).getChildNodes().item(0).getNodeValue());
+            log.info("{}, {}, {} : {}", continent, countryName, regionName, intensity);
             locationIntensities.add(new LocationIntensity(continent, countryName, regionName, intensity));
         }
     }

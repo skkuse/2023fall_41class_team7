@@ -50,8 +50,6 @@ class GreenControllerExceptionTest {
     private ProcessorTdpHandler processorTdpHandler;
     @InjectMocks
     private LocationHandler locationHandler;
-    @MockBean
-    private ControllerExceptionHandler controllerExceptionHandler;
 
     /**
      * input : No java Code, No memory, No Gpu CoreNum(Only Gpu Given)
@@ -84,8 +82,6 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
-        given(controllerExceptionHandler.bindException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult missingRequestFieldsResult = mockMvc.perform(
@@ -158,8 +154,6 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
-        given(controllerExceptionHandler.bindException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult missingRequestFieldsResult = mockMvc.perform(
@@ -214,8 +208,6 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
-        given(controllerExceptionHandler.withoutProcessorException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult missingRequestFieldsResult = mockMvc.perform(
@@ -290,8 +282,6 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
-        given(controllerExceptionHandler.cpuTdpWithModelNameException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult tdpWithModelNameResult = mockMvc.perform(
@@ -365,8 +355,6 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
-        given(controllerExceptionHandler.gpuTdpWithModelNameException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult tdpWithModelNameResult = mockMvc.perform(
@@ -429,8 +417,6 @@ class GreenControllerExceptionTest {
 
         //mocking
         given(processorTdpHandler.validateCpuModel(cpuModelName)).willReturn(false);
-        given(controllerExceptionHandler.noMatchCpuModelNameException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult badCpuModelNameResult = mockMvc.perform(
@@ -495,8 +481,6 @@ class GreenControllerExceptionTest {
 
         //mocking
         given(processorTdpHandler.validateGpuModel(modelName)).willReturn(false);
-        given(controllerExceptionHandler.noMatchGpuModelNameException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult badGpuModelNameResult = mockMvc.perform(
@@ -563,8 +547,6 @@ class GreenControllerExceptionTest {
         String content = ow.writeValueAsString(greenRequest);
 
         //mocking
-        given(controllerExceptionHandler.cannotInferTdpException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult cannotInferTdpResult = mockMvc.perform(
@@ -639,8 +621,6 @@ class GreenControllerExceptionTest {
         //mocking
         given(processorTdpHandler.validateCpuModel(any())).willReturn(true);
         given(processorTdpHandler.validateGpuModel(any())).willReturn(true);
-        given(controllerExceptionHandler.noMatchCountryException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult badCountryResult = mockMvc.perform(
@@ -714,8 +694,6 @@ class GreenControllerExceptionTest {
         //mocking
         given(processorTdpHandler.validateCpuModel(any())).willReturn(true);
         given(processorTdpHandler.validateGpuModel(any())).willReturn(true);
-        given(controllerExceptionHandler.noMatchRegionException(any(), any()))
-                .willReturn(ResponseEntity.badRequest().build());
 
         //when
         MvcResult badCountryResult = mockMvc.perform(

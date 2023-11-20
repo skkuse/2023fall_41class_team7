@@ -1,4 +1,4 @@
-package com.skku.se7;
+package com.skku.se7.service;
 
 import com.skku.se7.service.converter.code.JavaCodeCompiler;
 import com.skku.se7.service.converter.code.JavaRunner;
