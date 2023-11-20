@@ -25,10 +25,10 @@ public class LocationHandler {
     public LocationHandler() throws ParserConfigurationException, IOException, SAXException {
         String fileName = "intensity.xml";
         Document document = getDocument(path + fileName);
-        log.info("Opening Location - Intensity File... : {}", fileName);
+        log.info("======================= Opening Location - Intensity File... : {} =======================", fileName);
         convertDocToObject(document, locationIntensities);
-        log.info("Finish Reading File : {}", fileName);
         log.info("total Information count : {}", locationIntensities.size());
+        log.info("======================= Finish Reading Location - Intensity File : {} =======================", fileName);
     }
 
     private static void convertDocToObject(Document document, List<LocationIntensity> locationIntensities) {

@@ -25,19 +25,29 @@ public class ProcessorTdpHandler {
     private Map<String, Double> gpuModelTdps = new HashMap<>();
 
     public ProcessorTdpHandler() throws ParserConfigurationException, IOException, SAXException {
-        Document document = getDocument(path + "cpu_spec.xml");
+        String fileName = "cpu_spec.xml";
+        log.info("======================= Opening CPU - TDP File... : {} =======================", fileName);
+        Document document = getDocument(path + fileName);
         convertDocToObject(document, cpuModelTdps);
+        log.info("total Information count : {}", cpuModelTdps.size());
+        log.info("======================= Finish Reading CPU - TDP File : {} =======================", fileName);
 
-        document = getDocument(path + "gpu_spec.xml");
+        fileName = "gpu_spec.xml";
+        log.info("======================= Opening GPU - TDP File... : {} =======================", fileName);
+        document = getDocument(path + fileName);
         convertDocToObject(document, gpuModelTdps);
+        log.info("total Information count : {}", gpuModelTdps.size());
+        log.info("======================= Finish Reading GPU - TDP File : {} =======================", fileName);
     }
 
     private static void convertDocToObject(Document document, Map<String ,Double> processorModelTdps) {
         NodeList models = document.getElementsByTagName("model");
         NodeList tdps = document.getElementsByTagName("tdp");
+        log.info("model : tdp");
         for (int i = 0; i < models.getLength(); i++) {
             String model = models.item(i).getChildNodes().item(0).getNodeValue();
             Double tdp = Double.valueOf(tdps.item(i).getChildNodes().item(0).getNodeValue());
+            log.info("{} : {}", model, tdp);
             processorModelTdps.put(model, tdp);
         }
     }
