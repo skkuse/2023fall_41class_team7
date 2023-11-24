@@ -35,6 +35,16 @@ public class JavaCodeCompiler {
         String filePath = curPath + className + ".java";
         String delPath = curPath + className + ".class";
 
+        File file = new File(filePath);
+        if(file.exists()){
+            file.delete();
+        }
+
+        file = new File(delPath);
+        if(file.exists()){
+            file.delete();
+        }
+
         String[] arrPath = new String[2];
         arrPath[0] = filePath;
         arrPath[1] = delPath;

@@ -17,6 +17,7 @@ public class CodeConverter {
     public synchronized Long executeSynchronously(String code) throws Exception {
         long timeLimit = 5000;
         String curPath = javaCodeCompiler.getCurPath();
+        //System.out.println("cur path is : " + curPath);
         String className = javaCodeCompiler.findClassName(code);
         String[] arrPath = javaCodeCompiler.createFile(className, code);
         String filePath = arrPath[0];//.java
@@ -28,6 +29,7 @@ public class CodeConverter {
         //long timeConsumed = javaRunner.loadFileAndExecute(curPath, className);
         //JVM에 로드 후 main함수 실행
         long timeConsumed = javaRunner.createProcessAndExecute(timeLimit, curPath, className);
+        javaRunner.deleteFile(filePath, delPath);
         return timeConsumed;
     }
 }

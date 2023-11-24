@@ -88,9 +88,14 @@ public class JavaRunnerTest {
         String javaCode = "public class TestJavaRunner{"
                 + "public static void main(String[] args) {"
                 + "System.out.println(\"Wow it woks!!\");"
+                + "for(int i=0; i<1000000; i++){"
+                + "System.out.println(\"abcd\");"
+                + "}"
                 + "while(true){}"
                 + "}"
                 + "}";
-        CodeConverter.executeSynchronously(javaCode);
+        long a = CodeConverter.executeSynchronously(javaCode);
+
+        System.out.println("time is " +  a);
     }
 }

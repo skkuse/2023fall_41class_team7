@@ -41,7 +41,7 @@ public class JavaRunner {
         long timeConsumed = 0;
 
         try {
-            String[] cmd = {"/bin/bash", "-c", "java " + className};
+            String[] cmd = {"/bin/bash", "-c", "cd " +curPath + " && java " + className};
             long startTime = System.currentTimeMillis();
             Process process = Runtime.getRuntime().exec(cmd);
             process.waitFor(timeLimit, TimeUnit.MILLISECONDS);
@@ -51,12 +51,14 @@ public class JavaRunner {
                 process.destroy();
                 timeConsumed = -1;//if process exceed limit time, return -1
             }else{
+                /*
                 InputStream inputStream = process.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
                 while ((line = reader.readLine()) != null) {
                     System.out.println(line); // 결과 출력
                 }
+                */
             }
         }catch (IOException | InterruptedException e){}
 
