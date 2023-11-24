@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <row>
+    <model>AMD Ryzen 9 7950X</model>
+    <tdp>170</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-14900K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-13900K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-14700K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 7950X3D</model>
+    <tdp>120</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 7900X</model>
+    <tdp>170</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-13700K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-12900K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 7700X</model>
+    <tdp>170</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 7900</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 7700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 5950X</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-14600K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-13600K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-12900</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-13700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 3950X</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-12700K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 5900X</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-10980XE</model>
+    <tdp>165</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-9980XE</model>
+    <tdp>165</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-13400F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-13400</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-12700F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-12700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-12600K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 7600X</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 7600</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 3900X</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 5800X3D</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 5800X</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-11900K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-10900K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-11900KB</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 9 3900</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-10850K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-11700K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 5700G</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 PRO 5750G</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-10910</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-11700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 3800XT</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 3700X</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-9900KS</model>
+    <tdp>127</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-10700K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-9900K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 5600X</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-11600K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-7900X</model>
+    <tdp>140</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-10700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 5600G</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-9700K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-12400F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-11400F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-10600K</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-8086K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-8700K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 2700X</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-10400F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-6950X</model>
+    <tdp>120</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E-2176G</model>
+    <tdp>80</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-9700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-8700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-9600K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i9-9900T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 2700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 1800X</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 1700X</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E5-2680 v4</model>
+    <tdp>120</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E5-2697 v2</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-7740X</model>
+    <tdp>112</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-8600K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-7700K</model>
+    <tdp>91</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-8500</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-5960X</model>
+    <tdp>140</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 7 1700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 2600X</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-8400</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 2600</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-11400T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>Intel Core i3-10320</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-4960X</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-7700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-6700K</model>
+    <tdp>91</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E5-2680</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-3960X</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-4790K</model>
+    <tdp>88</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-8500T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 1600</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 3 3300X</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E3-1280 v5</model>
+    <tdp>80</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-6700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-4790</model>
+    <tdp>84</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-7700T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-7600K</model>
+    <tdp>91</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-5775C</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-4770K</model>
+    <tdp>84</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-4790S</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 1500X</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-9400F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 3 3100</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i3-10100</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i3-10100F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i3-9100F</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-990X EE</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-980X EE</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 2400G</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-7500</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E3-1231 v3</model>
+    <tdp>80</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E3-1230 v3</model>
+    <tdp>80</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-6600K</model>
+    <tdp>91</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-3770K</model>
+    <tdp>77</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-4790T</model>
+    <tdp>45</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-6700T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 5 1400</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 3 1300X</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-2700K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-2600K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon X5670</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Xeon E3-1226 v3</model>
+    <tdp>84</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-4590</model>
+    <tdp>84</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 3 2200G</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-3570K</model>
+    <tdp>77</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-6500</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-3550</model>
+    <tdp>77</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-3470</model>
+    <tdp>77</tdp>
+  </row>
+  <row>
+    <model>AMD FX-8350</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-975</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-2500K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-6600T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-4460</model>
+    <tdp>84</tdp>
+  </row>
+  <row>
+    <model>AMD Ryzen 3 1200</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-7500T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-4430</model>
+    <tdp>84</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-6400</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-6500T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-2400</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-960</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-950</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-6400T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-940</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i7-920</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Core i5-750</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Extreme (Desktop) QX6850</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>AMD A10-6800K</model>
+    <tdp>100</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Quad (Desktop) Q9550</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>AMD A10-7850K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>AMD A10-7700K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>AMD A8-7650K</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Core i3-3220</model>
+    <tdp>55</tdp>
+  </row>
+  <row>
+    <model>AMD A8-6600K</model>
+    <tdp>100</tdp>
+  </row>
+  <row>
+    <model>AMD A10-5800K</model>
+    <tdp>100</tdp>
+  </row>
+  <row>
+    <model>AMD A8-5600K</model>
+    <tdp>100</tdp>
+  </row>
+  <row>
+    <model>AMD A8-3850</model>
+    <tdp>100</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Extreme (Desktop) QX6700</model>
+    <tdp>130</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium G4500T</model>
+    <tdp>35</tdp>
+  </row>
+  <row>
+    <model>AMD Phenom II X4 905e</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium G860</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Duo (Desktop) E6850</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Extreme (Desktop) X6800</model>
+    <tdp>75</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Quad (Desktop) Q6600</model>
+    <tdp>105</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron N5095</model>
+    <tdp>15</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron N5105</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium Silver J5040</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron J4125</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron J4105</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron J4005</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron N6211</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD A6-6400K</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Duo (Desktop) E6700</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD A4-5300</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron J4115</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>Intel Core 2 Duo (Desktop) E6600</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Athlon 64 (Desktop) FX-62</model>
+    <tdp>125</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron N4505</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>Intel Celeron J4025</model>
+    <tdp>10</tdp>
+  </row>
+  <row>
+    <model>AMD Athlon 64 X2 (Desktop) FX-60</model>
+    <tdp>110</tdp>
+  </row>
+  <row>
+    <model>AMD Athlon 64 X2 (Desktop) 4800+</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Athlon 64 X2 (Desktop) 4600+</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>AMD Athlon 64 X2 (Desktop) 4400+</model>
+    <tdp>65</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium D 820</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium 4 660</model>
+    <tdp>115</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium 4 560</model>
+    <tdp>88</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium 4 630</model>
+    <tdp>95</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium 4 P4 3.0</model>
+    <tdp>89</tdp>
+  </row>
+  <row>
+    <model>Intel Pentium 4 2.4 GHz</model>
+    <tdp>598</tdp>
+  </row>
+</root>
