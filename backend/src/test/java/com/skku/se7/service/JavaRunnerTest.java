@@ -77,7 +77,9 @@ public class JavaRunnerTest {
         String delPath = arrPath[1];
         javaCodeCompiler.compileSourceFile(filePath);
         //컴파일 완료
-        javaRunner.loadFileAndExecute(curPath, className);
+        //javaRunner.loadFileAndExecute(curPath, className);
+        long returnTime = javaRunner.createProcessAndExecute(2000, curPath, className);
+        //System.out.println("time is : " + returnTime + "(Milisecond)");
         javaRunner.deleteFile(filePath, delPath);
     }
 
@@ -86,6 +88,7 @@ public class JavaRunnerTest {
         String javaCode = "public class TestJavaRunner{"
                 + "public static void main(String[] args) {"
                 + "System.out.println(\"Wow it woks!!\");"
+                + "while(true){}"
                 + "}"
                 + "}";
         CodeConverter.executeSynchronously(javaCode);
