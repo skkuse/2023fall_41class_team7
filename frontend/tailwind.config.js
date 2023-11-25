@@ -12,6 +12,7 @@ module.exports = {
           orange: '#F4C48B',
           skyblue: '#7BB8F1',
           grass: '#A7F98B',
+          lemon: '#EFFD5F',
         },
       },
     },
