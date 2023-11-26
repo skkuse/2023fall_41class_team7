@@ -3,6 +3,8 @@ import "./stats.css";
 import car from './assets/car.png';
 import plane from './assets/plane.png';
 import ddogas from './assets/ddogas.png';
+import energy from './assets/energy.png';
+import tree from './assets/tree.png';
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
@@ -14,8 +16,8 @@ const stat_components = { //각 stats의 숫자
   tree:null
 }; 
 const hw_components = { //각 hw의 비율. 없을시 null return
-  cpu_rate: 1.7,
-  gpu_rate: 1.25,
+  cpu_rate: 1.5,
+  gpu_rate: 2,
   memory_rate: 1
 }; 
 const region_components = { 
@@ -49,7 +51,7 @@ function showStats(){
     </div>
 
     <div class="w-full h-60 bg-stat-lemon flex items-center ">
-      <img src={ddogas} alt="Your Image" class="mr-2 w-190 h-48 pl-8"/>
+      <img src={energy} alt="Your Image" class="mr-2 w-190 h-48 pl-12"/>
       <div class="flex-grow bg-stat-lemon h-16"></div> 
       <div class="flex items-center flex flex-col w-96">
         <div class="font-bold text-4xl text-black py-2">{stat_components.energy_needed}kWh</div>
@@ -76,7 +78,7 @@ function showStats(){
     </div>
 
     <div class="w-full h-60 bg-stat-grass flex items-center">
-      <img src={plane} alt="Your Image" class="mr-2 w-190 h-48"/>
+      <img src={tree} alt="Your Image" class="mr-2 w-190 h-48 pl-14"/>
       <div class="flex-grow bg-stat-grass h-16"></div> 
       <div class="flex items-center flex flex-col w-96">
         <div class="font-bold text-4xl text-black py-2">{stat_components.tree}km</div>
@@ -94,24 +96,43 @@ function ShowHWRate({ hw_components }) {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext('2d');
 
-      // 입력된 변수를 데이터로 변환
+      let labels = [];
+      let datas = [];
+      let backgroundColors = [];
+      let hoverBackgroundColors = [];
+
+      if (hw_components.cpu_rate !== null && hw_components.gpu_rate !== null && hw_components.memory_rate !== null) {
+        labels = ['CPU', 'GPU', 'Memory'];
+        datas = [hw_components.cpu_rate, hw_components.gpu_rate, hw_components.memory_rate];
+        backgroundColors = ['#FF6384', '#36A2EB', '#FFFF88'];
+        hoverBackgroundColors = ['red', 'blue', 'yellow'];
+      } else if (hw_components.cpu_rate === null) {
+        labels = ['GPU', 'Memory'];
+        datas = [hw_components.gpu_rate, hw_components.memory_rate];
+        backgroundColors = ['#36A2EB', '#FFFF88'];
+        hoverBackgroundColors = ['blue', 'yellow'];
+      } else if (hw_components.gpu_rate === null) {
+        labels = ['CPU', 'Memory'];
+        datas = [hw_components.cpu_rate, hw_components.memory_rate];
+        backgroundColors = ['#FF6384', '#FFFF88'];
+        hoverBackgroundColors = ['red', 'yellow'];
+      }
+
       const data = {
-        labels: ['CPU', 'GPU', 'Memory'],
+        labels: labels,
         datasets: [
           {
-            data: [hw_components.cpu_rate, hw_components.gpu_rate, hw_components.memory_rate],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-            hoverBackgroundColor: ['red', 'blue', 'yellow'],
+            data: datas,
+            backgroundColor: backgroundColors,
+            hoverBackgroundColor: hoverBackgroundColors,
           },
         ],
       };
 
-      // 차트 생성 전에 기존 차트를 파기
       if (window.doughnut_chart !== undefined) {
         window.doughnut_chart.destroy();
       }
 
-      // 차트 생성
       window.doughnut_chart = new Chart(ctx, {
         type: 'doughnut',
         data: data,
@@ -196,17 +217,28 @@ function ShowRegionGraph({ region_components }) {
 function Stat() {
   setComponents()
   return (
-    <div class="flex flex-col stats_area m-10 ">
+    <div>
       {showStats()}
-      <div class='flex w-full'>
-        <div class='flex-grow'>
-          <ShowHWRate hw_components={hw_components} />
+      <div class="flex flex-col stats_area m-32 ">
+        <div class=" mb-10">
+          <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
+              Graphs
+            </span>{" "}
+            Overview 
+          </h1>
         </div>
-        <div class='flex-grow'>
-          <ShowRegionGraph region_components={region_components} />
+        <div class='flex w-full'>
+          <div class='flex-grow'>
+            <ShowHWRate hw_components={hw_components} />
+          </div>
+          <div class='flex-grow'>
+            <ShowRegionGraph region_components={region_components} />
+          </div>
         </div>
       </div>
     </div>
+    
   
   );
 }
