@@ -6,192 +6,189 @@ import { HWContext, HWProvider } from "./Hardware";
 
 function InnerComponent() {
   const { HWValue, setHWValue } = useContext(HWContext);
-  // const hw = HWValue.HWSpecRequest;
-  const cpu = HWValue.hwSpecRequest.cpuSpecRequest;
-  const gpu = HWValue.hwSpecRequest.gpuSpecRequest;
-  const memory = HWValue.hwSpecRequest.memoryGigaByte;
-  const psf = HWValue.hwSpecRequest.psf;
-  const location = HWValue.locationRequest;
+  const location = HWValue.location;
+  const psf = HWValue.psf;
+  const pue = HWValue.pue;
+  const memory = HWValue.memory;
+  const type = HWValue.type;
+  const cpu = HWValue.cpu;
+  const gpu = HWValue.gpu;
 
-  const [continents, setContinents] = useState(null);
-  const [oneContinent, setOneContinent] = useState(location.continent); //country 리스트 정의를 위한 하나의 continent select
-  const [countries, setCountries] = useState(null); //country 리스트 정의
-  const [oneCountry, setOneCountry] = useState(location.country); //region 리스트 정의를 위한 하나의 country select
-  const [regions, setRegions] = useState(null); //region 리스트 정의
-  const [cpuModels, setCpuModels] = useState(null);
-  const [gpuModels, setGpuModels] = useState(null);
-  const [cpuExist, setCpuExist] = useState(true);
-  const [gpuExist, setGpuExist] = useState(true);
-  // const [cpuHWValue, setcpuHWValue] = useState(true);
-  // const [gpuHWValue, setgpuHWValue] = useState(true);
-  const [type, setType] = useState("both");
+  const continents = {
+    Africa: ["Gambia, The", "South Africa"],
+    Asia: [
+      "Thailand",
+      "Turkey",
+      "Korea",
+      "India",
+      "Indonesia",
+      "United Arab Emirates",
+      "China",
+      "Saudi Arabia",
+      "Israel",
+      "Japan",
+      "Singapore",
+    ],
+    Europe: [
+      "Lithuania",
+      "Netherlands",
+      "Italy",
+      "Slovenia",
+      "Belgium",
+      "Portugal",
+      "Spain",
+      "Germany",
+      "Norway",
+      "Bulgaria",
+      "Czech Republic",
+      "Ireland",
+      "Malta",
+      "Switzerland",
+      "Sweden",
+      "Luxembourg",
+      "Estonia",
+      "Russian Federation",
+      "Cyprus",
+      "Latvia",
+      "Romania",
+      "United Kingdom",
+      "Serbia",
+      "Denmark",
+      "Austria",
+      "Croatia",
+      "Poland",
+      "Hungary",
+      "France",
+      "Iceland",
+      "Finland",
+      "Greece",
+      "Slovakia",
+    ],
+    NorthAmerica: ["Mexico", "United States", "Canada"],
+    Oceania: ["New Zealand", "Australia"],
+    SouthAmerica: ["Brazil", "Argentina"],
+  };
 
-  useEffect(() => {
-    const showcpuModels = async () => {
-      try {
-        console.log("fetch...\n");
-        const response = await fetch("http://localhost:8080/model/cpu");
-        if (!response.ok) {
-          throw new Error(`HTTP error, status : ${response.status}`);
-        }
-        const res = await response.json();
-        const models_c = res.data || [];
-        return models_c;
-      } catch (error) {
-        console.error("Fetching error: ", error);
-      }
-    };
+  const cpu_models = [
+    "A8-7680",
+    "A9-9425 SoC",
+    "AMD 7552",
+    "AMD EPYC 7251",
+    "Any",
+    "Athlon 3000G",
+    "Core 2 Quad Q6600",
+    "Core i3-10100",
+    "Core i3-10300",
+    "Core i3-10320",
+    "Core i3-10350K",
+    "Core i3-9100",
+    "Core i3-9100F",
+    "Core i5-10400",
+    "Core i5-10400F",
+    "Core i5-10500",
+    "Core i5-10600",
+    "Core i5-10600K",
+    "Core i5-3570K",
+    "Core i5-4460",
+    "Core i5-9400",
+    "Core i5-9400F",
+    "Core i5-9600KF",
+    "Core i7-10700",
+    "Core i7-10700K",
+    "Core i7-4930K",
+    "Core i7-6700K",
+    "Core i7-8700K",
+    "Core i7-9700F",
+    "Core i7-9700K",
+    "Core i9-10900K",
+    "Core i9-10900KF",
+    "Core i9-10900XE",
+    "Core i9-10920XE",
+    "Core i9-9900K",
+    "FX-6300",
+    "FX-8350",
+    "Ryzen 3 2200G",
+    "Ryzen 3 3200G",
+    "Ryzen 3 3200U",
+    "Ryzen 5 1600",
+    "Ryzen 5 2600",
+    "Ryzen 5 3400G",
+    "Ryzen 5 3500U",
+    "Ryzen 5 3600",
+    "Ryzen 5 3600X",
+    "Ryzen 7 2700X",
+    "Ryzen 7 3700X",
+    "Ryzen 7 3800X",
+    "Ryzen 9 3900X",
+    "Ryzen 9 3950X",
+    "Ryzen Threadripper 2990WX",
+    "Ryzen Threadripper 3990X",
+    "Xeon E5-2660 v3",
+    "Xeon E5-2665",
+    "Xeon E5-2670",
+    "Xeon E5-2670 v2",
+    "Xeon E5-2680 v3",
+    "Xeon E5-2683 v4",
+    "Xeon E5-2690 v2",
+    "Xeon E5-2690 v3",
+    "Xeon E5-2695 v4",
+    "Xeon E5-2697 v4",
+    "Xeon E5-2699 v3",
+    "Xeon E5-2699 v4",
+    "Xeon E5-4610 v4",
+    "Xeon E5-4620",
+    "Xeon E5-4650L",
+    "Xeon E7-8867 v3",
+    "Xeon E7-8880 v4",
+    "Xeon Gold 6142",
+    "Xeon Gold 6148",
+    "Xeon Gold 6248",
+    "Xeon Gold 6252",
+    "Xeon L5640",
+    "Xeon Phi 5110P",
+    "Xeon Platinum 9282",
+    "Xeon X3430",
+    "Xeon X5660",
+  ];
 
-    showcpuModels().then((models_c) => {
-      if (Array.isArray(models_c)) {
-        const updatedModels = [...models_c, "Direct Input"];
-        setCpuModels(updatedModels);
-      }
-    });
-  }, []);
+  const gpu_models = [
+    "NVIDIA Jetson AGX Xavier",
+    "NVIDIA Tesla T4",
+    "AMD RX480",
+    "NVIDIA GTX 1080",
+    "TPU v3",
+    "Any",
+    "NVIDIA RTX 2080",
+    "NVIDIA RTX 2080 Ti",
+    "NVIDIA GTX 1080 Ti",
+    "NVIDIA Titan V",
+    "TPU v2",
+    "NVIDIA GTX TITAN X",
+    "NVIDIA TITAN X Pascal",
+    "NVIDIA Tesla P100 PCIe",
+    "NVIDIA Tesla V100",
+    "TPU v3 pod",
+    "NVIDIA A100 PCIe",
+    "NVIDIA Tesla P4",
+    "NVIDIA Tesla K80",
+  ];
+  const regions_lst = ["aa", "bb", "cc"];
 
-  useEffect(() => {
-    const showgpuModels = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/model/gpu");
-        if (!response.ok) {
-          throw new Error(`HTTP error, status : ${response.status}`);
-        }
-        const res = await response.json();
-        const models_g = res.data || [];
-        return models_g;
-      } catch (error) {
-        console.error("Fetching error: ", error);
-      }
-    };
-
-    showgpuModels().then((models_g) => {
-      if (Array.isArray(models_g)) {
-        const updatedModels = [...models_g, "Direct Input"];
-        setGpuModels(updatedModels);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    const showContinent = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/location");
-        if (!response.ok) {
-          throw new Error(`HTTP error, status : ${response.status}`);
-        }
-        const res = await response.json();
-        const continents = res.data || [];
-        return continents;
-      } catch (error) {
-        console.error("Fetching error: ", error);
-      }
-    };
-
-    showContinent().then((continents) => setContinents(continents));
-  }, []);
-
-  useEffect(() => {
-    const showCountry = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/location/${oneContinent}`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error, status : ${response.status}`);
-        }
-        const res = await response.json();
-        const countries = res.data || [];
-        return countries;
-      } catch (error) {
-        console.error("Fetching error: ", error);
-      }
-    };
-
-    showCountry().then((countries) => setCountries(countries));
-  }, [oneContinent]);
-
-  useEffect(() => {
-    const showRegion = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8080/location/${oneContinent}/${oneCountry}`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error, status : ${response.status}`);
-        }
-        const res = await response.json();
-        const regions = res.data || [];
-        return regions;
-      } catch (error) {
-        console.error("Fetching error: ", error);
-      }
-    };
-
-    showRegion().then((regions) => setRegions(regions));
-  }, [oneCountry]);
-
-  useEffect(() => {
-    if (cpuExist) {
-      console.log("add cpu request..");
-      const cpuSpecRequest = {
-        modelName: "Intel Core i9-14900K",
-        usageFactor: 0.8,
-        coreNumber: 8,
-        tdp: null,
-      };
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: {
-          ...HWValue.hwSpecRequest,
-          cpuSpecRequest: cpuSpecRequest,
-        },
-      });
-      console.log("change true...\n");
-
-      //setcpuHWValue(true);
-    } else if (!cpuExist) {
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: { ...HWValue.hwSpecRequest, cpuSpecRequest: null },
-      });
-      //setcpuHWValue(false);
-    }
-  }, [cpuExist]);
-
-  useEffect(() => {
-    if (gpuExist) {
-      const gpuSpecRequest = {
-        modelName: "WRadeon 520",
-        usageFactor: 0.7,
-        coreNumber: 7,
-        tdp: null,
-      };
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: {
-          ...HWValue.hwSpecRequest,
-          gpuSpecRequest: gpuSpecRequest,
-        },
-      });
-      //setgpuHWValue(true);
-    } else if (!gpuExist) {
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: { ...HWValue.hwSpecRequest, gpuSpecRequest: null },
-      });
-      //setgpuHWValue(false);
-    }
-  }, [gpuExist]);
+  const [oneContinent, setOneContinent] = useState("Asia"); //country 리스트 정의를 위한 하나의 continent select
+  const [countries, setCountries] = useState(continents[oneContinent]); //country 리스트 정의
+  const [oneCountry, setOneCountry] = useState("Korea"); //region 리스트 정의를 위한 하나의 country select
+  const [regions, setRegions] = useState(regions_lst); //region 리스트 정의
 
   const changeContinent = (event) => {
     const chosenContinent = event.target.value;
     setOneContinent(chosenContinent); //select 대륙 바꾸기
+    setCountries(continents[chosenContinent] || []); //country 리스트 바꾸기
   };
 
   const changeCountry = (event) => {
     const chosenCountry = event.target.value;
     setOneCountry(chosenCountry); //select 국가 바꾸기
+    //setRegions(countries[chosenCountry] || []); -> region도 바꿔야 되는데 일단 이건 api 적용할 때 바꾸자,,
   };
 
   const changeRegion = (event) => {
@@ -202,100 +199,69 @@ function InnerComponent() {
   const changeLocation = (value1, value2, value3) => {
     setHWValue({
       ...HWValue,
-      locationRequest: { continent: value1, country: value2, region: value3 },
+      location: { continent: value1, country: value2, region: value3 },
     });
   };
 
   const changePsf = (value) => {
-    setHWValue({
-      ...HWValue,
-      hwSpecRequest: { ...HWValue.hwSpecRequest, psf: value },
-    });
+    setHWValue({ ...HWValue, psf: value });
+  };
+
+  const changePue = (value) => {
+    setHWValue({ ...HWValue, pue: value });
   };
 
   const changeMemory = (value) => {
-    setHWValue({
-      ...HWValue,
-      hwSpecRequest: { ...HWValue.hwSpecRequest, memoryGigaByte: value },
-    });
+    setHWValue({ ...HWValue, memory: value });
   };
 
   const changeType = (event) => {
-    if (event.target.value === "cpu") {
-      setCpuExist(true);
-      setGpuExist(false);
-      setType("cpu");
-      console.log("change cpu..");
-    } else if (event.target.value === "gpu") {
-      setCpuExist(false);
-      setGpuExist(true);
-      setType("gpu");
-    } else {
-      setCpuExist(true);
-      setGpuExist(true);
-      setType("both");
-    }
+    setHWValue({ ...HWValue, type: event.target.value });
   };
 
   const changeCPUCore = (value) => {
-    changeCpu(value, cpu.modelName, cpu.usageFactor, cpu.tdp);
+    changeCpu(value, cpu.model, cpu.usage, cpu.tdp);
   };
 
   const changeCPUModel = (event) => {
-    changeCpu(cpu.coreNumber, event.target.value, cpu.usageFactor, cpu.tdp);
+    changeCpu(cpu.core, event.target.value, cpu.usage, cpu.tdp);
   };
 
   const changeCPUUsage = (value) => {
-    changeCpu(cpu.coreNumber, cpu.modelName, value, cpu.tdp);
+    changeCpu(cpu.core, cpu.model, value, cpu.tdp);
   };
 
   const changeCPUTdp = (value) => {
-    changeCpu(cpu.coreNumber, cpu.modelName, cpu.usageFactor, value);
+    changeCpu(cpu.core, cpu.model, cpu.usage, value);
   };
 
   const changeGPUCore = (value) => {
-    changeGpu(value, gpu.modelName, gpu.usageFactor, gpu.tdp);
+    changeGpu(value, gpu.model, gpu.usage, gpu.tdp);
   };
 
   const changeGPUModel = (event) => {
-    changeGpu(gpu.coreNumber, event.target.value, gpu.usageFactor, gpu.tdp);
+    changeGpu(gpu.core, event.target.value, gpu.usage, gpu.tdp);
   };
 
   const changeGPUUsage = (value) => {
-    changeGpu(gpu.coreNumber, gpu.modelName, value, gpu.tdp);
+    changeGpu(gpu.core, gpu.model, value, gpu.tdp);
   };
 
   const changeGPUTdp = (value) => {
-    changeGpu(gpu.coreNumber, gpu.modelName, gpu.usageFactor, value);
+    changeGpu(gpu.core, gpu.model, gpu.usage, value);
   };
 
   const changeCpu = (value1, value2, value3, value4) => {
     setHWValue({
       ...HWValue,
-      hwSpecRequest: {
-        ...HWValue.hwSpecRequest,
-        cpuSpecRequest: {
-          coreNumber: value1,
-          modelName: value2,
-          usageFactor: value3,
-          tdp: value4,
-        },
-      },
+      cpu: { core: value1, model: value2, usage: value3, tdp: value4 },
     });
   };
 
-  const changeGpu = (value1, value2, value3, value4) => {
+  const changeGpu = (value1, value2, value3) => {
     setHWValue({
       ...HWValue,
-      hwSpecRequest: {
-        ...HWValue.hwSpecRequest,
-        gpuSpecRequest: {
-          coreNumber: value1,
-          modelName: value2,
-          usageFactor: value3,
-          tdp: value4,
-        },
-      },
+      gpu: { core: value1, model: value2, usage: value3 },
     });
   };
 
@@ -342,36 +308,36 @@ function InnerComponent() {
               </dt>
 
               <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
-                1.0
+                {pue}
               </dd>
             </div>
           </dl>
         </div>
         <div class="mt-8 sm:mt-12">
           <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:divide-x sm:divide-gray-100">
-            {cpuExist === true && cpu && (
+            {(type === "cpu" || type === "both") && (
               <div class="flex flex-col px-4 py-8 text-center">
                 <dt class="mt-5 order-last text-lg font-medium text-gray-500">
                   CPU
                 </dt>
 
                 <dd class="text-xl font-extrabold text-blue-600 md:text-2xl">
-                  Core : {cpu.coreNumber} <br />
-                  Model : {cpu.modelName} <br />
-                  Usage : {cpu.usageFactor} <br />
+                  Core : {cpu.core} <br />
+                  Model : {cpu.model} <br />
+                  Usage : {cpu.usage} <br />
                 </dd>
               </div>
             )}
-            {gpuExist === true && gpu && (
+            {(type === "gpu" || type === "both") && (
               <div class="flex flex-col px-4 py-8 text-center">
                 <dt class="mt-5 order-last text-lg font-medium text-gray-500">
                   GPU
                 </dt>
 
                 <dd class="text-xl font-extrabold text-blue-600 md:text-2xl">
-                  Core : {gpu.coreNumber} <br />
-                  Model : {gpu.modelName} <br />
-                  Usage : {gpu.usageFactor} <br />
+                  Core : {gpu.core} <br />
+                  Model : {gpu.model} <br />
+                  Usage : {gpu.usage} <br />
                 </dd>
               </div>
             )}
@@ -383,8 +349,7 @@ function InnerComponent() {
 
               <dd class="text-2xl font-extrabold text-blue-600 md:text-3xl">
                 {location.continent} <br />
-                {location.country} <br />
-                {location.region}
+                {location.country}
               </dd>
             </div>
           </dl>
@@ -405,7 +370,6 @@ function InnerComponent() {
                     id="HeadlineAct"
                     class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                     onChange={changeType}
-                    value={type}
                   >
                     <option value="cpu">CPU</option>
                     <option value="gpu">GPU</option>
@@ -414,7 +378,7 @@ function InnerComponent() {
                 </div>
               </div>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 m-10">
-                {cpuExist === true && cpu && (
+                {(type === "cpu" || type === "both") && (
                   <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-4">
                       <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
@@ -439,9 +403,7 @@ function InnerComponent() {
                                   type="button"
                                   class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                                   onClick={() =>
-                                    changeCPUCore(
-                                      Math.max(0, cpu.coreNumber - 1)
-                                    )
+                                    changeCPUCore(Math.max(0, cpu.core - 1))
                                   }
                                 >
                                   &minus;
@@ -450,7 +412,7 @@ function InnerComponent() {
                                 <input
                                   type="number"
                                   id="memory"
-                                  value={cpu.coreNumber}
+                                  value={cpu.core}
                                   class="h-10 w-24 rounded border-gray-200 sm:text-sm"
                                   onChange={(e) =>
                                     changeCPUCore(
@@ -462,9 +424,7 @@ function InnerComponent() {
                                 <button
                                   type="button"
                                   class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
-                                  onClick={() =>
-                                    changeCPUCore(cpu.coreNumber + 1)
-                                  }
+                                  onClick={() => changeCPUCore(cpu.core + 1)}
                                 >
                                   +
                                 </button>
@@ -487,9 +447,7 @@ function InnerComponent() {
                                   changeCPUUsage(
                                     Math.max(
                                       0,
-                                      parseFloat(
-                                        (cpu.usageFactor - 0.1).toFixed(1)
-                                      )
+                                      parseFloat((cpu.usage - 0.1).toFixed(1))
                                     )
                                   )
                                 }
@@ -498,8 +456,8 @@ function InnerComponent() {
                               </button>
                               <input
                                 type="number"
-                                id="cpuUsage"
-                                value={cpu.usageFactor}
+                                id="pue"
+                                value={cpu.usage}
                                 class="h-10 w-24 rounded border-gray-200 sm:text-sm"
                                 onChange={(e) =>
                                   changeCPUUsage(
@@ -513,9 +471,7 @@ function InnerComponent() {
                                 class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                                 onClick={() =>
                                   changeCPUUsage(
-                                    parseFloat(
-                                      (cpu.usageFactor + 0.1).toFixed(1)
-                                    )
+                                    parseFloat((cpu.usage + 0.1).toFixed(1))
                                   )
                                 }
                               >
@@ -537,19 +493,17 @@ function InnerComponent() {
                                 id="cpu_model"
                                 className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                                 onChange={changeCPUModel}
-                                value={cpu.modelName}
                               >
-                                {Array.isArray(cpuModels) &&
-                                  cpuModels.map((model, index) => (
-                                    <option key={index} value={model}>
-                                      {model}
-                                    </option>
-                                  ))}
+                                {cpu_models.map((model, index) => (
+                                  <option key={index} value={model}>
+                                    {model}
+                                  </option>
+                                ))}
                               </select>
                             </div>
                           </div>
                         </li>
-                        {cpu.modelName === "Direct Input" && (
+                        {cpu.model === "Any" && (
                           <li class="py-3 sm:py-4">
                             <div class="flex items-center ">
                               <div class="flex-1 min-w-0 ms-4">
@@ -579,7 +533,7 @@ function InnerComponent() {
                   </div>
                 )}
 
-                {gpuExist === true && gpu && (
+                {(type === "gpu" || type === "both") && (
                   <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-4">
                       <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
@@ -604,9 +558,7 @@ function InnerComponent() {
                                   type="button"
                                   class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                                   onClick={() =>
-                                    changeGPUCore(
-                                      Math.max(0, gpu.coreNumber - 1)
-                                    )
+                                    changeGPUCore(Math.max(0, gpu.core - 1))
                                   }
                                 >
                                   &minus;
@@ -615,7 +567,7 @@ function InnerComponent() {
                                 <input
                                   type="number"
                                   id="memory"
-                                  value={gpu.coreNumber}
+                                  value={gpu.core}
                                   class="h-10 w-24 rounded border-gray-200 sm:text-sm"
                                   onChange={(e) =>
                                     changeGPUCore(
@@ -627,9 +579,7 @@ function InnerComponent() {
                                 <button
                                   type="button"
                                   class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
-                                  onClick={() =>
-                                    changeGPUCore(gpu.coreNumber + 1)
-                                  }
+                                  onClick={() => changeGPUCore(gpu.core + 1)}
                                 >
                                   +
                                 </button>
@@ -652,9 +602,7 @@ function InnerComponent() {
                                   changeGPUUsage(
                                     Math.max(
                                       0,
-                                      parseFloat(
-                                        (gpu.usageFactor - 0.1).toFixed(1)
-                                      )
+                                      parseFloat((gpu.usage - 0.1).toFixed(1))
                                     )
                                   )
                                 }
@@ -664,7 +612,7 @@ function InnerComponent() {
                               <input
                                 type="number"
                                 id="cpu usage"
-                                value={gpu.usageFactor}
+                                value={cpu.usage}
                                 class="h-10 w-24 rounded border-gray-200 sm:text-sm"
                                 onChange={(e) =>
                                   changeGPUUsage(
@@ -678,9 +626,7 @@ function InnerComponent() {
                                 class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                                 onClick={() =>
                                   changeGPUUsage(
-                                    parseFloat(
-                                      (gpu.usageFactor + 0.1).toFixed(1)
-                                    )
+                                    parseFloat((gpu.usage + 0.1).toFixed(1))
                                   )
                                 }
                               >
@@ -702,19 +648,17 @@ function InnerComponent() {
                                 id="gpu_model"
                                 className="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                                 onChange={changeGPUModel}
-                                value={gpu.modelName}
                               >
-                                {Array.isArray(gpuModels) &&
-                                  gpuModels.map((model, index) => (
-                                    <option key={index} value={model}>
-                                      {model}
-                                    </option>
-                                  ))}
+                                {gpu_models.map((model, index) => (
+                                  <option key={index} value={model}>
+                                    {model}
+                                  </option>
+                                ))}
                               </select>
                             </div>
                           </div>
                         </li>
-                        {gpu.modelName === "Direct Input" && (
+                        {gpu.model === "Any" && (
                           <li class="py-3 sm:py-4">
                             <div class="flex items-center ">
                               <div class="flex-1 min-w-0 ms-4">
@@ -801,7 +745,7 @@ function InnerComponent() {
                   PUE
                 </div>
                 <div class="h-32 rounded-lg flex justify-center items-center">
-                  {/* <button
+                  <button
                     type="button"
                     class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                     onClick={() =>
@@ -809,19 +753,19 @@ function InnerComponent() {
                     }
                   >
                     &minus;
-                  </button> */}
+                  </button>
                   <input
                     type="number"
                     id="pue"
-                    value={1.0}
+                    value={pue}
                     class="h-10 w-24 rounded border-gray-200 sm:text-sm"
-                    // onChange={(e) =>
-                    //   changePue(Math.max(0, parseFloat(e.target.value)))
-                    // }
+                    onChange={(e) =>
+                      changePue(Math.max(0, parseFloat(e.target.value)))
+                    }
                     step="0.1"
                     disabled
                   />
-                  {/* <button
+                  <button
                     type="button"
                     class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                     onClick={() =>
@@ -829,7 +773,7 @@ function InnerComponent() {
                     }
                   >
                     +
-                  </button> */}
+                  </button>
                 </div>
               </div>
             </Accordion.Content>
@@ -891,14 +835,13 @@ function InnerComponent() {
                       id="HeadlineAct"
                       class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                       onChange={changeContinent}
-                      value={oneContinent}
                     >
-                      {Array.isArray(continents) &&
-                        continents.map((continent, index) => (
-                          <option key={index} value={continent}>
-                            {continent}
-                          </option>
-                        ))}
+                      <option value="Asia">Asia</option>
+                      <option value="NorthAmerica">North America</option>
+                      <option value="SouthAmerica">South America</option>
+                      <option value="Europe">Europe</option>
+                      <option value="Africa">Africa</option>
+                      <option value="Oceania">Oceania</option>
                     </select>
                   </div>
                   <div class="grid grid-cols-2">
@@ -910,14 +853,12 @@ function InnerComponent() {
                       id="Country"
                       class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                       onChange={changeCountry}
-                      value={oneCountry}
                     >
-                      {Array.isArray(countries) &&
-                        countries.map((country, index) => (
-                          <option key={index} value={country}>
-                            {country}
-                          </option>
-                        ))}
+                      {countries.map((country, index) => (
+                        <option key={index} value={country.toLowerCase()}>
+                          {country}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div class="grid grid-cols-2">
@@ -929,14 +870,12 @@ function InnerComponent() {
                       id="Region"
                       class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                       onChange={changeRegion}
-                      value={location.region}
                     >
-                      {Array.isArray(regions) &&
-                        regions.map((region, index) => (
-                          <option key={index} value={region}>
-                            {region}
-                          </option>
-                        ))}
+                      {regions.map((region, index) => (
+                        <option key={index} value={region.toLowerCase()}>
+                          {region}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
