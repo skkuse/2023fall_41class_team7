@@ -11,7 +11,7 @@ function InnerComponent() {
   const gpu = HWValue.hwSpecRequest.gpuSpecRequest;
   const memory = HWValue.hwSpecRequest.memoryGigaByte;
   const psf = HWValue.hwSpecRequest.psf;
-  const location = HWValue.locationrRequest;
+  const location = HWValue.locationRequest;
 
   const [continents, setContinents] = useState(null);
   const [oneContinent, setOneContinent] = useState(location.continent); //country 리스트 정의를 위한 하나의 continent select
@@ -22,23 +22,32 @@ function InnerComponent() {
   const [gpuModels, setGpuModels] = useState(null);
   const [cpuExist, setCpuExist] = useState(true);
   const [gpuExist, setGpuExist] = useState(true);
+  // const [cpuHWValue, setcpuHWValue] = useState(true);
+  // const [gpuHWValue, setgpuHWValue] = useState(true);
+  const [type, setType] = useState("both");
 
   useEffect(() => {
     const showcpuModels = async () => {
       try {
+        console.log("fetch...\n");
         const response = await fetch("http://localhost:8080/model/cpu");
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
         const res = await response.json();
-        const models_c = res.data;
+        const models_c = res.data || [];
         return models_c;
       } catch (error) {
         console.error("Fetching error: ", error);
       }
     };
 
-    showcpuModels().then((res) => setCpuModels(res.push("Direct Input")));
+    showcpuModels().then((models_c) => {
+      if (Array.isArray(models_c)) {
+        const updatedModels = [...models_c, "Direct Input"];
+        setCpuModels(updatedModels);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -49,15 +58,20 @@ function InnerComponent() {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
         const res = await response.json();
-        const models_g = res.data;
+        const models_g = res.data || [];
         return models_g;
       } catch (error) {
         console.error("Fetching error: ", error);
       }
     };
 
-    showgpuModels().then((res) => setGpuModels(res.push("Direct Input")));
-  });
+    showgpuModels().then((models_g) => {
+      if (Array.isArray(models_g)) {
+        const updatedModels = [...models_g, "Direct Input"];
+        setGpuModels(updatedModels);
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const showContinent = async () => {
@@ -67,14 +81,14 @@ function InnerComponent() {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
         const res = await response.json();
-        const continents = res.data;
+        const continents = res.data || [];
         return continents;
       } catch (error) {
         console.error("Fetching error: ", error);
       }
     };
 
-    showContinent().then((res) => setContinents(res));
+    showContinent().then((continents) => setContinents(continents));
   }, []);
 
   useEffect(() => {
@@ -87,14 +101,14 @@ function InnerComponent() {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
         const res = await response.json();
-        const countries = res.data;
+        const countries = res.data || [];
         return countries;
       } catch (error) {
         console.error("Fetching error: ", error);
       }
     };
 
-    showCountry().then((res) => setCountries(res));
+    showCountry().then((countries) => setCountries(countries));
   }, [oneContinent]);
 
   useEffect(() => {
@@ -107,18 +121,19 @@ function InnerComponent() {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
         const res = await response.json();
-        const regions = res.data;
+        const regions = res.data || [];
         return regions;
       } catch (error) {
         console.error("Fetching error: ", error);
       }
     };
 
-    showRegion().then((res) => setRegions(res));
+    showRegion().then((regions) => setRegions(regions));
   }, [oneCountry]);
 
   useEffect(() => {
     if (cpuExist) {
+      console.log("add cpu request..");
       const cpuSpecRequest = {
         modelName: "Intel Core i9-14900K",
         usageFactor: 0.8,
@@ -132,11 +147,15 @@ function InnerComponent() {
           cpuSpecRequest: cpuSpecRequest,
         },
       });
+      console.log("change true...\n");
+
+      //setcpuHWValue(true);
     } else if (!cpuExist) {
       setHWValue({
         ...HWValue,
         hwSpecRequest: { ...HWValue.hwSpecRequest, cpuSpecRequest: null },
       });
+      //setcpuHWValue(false);
     }
   }, [cpuExist]);
 
@@ -155,11 +174,13 @@ function InnerComponent() {
           gpuSpecRequest: gpuSpecRequest,
         },
       });
+      //setgpuHWValue(true);
     } else if (!gpuExist) {
       setHWValue({
         ...HWValue,
         hwSpecRequest: { ...HWValue.hwSpecRequest, gpuSpecRequest: null },
       });
+      //setgpuHWValue(false);
     }
   }, [gpuExist]);
 
@@ -203,12 +224,16 @@ function InnerComponent() {
     if (event.target.value === "cpu") {
       setCpuExist(true);
       setGpuExist(false);
+      setType("cpu");
+      console.log("change cpu..");
     } else if (event.target.value === "gpu") {
       setCpuExist(false);
       setGpuExist(true);
+      setType("gpu");
     } else {
       setCpuExist(true);
-      setGpuExist(false);
+      setGpuExist(true);
+      setType("both");
     }
   };
 
@@ -311,20 +336,20 @@ function InnerComponent() {
               </dd>
             </div>
 
-            {/* <div class="flex flex-col px-4 py-8 text-center">
+            <div class="flex flex-col px-4 py-8 text-center">
               <dt class="mt-5 order-last text-lg font-medium text-gray-500">
                 PUE
               </dt>
 
               <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
-                {pue}
+                1.0
               </dd>
-            </div> */}
+            </div>
           </dl>
         </div>
         <div class="mt-8 sm:mt-12">
           <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:divide-x sm:divide-gray-100">
-            {cpuExist === true && (
+            {cpuExist === true && cpu && (
               <div class="flex flex-col px-4 py-8 text-center">
                 <dt class="mt-5 order-last text-lg font-medium text-gray-500">
                   CPU
@@ -337,7 +362,7 @@ function InnerComponent() {
                 </dd>
               </div>
             )}
-            {gpuExist === true && (
+            {gpuExist === true && gpu && (
               <div class="flex flex-col px-4 py-8 text-center">
                 <dt class="mt-5 order-last text-lg font-medium text-gray-500">
                   GPU
@@ -380,7 +405,7 @@ function InnerComponent() {
                     id="HeadlineAct"
                     class="mt-1.5 w-full rounded-lg border-gray-300 text-gray-700 sm:text-sm"
                     onChange={changeType}
-                    value="cpu"
+                    value={type}
                   >
                     <option value="cpu">CPU</option>
                     <option value="gpu">GPU</option>
@@ -389,7 +414,7 @@ function InnerComponent() {
                 </div>
               </div>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-8 m-10">
-                {cpuExist === true && (
+                {cpuExist === true && cpu && (
                   <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-4">
                       <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
@@ -514,11 +539,12 @@ function InnerComponent() {
                                 onChange={changeCPUModel}
                                 value={cpu.modelName}
                               >
-                                {cpuModels.map((model, index) => (
-                                  <option key={index} value={model}>
-                                    {model}
-                                  </option>
-                                ))}
+                                {Array.isArray(cpuModels) &&
+                                  cpuModels.map((model, index) => (
+                                    <option key={index} value={model}>
+                                      {model}
+                                    </option>
+                                  ))}
                               </select>
                             </div>
                           </div>
@@ -553,7 +579,7 @@ function InnerComponent() {
                   </div>
                 )}
 
-                {gpuExist === true && (
+                {gpuExist === true && gpu && (
                   <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex items-center justify-between mb-4">
                       <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">
@@ -678,11 +704,12 @@ function InnerComponent() {
                                 onChange={changeGPUModel}
                                 value={gpu.modelName}
                               >
-                                {gpuModels.map((model, index) => (
-                                  <option key={index} value={model}>
-                                    {model}
-                                  </option>
-                                ))}
+                                {Array.isArray(gpuModels) &&
+                                  gpuModels.map((model, index) => (
+                                    <option key={index} value={model}>
+                                      {model}
+                                    </option>
+                                  ))}
                               </select>
                             </div>
                           </div>
@@ -766,7 +793,7 @@ function InnerComponent() {
               </div>
             </Accordion.Content>
           </Accordion.Panel>
-          {/* <Accordion.Panel>
+          <Accordion.Panel>
             <Accordion.Title>PUE</Accordion.Title>
             <Accordion.Content>
               <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8">
@@ -774,7 +801,7 @@ function InnerComponent() {
                   PUE
                 </div>
                 <div class="h-32 rounded-lg flex justify-center items-center">
-                  <button
+                  {/* <button
                     type="button"
                     class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                     onClick={() =>
@@ -782,19 +809,19 @@ function InnerComponent() {
                     }
                   >
                     &minus;
-                  </button>
+                  </button> */}
                   <input
                     type="number"
                     id="pue"
-                    value={pue}
+                    value={1.0}
                     class="h-10 w-24 rounded border-gray-200 sm:text-sm"
-                    onChange={(e) =>
-                      changePue(Math.max(0, parseFloat(e.target.value)))
-                    }
+                    // onChange={(e) =>
+                    //   changePue(Math.max(0, parseFloat(e.target.value)))
+                    // }
                     step="0.1"
                     disabled
                   />
-                  <button
+                  {/* <button
                     type="button"
                     class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
                     onClick={() =>
@@ -802,11 +829,11 @@ function InnerComponent() {
                     }
                   >
                     +
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </Accordion.Content>
-          </Accordion.Panel> */}
+          </Accordion.Panel>
           <Accordion.Panel>
             <Accordion.Title>PSF</Accordion.Title>
             <Accordion.Content>
@@ -866,11 +893,12 @@ function InnerComponent() {
                       onChange={changeContinent}
                       value={oneContinent}
                     >
-                      {continents.map((continent, index) => (
-                        <option key={index} value={continent}>
-                          {continent}
-                        </option>
-                      ))}
+                      {Array.isArray(continents) &&
+                        continents.map((continent, index) => (
+                          <option key={index} value={continent}>
+                            {continent}
+                          </option>
+                        ))}
                     </select>
                   </div>
                   <div class="grid grid-cols-2">
@@ -884,11 +912,12 @@ function InnerComponent() {
                       onChange={changeCountry}
                       value={oneCountry}
                     >
-                      {countries.map((country, index) => (
-                        <option key={index} value={country}>
-                          {country}
-                        </option>
-                      ))}
+                      {Array.isArray(countries) &&
+                        countries.map((country, index) => (
+                          <option key={index} value={country}>
+                            {country}
+                          </option>
+                        ))}
                     </select>
                   </div>
                   <div class="grid grid-cols-2">
@@ -902,11 +931,12 @@ function InnerComponent() {
                       onChange={changeRegion}
                       value={location.region}
                     >
-                      {regions.map((region, index) => (
-                        <option key={index} value={region}>
-                          {region}
-                        </option>
-                      ))}
+                      {Array.isArray(regions) &&
+                        regions.map((region, index) => (
+                          <option key={index} value={region}>
+                            {region}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>
