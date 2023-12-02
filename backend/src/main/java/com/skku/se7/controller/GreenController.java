@@ -18,6 +18,7 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins="*")
 public class GreenController {
     private final GreenService greenService;
     private final ProcessorTdpHandler processorTdpHandler;

@@ -9,5 +9,5 @@ public class Se7Application {
 	public static void main(String[] args) {
 		SpringApplication.run(Se7Application.class, args);
 	}
-
 }
+
