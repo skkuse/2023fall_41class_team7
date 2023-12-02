@@ -18,8 +18,9 @@ public class JavaCodeCompiler {
     }
 
     public static String findClassName(String code){
-        String[] arr = code.split("[.]|[)]|[(]| |[{]|[}]");
+        String[] arr = code.split("[.]|[)]|[(]| |[{]|[}]|\n");
         String className = null;
+
         for(int idx=0; idx<arr.length; idx++){
             if(arr[idx].equals("class") && idx+1<arr.length){
                 className = arr[idx+1];
@@ -33,6 +34,17 @@ public class JavaCodeCompiler {
         //String curPath = JavaCodeCompiler.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         String filePath = curPath + className + ".java";
         String delPath = curPath + className + ".class";
+
+        File file = new File(filePath);
+        if(file.exists()){
+            file.delete();
+        }
+
+        file = new File(delPath);
+        if(file.exists()){
+            file.delete();
+        }
+
         String[] arrPath = new String[2];
         arrPath[0] = filePath;
         arrPath[1] = delPath;
