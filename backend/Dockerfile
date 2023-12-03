@@ -1,17 +1,22 @@
-# Set base image
-FROM openjdk:17
+# Set base image to Ubuntu
+FROM ubuntu:latest
 
-# Define an internal variable used only within this Dockerfile
-ARG JAR_FILE=build/libs/*.jar
+# Install OpenJDK 17
+RUN apt-get update && \
+    apt-get install -y openjdk-17-jdk && \
+    apt-get clean;
 
-# Copy the JAR file to the container as 'app.jar'
-COPY ${JAR_FILE} app.jar
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
 # Copy the current directory contents to the container at /usr/src/app
 COPY . /usr/src/app
 
 # Expose port 8000
-EXPOSE 8000
+EXPOSE 8080
 
-# Specify the command to be executed when the container starts
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Start the Java application
+CMD ["java", "-jar", "/usr/src/app/build/libs/se7-0.0.1-SNAPSHOT.jar"]
+
+# If you want to keep the container running uncomment the following line
+#CMD tail -f /dev/null

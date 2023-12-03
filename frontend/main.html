@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP GET 요청 예제</title>
+</head>
+<body>
+    <h1>서버 응답:</h1>
+    <div id="response"></div>
+
+    <script>
+        // 서버에서 데이터를 가져오는 함수
+        function fetchData() {
+            fetch('http://18.220.238.217:8080/model/cpu')
+                .then(response => response.text())
+                .then(data => {
+                    // 응답을 HTML 요소에 표시
+                    document.getElementById('response').innerText = data;
+                })
+                .catch(error => {
+                    console.error('요청 중 오류 발생:', error);
+                });
+        }
+
+        // 페이지가 로드될 때 함수 실행
+        window.onload = fetchData;
+    </script>
+</body>
+</html>
