@@ -48,7 +48,7 @@ const HWProvider = ({ children }) => {
       country: "Canada",
       region: "Nunavut",
     },
-    javaCode: null,
+    javaCode: "abc"
   });
 
   return (

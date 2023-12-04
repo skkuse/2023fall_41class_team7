@@ -9,98 +9,91 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import { HWContext, HWProvider } from "./Hardware";
 
 
-function onChange(newValue) {
-  console.log("change", newValue);
-}
-
 function Innercomponent() {
+  const [data, setData] = useState(null);
   const [height, setHeight] = useState(500);
-  let [fade, setFade] = useState("");
   const { HWValue, setHWValue } = useContext(HWContext);
-  const [javaCode, setJavaCode] = useState(`public class Main {
-  public static void main(String[] args) {
-    System.out.println("Hello, world!");
-  }
+  const [javaCodeValue, setJavaCodeValue] = useState(`public class Main {
+    public static void main(String[] args) {
+      System.out.println("Hello, world!");
+    }
 }`);
 
+
+  function onChange(newValue) {
+    setJavaCodeValue(newValue);
+  }
+
   useEffect(() => {
-    const SendDataToServer = async () => {
-      try {
-        const sender = {
-          HWValue
-        };
-        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com/green", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(sender),
-        });
+    setHWValue({
+      ...HWValue,
+      javaCode: javaCodeValue,
+    });
+  }, [javaCodeValue]);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error, status : ${response.status}`);
-        }
-
-        const responseData = await response.json();
-        console.log("Response data:", responseData);
-      } catch (error) {
-        console.error("Fetching error: ", error);
-      }
-    };
-
-    if (HWValue) {
-      SendDataToServer(); // 컴포넌트가 마운트되거나 HWValue가 변경될 때마다 API 호출
-    }
-  }, [HWValue]);
 
   const onClick = () => {
     setHeight(1000);
   };
 
   const BtnClick = () => {
-    setHWValue({
-      ...HWValue,
-      javaCode:javaCode,
-    });
+    const sender = HWValue;
+  
+    // API POST request
+    try {
+      fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(sender),
+      })
+        .then(res => {
+          if (res.ok) {
+            alert("생성");
+          }
+          return res.json();
+        })
+        .then(data => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.error("Fetching error: ", error);
+        });
+    } catch (error) {
+      console.error("Error: ", error);
+    }
   };
 
-  const onClear=()=> {
-    setJavaCode(`public class Main {
+  const onClear = () => {
+    setJavaCodeValue(`public class Main {
   public static void main(String[] args) {
-    System.out.println("Hello!");
+    System.out.println("Hello, world!");
   }
 }`);
     setHeight(500);
   }
 
-  useEffect(() => {
-    setTimeout(()=> {
-      setFade("end");
-    }, 300);
-    return setFade("");
-  }, [height]);
 
   return (
     <div className="w-full">
       <div className={'code_area start '} onClick={onClick}>
-        
+
         <AceEditor
-          height={height}
+          height={height.toString() + "px"}
           width='100%'
           placeholder="Placeholder Text"
           mode="java"
           theme="monokai"
           name="blah2"
-
           onChange={onChange}
           // onLoad={this.onLoad}
-          // onChange={this.onChange}
           fontSize={20}
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
-          value={javaCode}
-          
+          value={javaCodeValue}
+
           setOptions={{
             enableBasicAutocompletion: false,
             enableLiveAutocompletion: false,
@@ -108,10 +101,10 @@ function Innercomponent() {
             showLineNumbers: true,
             tabSize: 2,
           }}
-          
+
         />
       </div>
-      <div style={{display: 'flex', justifyContent: "right", gap:10, padding:10}}>
+      <div style={{ display: 'flex', justifyContent: "right", gap: 10, padding: 10 }}>
         <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600" >Upload</button>
         <button className="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-600" onClick={onClear}>Clear</button>
         <button className="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600" onClick={BtnClick}>Submit</button>
