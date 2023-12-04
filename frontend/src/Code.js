@@ -13,16 +13,23 @@ function onChange(newValue) {
   console.log("change", newValue);
 }
 
-function APICall() {
+function Innercomponent() {
+  const [height, setHeight] = useState(500);
+  let [fade, setFade] = useState("");
   const { HWValue, setHWValue } = useContext(HWContext);
+  const [javaCode, setJavaCode] = useState(`public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello, world!");
+  }
+}`);
+
   useEffect(() => {
     const SendDataToServer = async () => {
       try {
         const sender = {
           HWValue
         };
-        alert(sender);
-        const response = await fetch("http://localhost:8080/green", {
+        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com/green", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -41,19 +48,11 @@ function APICall() {
       }
     };
 
-    SendDataToServer();
-  }, []);
-}
+    if (HWValue) {
+      SendDataToServer(); // 컴포넌트가 마운트되거나 HWValue가 변경될 때마다 API 호출
+    }
+  }, [HWValue]);
 
-function Innercomponent() {
-  const [height, setHeight] = useState(500);
-  let [fade, setFade] = useState("");
-  const { HWValue, setHWValue } = useContext(HWContext);
-  const [javaCode, setJavaCode] = useState(`public class Main {
-  public static void main(String[] args) {
-    System.out.println("Hello, world!");
-  }
-}`);
   const onClick = () => {
     setHeight(1000);
   };
@@ -63,8 +62,6 @@ function Innercomponent() {
       ...HWValue,
       javaCode:javaCode,
     });
-
-    APICall();
   };
 
   const onClear=()=> {
@@ -98,7 +95,7 @@ function Innercomponent() {
           onChange={onChange}
           // onLoad={this.onLoad}
           // onChange={this.onChange}
-          fontSize={24}
+          fontSize={20}
           showPrintMargin={true}
           showGutter={true}
           highlightActiveLine={true}
