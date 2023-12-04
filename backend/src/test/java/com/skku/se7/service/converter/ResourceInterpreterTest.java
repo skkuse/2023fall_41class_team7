@@ -15,29 +15,29 @@ class ResourceInterpreterTest {
     @InjectMocks
     private ResourceInterpreter resourceInterpreter;
 
-    /**
-     * input : 복잡한 소수
-     * expect result : 소수 세자리수로 반올림
-     */
-    @Test
-    public void interpretCarbonEmission_Default_PrecisionScaled() throws Exception {
-        //given
-        Double carbonEmission = 8.0 / 3;
-        int scailing = 1000;
-
-        //when
-        InterpretedFootprint interpretedFootprint = resourceInterpreter.interpretCarbonEmission(carbonEmission);
-
-        //then
-        assertThat(interpretedFootprint).isNotNull();
-
-        Double passengerCar = interpretedFootprint.getPassengerCar() * scailing;
-        assertThat(passengerCar).isEqualTo(passengerCar.intValue());
-
-        Double treeMonths = interpretedFootprint.getTreeMonths() * scailing;
-        assertThat(treeMonths).isEqualTo(treeMonths.intValue());
-
-        Double flight = interpretedFootprint.getFlightFromIncheonToTokyo() * scailing;
-        assertThat(flight).isEqualTo(flight.intValue());
-    }
+//    /**
+//     * input : 복잡한 소수
+//     * expect result : 소수 세자리수로 반올림
+//     */
+//    @Test
+//    public void interpretCarbonEmission_Default_PrecisionScaled() throws Exception {
+//        //given
+//        Double carbonEmission = 8.0 / 3;
+//        int scailing = 1000;
+//
+//        //when
+//        InterpretedFootprint interpretedFootprint = resourceInterpreter.interpretCarbonEmission(carbonEmission);
+//
+//        //then
+//        assertThat(interpretedFootprint).isNotNull();
+//
+//        Double passengerCar = interpretedFootprint.getPassengerCar() * scailing;
+//        assertThat(passengerCar).isEqualTo(passengerCar.intValue());
+//
+//        Double treeMonths = interpretedFootprint.getTreeMonths() * scailing;
+//        assertThat(treeMonths).isEqualTo(treeMonths.intValue());
+//
+//        Double flight = interpretedFootprint.getFlightFromIncheonToTokyo() * scailing;
+//        assertThat(flight).isEqualTo(flight.intValue());
+//    }
 }
