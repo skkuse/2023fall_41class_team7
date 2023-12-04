@@ -30,7 +30,7 @@ function InnerComponent() {
     const showcpuModels = async () => {
       try {
         console.log("fetch...\n");
-        const response = await fetch("http://localhost:8080/model/cpu");
+        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/model/cpu");
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
@@ -53,7 +53,7 @@ function InnerComponent() {
   useEffect(() => {
     const showgpuModels = async () => {
       try {
-        const response = await fetch("http://localhost:8080/model/gpu");
+        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/model/gpu");
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
@@ -76,7 +76,7 @@ function InnerComponent() {
   useEffect(() => {
     const showContinent = async () => {
       try {
-        const response = await fetch("http://localhost:8080/location");
+        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/location");
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
@@ -95,7 +95,7 @@ function InnerComponent() {
     const showCountry = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/location/${oneContinent}`
+          `http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/location/${oneContinent}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
@@ -115,7 +115,7 @@ function InnerComponent() {
     const showRegion = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8080/location/${oneContinent}/${oneCountry}`
+          `http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/location/${oneContinent}/${oneCountry}`
         );
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);

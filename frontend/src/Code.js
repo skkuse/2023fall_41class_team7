@@ -7,6 +7,10 @@ import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
 import { HWContext, HWProvider } from "./Hardware";
+import axios from 'axios';
+
+
+
 
 
 function Innercomponent() {
@@ -19,6 +23,15 @@ function Innercomponent() {
     }
 }`);
 
+  const CarbonList = (sender) => {
+    axios.post("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", sender)
+      .then((res => {
+        console.log(res.data);
+      }))
+      .catch((e) => {
+        console.log(e);
+      })
+  }
 
   function onChange(newValue) {
     setJavaCodeValue(newValue);
@@ -38,32 +51,40 @@ function Innercomponent() {
 
   const BtnClick = () => {
     const sender = HWValue;
-  
+
+
+
     // API POST request
-    try {
-      fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(sender),
-      })
-        .then(res => {
-          if (res.ok) {
-            alert("생성");
-          }
-          return res.json();
-        })
-        .then(data => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.error("Fetching error: ", error);
-        });
-    } catch (error) {
-      console.error("Error: ", error);
-    }
-  };
+
+    CarbonList(sender);
+    // try {
+    //   const response = fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(sender)
+
+
+    //   }).then(res => {
+    //     if (res.ok) {
+    //       return res.json(); // JSON 파싱하여 반환
+    //     }
+
+    //   })
+    //     .then(data => {
+    //       console.log(data) //응답 데이터 확인
+    //     })
+
+    //     .catch(error => {
+    //       console.error("error: ", error);
+    //     });
+
+    // } catch (error) {
+    //   console.error("Fetching error: ", error);
+    // };
+
+  }
 
   const onClear = () => {
     setJavaCodeValue(`public class Main {
