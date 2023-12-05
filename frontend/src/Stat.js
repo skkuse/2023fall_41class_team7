@@ -29,7 +29,8 @@ const region_components = {
 
 function SetComponents() {
   //json parsing
-  const { carbonValue } = useData();
+  // const { carbonValue } = useData();
+  // return ()
 }
 
 

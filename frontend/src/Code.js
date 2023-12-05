@@ -7,7 +7,8 @@ import { useContext, useState, useEffect } from "react";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
-import { CarbonProvider, useData } from "./Carbon";
+// import { CarbonProvider, useData } from "./Carbon";
+import { CarbonContext, CarbonProvider } from "./Carbon";
 import { HWContext, HWProvider } from "./Hardware";
 import axios from 'axios';
 
@@ -19,7 +20,8 @@ function Innercomponent() {
   const [data, setData] = useState(null);
   const [height, setHeight] = useState(500);
   const { HWValue, setHWValue } = useContext(HWContext);
-  const { setCarbonValue } = useData();
+  // const { setCarbonValue } = useData();
+  const { carbonValue, setCarbonValue } = useContext(CarbonContext);
   const [javaCodeValue, setJavaCodeValue] = useState(`public class Main {
     public static void main(String[] args) {
       System.out.println("Hello, world!");
@@ -29,7 +31,7 @@ function Innercomponent() {
   const CarbonList = (sender) => {
     axios.post("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", sender)
       .then((res => {
-        console.log(res.data);
+
         setData(res.data);
 
       }))
@@ -44,10 +46,10 @@ function Innercomponent() {
 
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     // 바꿔주기
     setCarbonValue(data);
-
+    console.log(carbonValue);
 
   }, [data]);
 
