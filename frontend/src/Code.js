@@ -17,7 +17,6 @@ import axios from 'axios';
 
 
 function Innercomponent() {
-  const [data, setData] = useState(null);
   const [height, setHeight] = useState(500);
   const { HWValue, setHWValue } = useContext(HWContext);
   // const { setCarbonValue } = useData();
@@ -31,9 +30,7 @@ function Innercomponent() {
   const CarbonList = (sender) => {
     axios.post("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", sender)
       .then((res => {
-
-        setData(res.data);
-
+        setCarbonValue(res.data)
       }))
       .catch((e) => {
         console.log(e);
@@ -46,12 +43,12 @@ function Innercomponent() {
 
 
   useEffect(() => {
-    // console.log(data);
+
     // 바꿔주기
-    setCarbonValue(data);
+    // setCarbonValue(data);
     console.log(carbonValue);
 
-  }, [data]);
+  }, [carbonValue]);
 
   useEffect(() => {
     setHWValue({
@@ -148,7 +145,6 @@ function Innercomponent() {
         <button className="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-600" onClick={onClear}>Clear</button>
         <button className="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600" onClick={BtnClick}>Submit</button>
       </div>
-      <Stat />
 
     </div>
   );
@@ -156,11 +152,9 @@ function Innercomponent() {
 
 function Code() {
   return (
-    <CarbonProvider>
-      <HWProvider>
-        <Innercomponent />
-      </HWProvider>
-    </CarbonProvider>
+
+    <Innercomponent />
+
   );
 }
 

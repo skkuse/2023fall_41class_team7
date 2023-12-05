@@ -15,13 +15,7 @@ const CarbonContext = createContext();
 //     );
 // };
 
-// export const useData = () => {
-//     const context = useContext(CarbonContext);
-//     if (!context) {
-//         throw new Error('useData must be used within a DataProvider');
-//     }
-//     return context;
-// };
+
 
 
 
@@ -46,6 +40,14 @@ const CarbonProvider = ({ children }) => {
             {children}
         </CarbonContext.Provider>
     );
+};
+
+export const useData = () => {
+    const context = useContext(CarbonContext);
+    if (!context) {
+        throw new Error('useData must be used within a DataProvider');
+    }
+    return context.carbonValue;
 };
 
 export { CarbonContext, CarbonProvider };

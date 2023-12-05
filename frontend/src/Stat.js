@@ -5,8 +5,9 @@ import plane from './assets/plane.png';
 import ddogas from './assets/ddogas.png';
 import energy from './assets/energy.png';
 import tree from './assets/tree.png';
-import React, { useEffect, useRef } from 'react';
-import { CarbonProvider, useData } from "./Carbon";
+import React, { useContext, useEffect, useRef } from 'react';
+// import { CarbonProvider, useData } from "./Carbon";
+import { useData } from "./Carbon";
 
 import Chart from 'chart.js/auto';
 
@@ -27,11 +28,26 @@ const region_components = {
   eng: 1.5, can: 1.4, fra: 1.3, swi: 1.2, swe: 1.1
 };
 
-function SetComponents() {
-  //json parsing
-  // const { carbonValue } = useData();
-  // return ()
-}
+// function SetComponents() {
+//   //json parsing
+
+//   const carbonValue = useContext(CarbonContext);
+//   useEffect(() => {
+//     console.log(carbonValue);
+//   }, [carbonValue]);
+// }
+
+const SetComponents = () => {
+  const isData = useData()
+
+
+  return (
+    <div>
+      <h2>JSON Data in Child Component:</h2>
+      <pre>{JSON.stringify(isData, null, 2)}</pre>
+    </div>
+  );
+};
 
 
 function showStats() {
@@ -220,12 +236,12 @@ function ShowRegionGraph({ region_components }) {
 }
 
 function Stat() {
-  SetComponents()
-
 
 
   return (
+
     <div>
+      <SetComponents />
       {showStats()}
       <div class="flex flex-col stats_area m-32 ">
         <div class=" mb-10">

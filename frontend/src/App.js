@@ -7,6 +7,7 @@ import Stat from "./Stat";
 import Server from "./Server";
 import Info from "./Info";
 import { HWProvider } from "./Hardware";
+import { CarbonProvider } from "./Carbon";
 
 function Nav() {
   return (
@@ -71,20 +72,22 @@ function Home() {
 function App() {
   return (
     <div class="flex">
-      <HWProvider>
-        <Router>
-          <div class="flex-col">
-            <Nav />
-          </div>
-          <div class="flex-col flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/server" element={<Server />} />
-              <Route path="/info" element={<Info />} />
-            </Routes>
-          </div>
-        </Router>
-      </HWProvider>
+      <CarbonProvider>
+        <HWProvider>
+          <Router>
+            <div class="flex-col">
+              <Nav />
+            </div>
+            <div class="flex-col flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/server" element={<Server />} />
+                <Route path="/info" element={<Info />} />
+              </Routes>
+            </div>
+          </Router>
+        </HWProvider>
+      </CarbonProvider>
     </div>
   );
 }
