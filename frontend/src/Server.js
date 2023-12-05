@@ -2,7 +2,7 @@ import "./index.css";
 import "./Server.css";
 import React, { useContext, useState, useEffect } from "react";
 import { Accordion } from "flowbite-react";
-import { HWContext, HWProvider } from "./Hardware";
+import { HWContext } from "./Hardware";
 
 function InnerComponent() {
   const { HWValue, setHWValue } = useContext(HWContext);
@@ -22,15 +22,17 @@ function InnerComponent() {
   const [gpuModels, setGpuModels] = useState(null);
   const [cpuExist, setCpuExist] = useState(true);
   const [gpuExist, setGpuExist] = useState(true);
-  // const [cpuHWValue, setcpuHWValue] = useState(true);
-  // const [gpuHWValue, setgpuHWValue] = useState(true);
+  const [cpuHWValue, setcpuHWValue] = useState(true);
+  const [gpuHWValue, setgpuHWValue] = useState(true);
   const [type, setType] = useState("both");
 
   useEffect(() => {
     const showcpuModels = async () => {
       try {
         console.log("fetch...\n");
-        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/model/cpu");
+        const response = await fetch(
+          "http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/model/cpu"
+        );
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
@@ -53,7 +55,9 @@ function InnerComponent() {
   useEffect(() => {
     const showgpuModels = async () => {
       try {
-        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/model/gpu");
+        const response = await fetch(
+          "http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/model/gpu"
+        );
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
@@ -76,7 +80,9 @@ function InnerComponent() {
   useEffect(() => {
     const showContinent = async () => {
       try {
-        const response = await fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/location");
+        const response = await fetch(
+          "http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/location"
+        );
         if (!response.ok) {
           throw new Error(`HTTP error, status : ${response.status}`);
         }
@@ -133,29 +139,34 @@ function InnerComponent() {
 
   useEffect(() => {
     if (cpuExist) {
-      console.log("add cpu request..");
+      // console.log("add cpu request..");
       const cpuSpecRequest = {
         modelName: "Intel Core i9-14900K",
         usageFactor: 0.8,
         coreNumber: 8,
         tdp: null,
       };
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: {
-          ...HWValue.hwSpecRequest,
-          cpuSpecRequest: cpuSpecRequest,
-        },
-      });
-      console.log("change true...\n");
+      if (cpuHWValue === false) {
+        setHWValue({
+          ...HWValue,
+          hwSpecRequest: {
+            ...HWValue.hwSpecRequest,
+            cpuSpecRequest: cpuSpecRequest,
+          },
+        });
+        setcpuHWValue(true);
+      }
+      // console.log("change true...\n");
 
       //setcpuHWValue(true);
     } else if (!cpuExist) {
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: { ...HWValue.hwSpecRequest, cpuSpecRequest: null },
-      });
-      //setcpuHWValue(false);
+      if (cpuHWValue === true) {
+        setHWValue({
+          ...HWValue,
+          hwSpecRequest: { ...HWValue.hwSpecRequest, cpuSpecRequest: null },
+        });
+      }
+      setcpuHWValue(false);
     }
   }, [cpuExist]);
 
@@ -167,20 +178,25 @@ function InnerComponent() {
         coreNumber: 7,
         tdp: null,
       };
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: {
-          ...HWValue.hwSpecRequest,
-          gpuSpecRequest: gpuSpecRequest,
-        },
-      });
+      if (gpuHWValue === false) {
+        setHWValue({
+          ...HWValue,
+          hwSpecRequest: {
+            ...HWValue.hwSpecRequest,
+            gpuSpecRequest: gpuSpecRequest,
+          },
+        });
+        setgpuHWValue(true);
+      }
       //setgpuHWValue(true);
     } else if (!gpuExist) {
-      setHWValue({
-        ...HWValue,
-        hwSpecRequest: { ...HWValue.hwSpecRequest, gpuSpecRequest: null },
-      });
-      //setgpuHWValue(false);
+      if (gpuHWValue === true) {
+        setHWValue({
+          ...HWValue,
+          hwSpecRequest: { ...HWValue.hwSpecRequest, gpuSpecRequest: null },
+        });
+        setgpuHWValue(false);
+      }
     }
   }, [gpuExist]);
 
@@ -225,7 +241,6 @@ function InnerComponent() {
       setCpuExist(true);
       setGpuExist(false);
       setType("cpu");
-      console.log("change cpu..");
     } else if (event.target.value === "gpu") {
       setCpuExist(false);
       setGpuExist(true);
@@ -949,11 +964,7 @@ function InnerComponent() {
   );
 }
 function Server() {
-  return (
-    <HWProvider>
-      <InnerComponent />
-    </HWProvider>
-  );
+  return <InnerComponent />;
 }
 
 export default Server;
