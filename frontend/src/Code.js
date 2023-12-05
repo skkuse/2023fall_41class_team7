@@ -7,30 +7,26 @@ import { useContext, useState, useEffect } from "react";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
-// import { CarbonProvider, useData } from "./Carbon";
+
 import { CarbonContext, CarbonProvider } from "./Carbon";
 import { HWContext, HWProvider } from "./Hardware";
 import axios from 'axios';
-
-
-
-
 
 function Innercomponent() {
   const [height, setHeight] = useState(500);
   const { HWValue, setHWValue } = useContext(HWContext);
   // const { setCarbonValue } = useData();
-  const { carbonValue, setCarbonValue } = useContext(CarbonContext);
+  const { CarbonValue, setCarbonValue } = useContext(CarbonContext);
   const [javaCodeValue, setJavaCodeValue] = useState(`public class Main {
-    public static void main(String[] args) {
-      System.out.println("Hello, world!");
-    }
+  public static void main(String[] args) {
+    System.out.println("Hello, world!");
+  }
 }`);
 
   const CarbonList = (sender) => {
     axios.post("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", sender)
       .then((res => {
-        setCarbonValue(res.data)
+        setCarbonValue(res.data);
       }))
       .catch((e) => {
         console.log(e);
@@ -41,15 +37,6 @@ function Innercomponent() {
     setJavaCodeValue(newValue);
   }
 
-
-  useEffect(() => {
-
-    // 바꿔주기
-    // setCarbonValue(data);
-    console.log(carbonValue);
-
-  }, [carbonValue]);
-
   useEffect(() => {
     setHWValue({
       ...HWValue,
@@ -57,6 +44,9 @@ function Innercomponent() {
     });
   }, [javaCodeValue]);
 
+  useEffect(() => {
+    console.log(CarbonValue);
+  }, [CarbonValue]);
 
   const onClick = () => {
     setHeight(1000);
@@ -64,46 +54,13 @@ function Innercomponent() {
 
   const BtnClick = () => {
     const sender = HWValue;
-
-
-
-    // API POST request
-
+    console.log(sender);
     CarbonList(sender);
-
-
-    // try {
-    //   const response = fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(sender)
-
-
-    //   }).then(res => {
-    //     if (res.ok) {
-    //       return res.json(); // JSON 파싱하여 반환
-    //     }
-
-    //   })
-    //     .then(data => {
-    //       console.log(data) //응답 데이터 확인
-    //     })
-
-    //     .catch(error => {
-    //       console.error("error: ", error);
-    //     });
-
-    // } catch (error) {
-    //   console.error("Fetching error: ", error);
-    // };
-
   }
 
   const onClear = () => {
     setJavaCodeValue(`public class Main {
-  public static void main(String[] args) {
+      public static void main(String[] args) {
     System.out.println("Hello, world!");
   }
 }`);
@@ -135,7 +92,7 @@ function Innercomponent() {
             enableLiveAutocompletion: false,
             enableSnippets: false,
             showLineNumbers: true,
-            tabSize: 2,
+            tabSize: 4,
           }}
 
         />
@@ -152,9 +109,7 @@ function Innercomponent() {
 
 function Code() {
   return (
-
     <Innercomponent />
-
   );
 }
 

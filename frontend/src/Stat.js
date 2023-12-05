@@ -31,13 +31,15 @@ const region_components = {
 
 const ShowStats = () => {
   const isData = useData()
+  stat_components.carbon = isData.totalCarbonFootprint;
+  stat_components.car = isData.interpretedFootprint.passengerCar;
+  stat_components.plane = isData.interpretedFootprint.flightFromIncheonToTokyo;
+  stat_components.energy_needed = isData.totalEnergyNeeded;
+  stat_components.tree = isData.interpretedFootprint.treeMonths;
 
-  stat_components.carbon = isData.totalCarbonFootprint
-
-
-  useEffect(() => {
-    console.log(stat_components.carbon);
-  }, [stat_components.carbon]);
+  hw_components.cpu_rate = isData.hwFootprint.cpuCarbonFootprint;
+  hw_components.gpu_rate = isData.hwFootprint.gpuCarbonFootprint;
+  hw_components.memory_rate = isData.hwFootprint.memoryCarbonFootprint;
 
 
   return (
