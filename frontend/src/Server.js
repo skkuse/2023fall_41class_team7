@@ -294,7 +294,11 @@ function InnerComponent() {
   };
 
   const changeCPUModel = (event) => {
-    changeCpu(cpu.coreNumber, event.target.value, cpu.usageFactor, cpu.tdp);
+    if (event.target.value === "Direct Input") {
+      changeCpu(cpu.coreNumber, event.target.value, cpu.usageFactor, cpu.tdp);
+    } else {
+      changeCpu(cpu.coreNumber, event.target.value, cpu.usageFactor, null);
+    }
   };
 
   const changeCPUUsage = (value) => {
@@ -303,6 +307,7 @@ function InnerComponent() {
 
   const changeCPUTdp = (value) => {
     changeCpu(cpu.coreNumber, cpu.modelName, cpu.usageFactor, value);
+    //changeCpu(cpu.coreNumber, null, cpu.usageFactor, value);
   };
 
   const changeGPUCore = (value) => {
@@ -310,7 +315,11 @@ function InnerComponent() {
   };
 
   const changeGPUModel = (event) => {
-    changeGpu(gpu.coreNumber, event.target.value, gpu.usageFactor, gpu.tdp);
+    if (event.target.value === "Direct Input") {
+      changeGpu(gpu.coreNumber, event.target.value, gpu.usageFactor, gpu.tdp);
+    } else {
+      changeGpu(gpu.coreNumber, event.target.value, gpu.usageFactor, null);
+    }
   };
 
   const changeGPUUsage = (value) => {
@@ -318,7 +327,7 @@ function InnerComponent() {
   };
 
   const changeGPUTdp = (value) => {
-    changeGpu(gpu.coreNumber, gpu.modelName, gpu.usageFactor, value);
+    changeGpu(gpu.coreNumber, null, gpu.usageFactor, value);
   };
 
   const changeCpu = (value1, value2, value3, value4) => {
@@ -559,17 +568,19 @@ function InnerComponent() {
                                   )
                                 }
                                 step="0.1"
+                                max="1"
                               />
                               <button
                                 type="button"
                                 class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
-                                onClick={() =>
-                                  changeCPUUsage(
-                                    parseFloat(
-                                      (cpu.usageFactor + 0.1).toFixed(1)
-                                    )
-                                  )
-                                }
+                                onClick={() => {
+                                  const value = parseFloat(
+                                    (cpu.usageFactor + 0.1).toFixed(1)
+                                  );
+                                  if (value <= 1) {
+                                    changeCPUUsage(value);
+                                  } //if
+                                }}
                               >
                                 +
                               </button>
@@ -724,17 +735,19 @@ function InnerComponent() {
                                   )
                                 }
                                 step="0.1"
+                                max="1"
                               />
                               <button
                                 type="button"
                                 class="h-10 w-10 leading-10 text-gray-600 transition hover:opacity-75"
-                                onClick={() =>
-                                  changeGPUUsage(
-                                    parseFloat(
-                                      (gpu.usageFactor + 0.1).toFixed(1)
-                                    )
-                                  )
-                                }
+                                onClick={() => {
+                                  const value = parseFloat(
+                                    (gpu.usageFactor + 0.1).toFixed(1)
+                                  );
+                                  if (value <= 1) {
+                                    changeGPUUsage(value);
+                                  }
+                                }}
                               >
                                 +
                               </button>
