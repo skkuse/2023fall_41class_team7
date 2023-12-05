@@ -5,7 +5,9 @@ import plane from './assets/plane.png';
 import ddogas from './assets/ddogas.png';
 import energy from './assets/energy.png';
 import tree from './assets/tree.png';
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { CarbonProvider, useData } from "./Carbon";
+
 import Chart from 'chart.js/auto';
 
 const stat_components = { //각 stats의 숫자
@@ -25,9 +27,11 @@ const region_components = {
   eng: 1.5, can: 1.4, fra: 1.3, swi: 1.2, swe: 1.1
 };
 
-function setComponents() {
+function SetComponents() {
   //json parsing
+  const { carbonValue } = useData();
 }
+
 
 function showStats() {
   return (
@@ -215,7 +219,10 @@ function ShowRegionGraph({ region_components }) {
 }
 
 function Stat() {
-  setComponents()
+  SetComponents()
+
+
+
   return (
     <div>
       {showStats()}

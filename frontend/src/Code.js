@@ -2,10 +2,12 @@ import React from "react";
 import "./index.css";
 import "./Code.css";
 import AceEditor from "react-ace";
+import Stat from "./Stat";
 import { useContext, useState, useEffect } from "react";
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
+import { CarbonProvider, useData } from "./Carbon";
 import { HWContext, HWProvider } from "./Hardware";
 import axios from 'axios';
 
@@ -17,6 +19,7 @@ function Innercomponent() {
   const [data, setData] = useState(null);
   const [height, setHeight] = useState(500);
   const { HWValue, setHWValue } = useContext(HWContext);
+  const { setCarbonValue } = useData();
   const [javaCodeValue, setJavaCodeValue] = useState(`public class Main {
     public static void main(String[] args) {
       System.out.println("Hello, world!");
@@ -27,6 +30,8 @@ function Innercomponent() {
     axios.post("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", sender)
       .then((res => {
         console.log(res.data);
+        setData(res.data);
+
       }))
       .catch((e) => {
         console.log(e);
@@ -36,6 +41,15 @@ function Innercomponent() {
   function onChange(newValue) {
     setJavaCodeValue(newValue);
   }
+
+
+  useEffect(() => {
+    console.log(data);
+    // 바꿔주기
+    setCarbonValue(data);
+
+
+  }, [data]);
 
   useEffect(() => {
     setHWValue({
@@ -57,6 +71,8 @@ function Innercomponent() {
     // API POST request
 
     CarbonList(sender);
+
+
     // try {
     //   const response = fetch("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", {
     //     method: "POST",
@@ -130,15 +146,19 @@ function Innercomponent() {
         <button className="rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-600" onClick={onClear}>Clear</button>
         <button className="rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600" onClick={BtnClick}>Submit</button>
       </div>
+      <Stat />
+
     </div>
   );
 }
 
 function Code() {
   return (
-    <HWProvider>
-      <Innercomponent />
-    </HWProvider>
+    <CarbonProvider>
+      <HWProvider>
+        <Innercomponent />
+      </HWProvider>
+    </CarbonProvider>
   );
 }
 
