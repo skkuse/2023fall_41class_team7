@@ -15,8 +15,7 @@ import axios from 'axios';
 function Innercomponent() {
   const [height, setHeight] = useState(500);
   const { HWValue, setHWValue } = useContext(HWContext);
-  // const { setCarbonValue } = useData();
-  const { CarbonValue, setCarbonValue } = useContext(CarbonContext);
+  const { carbonValue, setCarbonValue } = useContext(CarbonContext);
   const [javaCodeValue, setJavaCodeValue] = useState(`public class Main {
   public static void main(String[] args) {
     System.out.println("Hello, world!");
@@ -34,7 +33,9 @@ function Innercomponent() {
   }
 
   function onChange(newValue) {
+
     setJavaCodeValue(newValue);
+
   }
 
   useEffect(() => {
@@ -45,17 +46,25 @@ function Innercomponent() {
   }, [javaCodeValue]);
 
   useEffect(() => {
-    console.log(CarbonValue);
-  }, [CarbonValue]);
+    console.log(carbonValue);
+  }, [carbonValue]);
 
   const onClick = () => {
     setHeight(1000);
   };
 
   const BtnClick = () => {
-    const sender = HWValue;
-    console.log(sender);
-    CarbonList(sender);
+    const isKorean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/.test(javaCodeValue);
+
+    if (isKorean) {
+      alert("Korean is not allowed\nPlease remove Korean.")
+    }
+    else {
+      const sender = HWValue;
+      console.log(sender);
+      CarbonList(sender);
+    }
+
   }
 
   const onClear = () => {
