@@ -24,7 +24,17 @@ function InnerComponent() {
   const [gpuExist, setGpuExist] = useState(true);
   const [cpuHWValue, setcpuHWValue] = useState(true);
   const [gpuHWValue, setgpuHWValue] = useState(true);
-  const [type, setType] = useState("both");
+  const [type, setType] = useState(null);
+
+  useEffect(() => {
+    if (cpu && gpu) {
+      setType("both");
+    } else if (cpu) {
+      setType("cpu");
+    } else {
+      setType("gpu");
+    }
+  }, []);
 
   useEffect(() => {
     const showcpuModels = async () => {
@@ -115,6 +125,29 @@ function InnerComponent() {
     };
 
     showCountry().then((countries) => setCountries(countries));
+  }, []);
+
+  useEffect(() => {
+    const showCountry = async () => {
+      try {
+        const response = await fetch(
+          `http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/location/${oneContinent}`
+        );
+        if (!response.ok) {
+          throw new Error(`HTTP error, status : ${response.status}`);
+        }
+        const res = await response.json();
+        const countries = res.data || [];
+        return countries;
+      } catch (error) {
+        console.error("Fetching error: ", error);
+      }
+    };
+
+    showCountry().then((countries) => {
+      setCountries(countries);
+      changeCountry({ target: { value: countries[0] } });
+    });
   }, [oneContinent]);
 
   useEffect(() => {
@@ -134,7 +167,10 @@ function InnerComponent() {
       }
     };
 
-    showRegion().then((regions) => setRegions(regions));
+    showRegion().then((regions) => {
+      setRegions(regions);
+      changeRegion({ target: { value: regions[0] } });
+    });
   }, [oneCountry]);
 
   useEffect(() => {
@@ -208,6 +244,7 @@ function InnerComponent() {
   const changeCountry = (event) => {
     const chosenCountry = event.target.value;
     setOneCountry(chosenCountry); //select 국가 바꾸기
+    //   changeLocation(oneContinent, chosenCountry, "Any");
   };
 
   const changeRegion = (event) => {
