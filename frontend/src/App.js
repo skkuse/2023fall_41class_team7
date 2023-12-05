@@ -33,7 +33,7 @@ function Nav() {
         </Sidebar>
       </div>
       {/* nav bar 고정.. */}
-      <div
+      {/* <div
         class="min-h-screen h-full px-3 py-4 overflow-y-auto border-r"
         style={{ opacity: 0 }}
       >
@@ -55,7 +55,7 @@ function Nav() {
             </Sidebar.ItemGroup>
           </Sidebar.Items>
         </Sidebar>
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -76,6 +76,7 @@ function App() {
         <HWProvider>
           <Router>
             <div class="flex-col">
+              <div style={{ width: "300px" }}></div>
               <Nav />
             </div>
             <div class="flex-col flex-grow">
