@@ -28,29 +28,18 @@ const region_components = {
   eng: 1.5, can: 1.4, fra: 1.3, swi: 1.2, swe: 1.1
 };
 
-// function SetComponents() {
-//   //json parsing
 
-//   const carbonValue = useContext(CarbonContext);
-//   useEffect(() => {
-//     console.log(carbonValue);
-//   }, [carbonValue]);
-// }
-
-const SetComponents = () => {
+const ShowStats = () => {
   const isData = useData()
 
-
-  return (
-    <div>
-      <h2>JSON Data in Child Component:</h2>
-      <pre>{JSON.stringify(isData, null, 2)}</pre>
-    </div>
-  );
-};
+  stat_components.carbon = isData.totalCarbonFootprint
 
 
-function showStats() {
+  useEffect(() => {
+    console.log(stat_components.carbon);
+  }, [stat_components.carbon]);
+
+
   return (
     <div class="flex flex-col m-10 ">
       <div class=" mb-10">
@@ -108,7 +97,10 @@ function showStats() {
       </div>
     </div>
   );
-}
+};
+
+
+
 
 function ShowHWRate({ hw_components }) {
   const chartRef = useRef(null);
@@ -241,8 +233,8 @@ function Stat() {
   return (
 
     <div>
-      <SetComponents />
-      {showStats()}
+      <ShowStats />
+
       <div class="flex flex-col stats_area m-32 ">
         <div class=" mb-10">
           <h1 class="mb-4 text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
