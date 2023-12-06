@@ -17,14 +17,8 @@ public class InterpretedFootprint {
     private Double flightFromIncheonToTokyo;
 
     public InterpretedFootprint(Double treeMonths, Double passengerCar, Double flightFromIncheonToTokyo) {
-        this.treeMonths = BigDecimal.valueOf(treeMonths)
-                .setScale(3, RoundingMode.HALF_UP)
-                .doubleValue();
-        this.passengerCar = BigDecimal.valueOf(passengerCar)
-                .setScale(3, RoundingMode.HALF_UP)
-                .doubleValue();
-        this.flightFromIncheonToTokyo = BigDecimal.valueOf(flightFromIncheonToTokyo)
-                .setScale(3, RoundingMode.HALF_UP)
-                .doubleValue();
+        this.treeMonths = treeMonths;
+        this.passengerCar = passengerCar;
+        this.flightFromIncheonToTokyo = flightFromIncheonToTokyo;
     }
 }

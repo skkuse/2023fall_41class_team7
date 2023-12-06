@@ -20,12 +20,8 @@ public class GreenResourceResponse {
     private InterpretedFootprint interpretedFootprint;
 
     public GreenResourceResponse(Double totalCarbonFootprint, Double totalEnergyNeeded, HwFootprint hwFootprint, InterpretedFootprint interpretedFootprint) {
-        this.totalCarbonFootprint = BigDecimal.valueOf(totalCarbonFootprint)
-                .setScale(3, RoundingMode.HALF_UP)
-                .doubleValue();
-        this.totalEnergyNeeded = BigDecimal.valueOf(totalEnergyNeeded)
-                .setScale(3, RoundingMode.HALF_UP)
-                .doubleValue();;
+        this.totalCarbonFootprint = totalCarbonFootprint);
+        this.totalEnergyNeeded = totalEnergyNeeded);
         this.hwFootprint = hwFootprint;
         this.interpretedFootprint = interpretedFootprint;
     }
