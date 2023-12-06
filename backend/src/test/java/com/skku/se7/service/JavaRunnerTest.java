@@ -3,11 +3,11 @@ package com.skku.se7.service;
 import com.skku.se7.error.exceptions.CannotFindMainMethodException;
 import com.skku.se7.error.exceptions.CompileException;
 import com.skku.se7.error.exceptions.MaliciousCodeException;
-<<<<<<< HEAD
+
 import com.skku.se7.error.exceptions.TimeOutException;
-=======
+
 import com.skku.se7.error.exceptions.MaliciousImportException;
->>>>>>> issue/validatorFix
+
 import com.skku.se7.service.converter.code.JavaCodeCompiler;
 import com.skku.se7.service.converter.code.JavaRunner;
 import com.skku.se7.service.converter.code.CodeConverter;
@@ -314,23 +314,22 @@ public class JavaRunnerTest {
     @Test
     public void Timeout() throws Exception{
         //given
-        String infiniteLoop = " public class TestJavaRunner{"
+        String infiniteLoop = "public class TestJavaRunner{"
                 + " public static void main(String[] args) {"
                 + " System.out.println(\"Wow it woks!!\");"
                 + " for(int i=0; i<13000; i++){"
                 + " System.out.println(\"abcd\");"
                 + " }"
-                + " long j=-100000;"
+                + " long j=-100000L;"
                 + " while(true){"
                 + " System.out.println(j);"
                 + " }"
-                + ""
+                + " }"
                 + " }";
 
         //when
 
         //then
         Assertions.assertThrows(TimeOutException.class, () -> codeConverter.executeSynchronously(infiniteLoop));
-
     }
 }
