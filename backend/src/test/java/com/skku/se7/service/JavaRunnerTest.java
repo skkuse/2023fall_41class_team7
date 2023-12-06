@@ -1,5 +1,6 @@
 package com.skku.se7.service;
 
+import com.skku.se7.error.exceptions.CannotFindMainMethodException;
 import com.skku.se7.service.converter.code.JavaCodeCompiler;
 import com.skku.se7.service.converter.code.JavaRunner;
 import com.skku.se7.service.converter.code.CodeConverter;
@@ -21,7 +22,7 @@ public class JavaRunnerTest {
     JavaValidator javaValidator;
 
     @Autowired
-    CodeConverter CodeConverter;
+    CodeConverter codeConverter;
     @Test
     void findClassNameTest() throws Exception{
         String javaCode = "public class TestJavaRunner{"
@@ -32,6 +33,29 @@ public class JavaRunnerTest {
         String[] parsedUserCode = javaCodeCompiler.parseUserCode(javaCode);
         String className = javaCodeCompiler.findClassName(parsedUserCode);
         Assertions.assertEquals(className, "TestJavaRunner");
+    }
+
+    /**
+     * input :
+     * expect result :
+     */
+    @Test
+    public void findClassName_NoMainMethod_CaanotFindMainMethodException() throws Exception{
+        //given
+        String javaCode = "public class TestJavaRunner{"
+                + "public static void min(String[] args) {"
+                + "System.out.println(\"Wow it woks!!\");"
+                + "}"
+                + "}";
+
+        //mocking
+
+        //when
+        Assertions.assertThrows(
+                CannotFindMainMethodException.class, () ->
+                        codeConverter.executeSynchronously(javaCode));
+        //then
+
     }
 
     @Test
@@ -105,7 +129,7 @@ public class JavaRunnerTest {
                 + " }"
                 + " }"
                 + " }";
-        long a = CodeConverter.executeSynchronously(javaCode);
+        long a = codeConverter.executeSynchronously(javaCode);
 
         System.out.println("time is " +  a);
     }

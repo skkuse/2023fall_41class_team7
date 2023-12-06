@@ -1,5 +1,6 @@
 package com.skku.se7.service.converter.code;
 
+import com.skku.se7.error.exceptions.CompileException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -29,9 +30,9 @@ public class JavaCodeCompiler {
             if(parsedUserCode[idx].equals("class") && idx+1<parsedUserCode.length){
                 className = parsedUserCode[idx+1];
             }
-            if (parsedUserCode[idx].equals("main")) break;
+            if (parsedUserCode[idx].equals("main")) return className;
         }
-        return className;
+        return null;
     }
 
     public static String[] createFile(String className, String code){
@@ -67,15 +68,21 @@ public class JavaCodeCompiler {
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         File sourceFile = new File(filePath);
 
-        try {
-            new OutputStream(){
+        OutputStream outputStream = new OutputStream() {
+            private StringBuilder sb = new StringBuilder();
 
+            @Override
+            public void write(int b) throws IOException {
+                this.sb.append((char) b);
             }
-            compiler.run(null, System.out, stream, sourceFile.getPath());
-            if() throw new CompilException();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+
+            @Override
+            public String toString() {
+                return sb.toString();
+            }
+        };
+        compiler.run(null, System.out, outputStream, sourceFile.getPath());
+        if(!outputStream.toString().isBlank()) throw new CompileException();
     }
 
 }

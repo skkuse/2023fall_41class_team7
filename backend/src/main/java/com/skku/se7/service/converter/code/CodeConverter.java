@@ -1,5 +1,6 @@
 package com.skku.se7.service.converter.code;
 
+import com.skku.se7.error.exceptions.CannotFindMainMethodException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -26,15 +27,10 @@ public class CodeConverter {
         String curPath = javaCodeCompiler.getCurPath();
         //System.out.println("cur path is : " + curPath);
         String[] parsedUserCode = javaCodeCompiler.parseUserCode(code);
-        if(javaValidator.isMalicious(parsedUserCode)){
-            throw new Exception();
-        }
-
-        """
-                public clas Main { public static void main(String[] args) { int i = 1; float f = 1.1f; double d = 1.2; boolean b = true; char c = 'a'; System. out.println(i); System. out.println(f); System. out.println(d); System. out.println(b); System. out.println(c); } }
-                """
+        javaValidator.isMalicious(parsedUserCode);
         String className = javaCodeCompiler.findClassName(parsedUserCode);
-        if(className == null) throw new
+        log.info("className : {}", className);
+        if(className == null) throw new CannotFindMainMethodException();
         String[] arrPath = javaCodeCompiler.createFile(className, code);
         String filePath = arrPath[0];//.java
         String delPath = arrPath[1];//.class

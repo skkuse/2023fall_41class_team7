@@ -127,6 +127,17 @@ public class ControllerExceptionHandler {
         return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
     }
 
+    @ExceptionHandler(CannotFindMainMethodException.class)
+    public ResponseEntity<ExceptionResponse> cannotFindMainMethodException(CannotFindMainMethodException e, HttpServletRequest request) throws IOException {
+        String javaCode = getRequestJson(request, GreenRequest.class).getJavaCode();
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field("javaCode")
+                .given(javaCode)
+                .reasonMessage("실행 가능한 main 메서드를 찾을 수 없습니다.")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
     private <T> T getRequestJson(HttpServletRequest request, Class<T> jsonType) throws IOException {
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream,
