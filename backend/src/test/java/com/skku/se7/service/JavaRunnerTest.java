@@ -3,6 +3,7 @@ package com.skku.se7.service;
 import com.skku.se7.error.exceptions.CannotFindMainMethodException;
 import com.skku.se7.error.exceptions.CompileException;
 import com.skku.se7.error.exceptions.MaliciousCodeException;
+import com.skku.se7.error.exceptions.MaliciousImportException;
 import com.skku.se7.service.converter.code.JavaCodeCompiler;
 import com.skku.se7.service.converter.code.JavaRunner;
 import com.skku.se7.service.converter.code.CodeConverter;
@@ -229,8 +230,74 @@ public class JavaRunnerTest {
         Assertions.assertThrows(CompileException.class, () -> codeConverter.executeSynchronously(wrongMethodParam));
         Assertions.assertThrows(CompileException.class, () -> codeConverter.executeSynchronously(wrongIntegerBound));
 
+
         Assertions.assertThrows(CannotFindMainMethodException.class, () -> codeConverter.executeSynchronously(wrongClassIndicator));
         //then
+    }
 
+    @Test
+    public void validateMaliciousTest() throws Exception{
+        //given
+        //"Runtime", "Process", "net", "nio", "io"
+        String codeWithRuntime = " public class TestJavaRunner{"
+                + " public static void main(String[] args) {"
+                + " System.out.println(\"Wow it woks!!\");"
+                + " for(int i=0; i<13000; i++){"
+                + " System.out.println(\"abcd\");"
+                + " }"
+                + " Runtime runtime = Runtime.getRuntime();"
+                + " long j=-100000;"
+                + " for(long k=-100000; k<1000000000; k++){"
+                + " j++;"
+                + " }"
+                + " }"
+                + " }";
+
+        String codeWithNet = "import java.net.*"
+                + " public class TestJavaRunner{"
+                + " public static void main(String[] args) {"
+                + " System.out.println(\"Wow it woks!!\");"
+                + " for(int i=0; i<13000; i++){"
+                + " System.out.println(\"abcd\");"
+                + " }"
+                + " long j=-100000;"
+                + " for(long k=-100000; k<1000000000; k++){"
+                + " j++;"
+                + " }"
+                + " }"
+                + " }";
+
+        String codeWithIo = "import java.io.*"
+                + " public class TestJavaRunner{"
+                + " public static void main(String[] args) {"
+                + " System.out.println(\"Wow it woks!!\");"
+                + " for(int i=0; i<13000; i++){"
+                + " System.out.println(\"abcd\");"
+                + " }"
+                + " long j=-100000;"
+                + " for(long k=-100000; k<1000000000; k++){"
+                + " j++;"
+                + " }"
+                + " }"
+                + " }";
+
+        String codeWithNio = "import java.nio.*"
+                + " public class TestJavaRunner{"
+                + " public static void main(String[] args) {"
+                + " System.out.println(\"Wow it woks!!\");"
+                + " for(int i=0; i<13000; i++){"
+                + " System.out.println(\"abcd\");"
+                + " }"
+                + " long j=-100000;"
+                + " for(long k=-100000; k<1000000000; k++){"
+                + " j++;"
+                + " }"
+                + " }"
+                + " }";
+        //when
+        Assertions.assertThrows(MaliciousImportException.class, ()-> codeConverter.executeSynchronously(codeWithRuntime));
+        Assertions.assertThrows(MaliciousImportException.class, ()-> codeConverter.executeSynchronously(codeWithNet));
+        Assertions.assertThrows(MaliciousImportException.class, ()-> codeConverter.executeSynchronously(codeWithIo));
+        Assertions.assertThrows(MaliciousImportException.class, ()-> codeConverter.executeSynchronously(codeWithNio));
     }
 }

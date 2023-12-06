@@ -14,30 +14,18 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class JavaValidator {
     static private Set<String> wordsToValidate = new HashSet<>();
-    static private String[] words = {"Runtime", "Process", "reflect", "net"};
+    static private String[] words = {"Runtime", "Process", "net", "nio", "io"};
 
     public JavaValidator(){
         for(String s : words){
             wordsToValidate.add(s);
         }
     }
-    public static boolean isMalicious(String[] parsedUserCode){
-        boolean malicious = false;
+    public static void isMalicious(String[] parsedUserCode){
         for(String s : parsedUserCode){
             if(wordsToValidate.contains(s)){
-                malicious = true;
-                break;
+                throw new MaliciousImportException();
             }
         }
-        return malicious;
-    }
-
-    private void validateImport(String code) {
-        if(code.contains("java.lang.Runtime")) throw new MaliciousImportException();
-        if(code.contains("java.lang.reflect")) throw new MaliciousImportException();
-
-    }
-    private void validateReflection(String code) {
-
     }
 }
