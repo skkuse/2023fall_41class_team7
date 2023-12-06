@@ -138,6 +138,28 @@ public class ControllerExceptionHandler {
         return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
     }
 
+    @ExceptionHandler(CompileException.class)
+    public ResponseEntity<ExceptionResponse> compileException(CompileException e, HttpServletRequest request) throws IOException {
+        String javaCode = getRequestJson(request, GreenRequest.class).getJavaCode();
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field("javaCode")
+                .given(javaCode)
+                .reasonMessage("컴파일 실패!")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
+    @ExceptionHandler(MaliciousCodeException.class)
+    public ResponseEntity<ExceptionResponse> maliciousCodeException(MaliciousCodeException e, HttpServletRequest request) throws IOException {
+        String javaCode = getRequestJson(request, GreenRequest.class).getJavaCode();
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field("javaCode")
+                .given(javaCode)
+                .reasonMessage("위협적인 코드 입력 감지!")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
     private <T> T getRequestJson(HttpServletRequest request, Class<T> jsonType) throws IOException {
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream,

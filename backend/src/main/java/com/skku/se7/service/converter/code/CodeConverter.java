@@ -29,7 +29,6 @@ public class CodeConverter {
         String[] parsedUserCode = javaCodeCompiler.parseUserCode(code);
         javaValidator.isMalicious(parsedUserCode);
         String className = javaCodeCompiler.findClassName(parsedUserCode);
-        log.info("className : {}", className);
         if(className == null) throw new CannotFindMainMethodException();
         String[] arrPath = javaCodeCompiler.createFile(className, code);
         String filePath = arrPath[0];//.java
