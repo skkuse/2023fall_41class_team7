@@ -284,18 +284,13 @@ class GreenControllerExceptionTest {
         //mocking
 
         //when
-        MvcResult tdpWithModelNameResult = mockMvc.perform(
-                        post("/green")
-                                .content(content)
-                                .contentType(MediaType.APPLICATION_JSON)
-                ).andExpect(status().isBadRequest())
-                .andDo(
-                        document("green/exception/cpuTdpWithName")
-                )
-                .andReturn();
+        mockMvc.perform(
+                post("/green")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
 
         //then
-        assertThat(tdpWithModelNameResult.getResolvedException()).isExactlyInstanceOf(CpuTdpWithModelNameException.class);
     }
 
     /**
@@ -357,18 +352,13 @@ class GreenControllerExceptionTest {
         //mocking
 
         //when
-        MvcResult tdpWithModelNameResult = mockMvc.perform(
-                        post("/green")
-                                .content(content)
-                                .contentType(MediaType.APPLICATION_JSON)
-                ).andExpect(status().isBadRequest())
-                .andDo(
-                        document("green/exception/gpuTdpWithName")
-                )
-                .andReturn();
+        mockMvc.perform(
+                post("/green")
+                        .content(content)
+                        .contentType(MediaType.APPLICATION_JSON)
+        ).andExpect(status().isOk());
 
         //then
-        assertThat(tdpWithModelNameResult.getResolvedException()).isExactlyInstanceOf(GpuTdpWithModelNameException.class);
     }
 
     /**

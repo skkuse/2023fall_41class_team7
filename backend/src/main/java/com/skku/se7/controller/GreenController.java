@@ -50,7 +50,7 @@ public class GreenController {
         Double tdp = processor.getTdp();
 
         if(tdp != null && modelName != null)
-            throw new CpuTdpWithModelNameException();
+            modelName = null;
 
         if(modelName == null && tdp == null)
             throw new CannotInferTdpException();
@@ -64,7 +64,7 @@ public class GreenController {
         Double tdp = processor.getTdp();
 
         if(tdp != null && modelName != null)
-            throw new GpuTdpWithModelNameException();
+            modelName = null;
 
         if(modelName == null && tdp == null)
             throw new CannotInferTdpException();
