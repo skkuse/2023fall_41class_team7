@@ -15,19 +15,21 @@ public class CodeConverter {
     private final JavaValidator javaValidator;
 
     public synchronized Long executeSynchronously(String code) throws Exception {
-        long timeLimit = 5000;
+        long timeLimit = 10000;
         String curPath = javaCodeCompiler.getCurPath();
         //System.out.println("cur path is : " + curPath);
-        String className = javaCodeCompiler.findClassName(code);
+        String[] parsedUserCode = javaCodeCompiler.parseUserCode(code);
+        if(javaValidator.isMalicious(parsedUserCode)){
+            throw new Exception();
+        }
+        String className = javaCodeCompiler.findClassName(parsedUserCode);
         String[] arrPath = javaCodeCompiler.createFile(className, code);
         String filePath = arrPath[0];//.java
         String delPath = arrPath[1];//.class
 
         javaCodeCompiler.compileSourceFile(filePath);
         //compile 완료
-
-        //long timeConsumed = javaRunner.loadFileAndExecute(curPath, className);
-        //JVM에 로드 후 main함수 실행
+        
         long timeConsumed = javaRunner.createProcessAndExecute(timeLimit, curPath, className);
         javaRunner.deleteFile(filePath, delPath);
         return timeConsumed;

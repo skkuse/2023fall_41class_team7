@@ -3,6 +3,7 @@ package com.skku.se7.service;
 import com.skku.se7.service.converter.code.JavaCodeCompiler;
 import com.skku.se7.service.converter.code.JavaRunner;
 import com.skku.se7.service.converter.code.CodeConverter;
+import com.skku.se7.service.converter.code.JavaValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class JavaRunnerTest {
     JavaCodeCompiler javaCodeCompiler;
 
     @Autowired
+    JavaValidator javaValidator;
+
+    @Autowired
     CodeConverter CodeConverter;
     @Test
     void findClassNameTest() throws Exception{
@@ -25,7 +29,8 @@ public class JavaRunnerTest {
                 + "System.out.println(\"Wow it woks!!\");"
                 + "}"
                 + "}";
-        String className = javaCodeCompiler.findClassName(javaCode);
+        String[] parsedUserCode = javaCodeCompiler.parseUserCode(javaCode);
+        String className = javaCodeCompiler.findClassName(parsedUserCode);
         Assertions.assertEquals(className, "TestJavaRunner");
     }
 
@@ -37,7 +42,8 @@ public class JavaRunnerTest {
                 + "}"
                 + "}";
         String curPath = javaCodeCompiler.getCurPath();
-        String className = javaCodeCompiler.findClassName(javaCode);
+        String[] parsedUserCode = javaCodeCompiler.parseUserCode(javaCode);
+        String className = javaCodeCompiler.findClassName(parsedUserCode);
         String[] arrPath = javaCodeCompiler.createFile(className, javaCode);
         String filePath = arrPath[0];
         String delPath = arrPath[1];
@@ -52,7 +58,8 @@ public class JavaRunnerTest {
                 + "}"
                 + "}";
         String curPath = javaCodeCompiler.getCurPath();
-        String className = javaCodeCompiler.findClassName(javaCode);
+        String[] parsedUserCode = javaCodeCompiler.parseUserCode(javaCode);
+        String className = javaCodeCompiler.findClassName(parsedUserCode);
         Assertions.assertEquals(className, "TestJavaRunner");
         String[] arrPath = javaCodeCompiler.createFile(className, javaCode);
         String filePath = arrPath[0];
@@ -70,7 +77,8 @@ public class JavaRunnerTest {
                 + "}"
                 + "}";
         String curPath = javaCodeCompiler.getCurPath();
-        String className = javaCodeCompiler.findClassName(javaCode);
+        String[] parsedUserCode = javaCodeCompiler.parseUserCode(javaCode);
+        String className = javaCodeCompiler.findClassName(parsedUserCode);
         Assertions.assertEquals(className, "TestJavaRunner");
         String[] arrPath = javaCodeCompiler.createFile(className, javaCode);
         String filePath = arrPath[0];
@@ -84,18 +92,41 @@ public class JavaRunnerTest {
     }
 
     @Test
-    void synchronousTest() throws Exception{
-        String javaCode = "public class TestJavaRunner{"
-                + "public static void main(String[] args) {"
-                + "System.out.println(\"Wow it woks!!\");"
-                + "for(int i=0; i<1000000; i++){"
-                + "System.out.println(\"abcd\");"
-                + "}"
-                + "while(true){}"
-                + "}"
-                + "}";
+    void synchronousTest() throws Exception {
+        String javaCode = " public class TestJavaRunner{"
+                + " public static void main(String[] args) {"
+                + " System.out.println(\"Wow it woks!!\");"
+                + " for(int i=0; i<13000; i++){"
+                + " System.out.println(\"abcd\");"
+                + " }"
+                + " long j=-100000;"
+                + " for(long k=-100000; k<1000000000; k++){"
+                + " j++;"
+                + " }"
+                + " }"
+                + " }";
         long a = CodeConverter.executeSynchronously(javaCode);
 
         System.out.println("time is " +  a);
+    }
+
+    @Test
+    void validateTest(){
+        String javaCode = "import.java.lang.Runtime;"
+                + " public class TestJavaRunner{"
+                + " public static void main(String[] args) {"
+                + " System.out.println(\"Wow it woks!!\");"
+                + " for(int i=0; i<13000; i++){"
+                + " System.out.println(\"abcd\");"
+                + " }"
+                + " long j=-100000;"
+                + " for(long k=-100000; k<1000000000; k++){"
+                + " j++;"
+                + " }"
+                + " }"
+                + " }";
+        String[] arr = javaCode.split("[.]|[)]|[(]| |[{]|[}]|\n|;");
+        boolean isMalicious = javaValidator.isMalicious(arr);
+        Assertions.assertEquals(isMalicious, false);
     }
 }
