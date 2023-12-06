@@ -160,6 +160,17 @@ public class ControllerExceptionHandler {
         return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
     }
 
+    @ExceptionHandler(TimeOutException.class)
+    public ResponseEntity<ExceptionResponse> timeOutException(TimeOutException e, HttpServletRequest request) throws IOException {
+        String javaCode = getRequestJson(request, GreenRequest.class).getJavaCode();
+        ExceptionDetail exceptionDetail = ExceptionDetail.builder()
+                .field("javaCode")
+                .given(javaCode)
+                .reasonMessage("실행 시간 초과!(Max 10 sec)")
+                .build();
+        return ResponseEntity.badRequest().body(ExceptionResponse.fromException(e, request, exceptionDetail));
+    }
+
     private <T> T getRequestJson(HttpServletRequest request, Class<T> jsonType) throws IOException {
         ServletInputStream inputStream = request.getInputStream();
         String messageBody = StreamUtils.copyToString(inputStream,
