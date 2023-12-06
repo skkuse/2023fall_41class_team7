@@ -68,7 +68,11 @@ public class JavaCodeCompiler {
         File sourceFile = new File(filePath);
 
         try {
-            compiler.run(null, System.out, System.out, sourceFile.getPath());
+            new OutputStream(){
+
+            }
+            compiler.run(null, System.out, stream, sourceFile.getPath());
+            if() throw new CompilException();
         }catch (Exception e) {
             e.printStackTrace();
         }
