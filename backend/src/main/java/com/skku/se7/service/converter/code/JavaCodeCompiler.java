@@ -17,15 +17,19 @@ public class JavaCodeCompiler {
         return  curPath;
     }
 
-    public static String findClassName(String code){
-        String[] arr = code.split("[.]|[)]|[(]| |[{]|[}]|\n");
+    public static String[] parseUserCode(String code){
+        String[] arr = code.split("[.]|[)]|[(]| |[{]|[}]|\n|;");
+        return arr;
+    }
+
+    public static String findClassName(String[] parsedUserCode){
         String className = null;
 
-        for(int idx=0; idx<arr.length; idx++){
-            if(arr[idx].equals("class") && idx+1<arr.length){
-                className = arr[idx+1];
+        for(int idx=0; idx<parsedUserCode.length; idx++){
+            if(parsedUserCode[idx].equals("class") && idx+1<parsedUserCode.length){
+                className = parsedUserCode[idx+1];
             }
-            if (arr[idx].equals("main")) break;
+            if (parsedUserCode[idx].equals("main")) break;
         }
         return className;
     }
