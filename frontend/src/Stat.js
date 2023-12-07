@@ -33,10 +33,10 @@ const ShowStats = () => {
   const isData = useData()
 
   stat_components.carbon = isData.totalCarbonFootprint.toFixed(4);
-  stat_components.plane = isData.interpretedFootprint.flightFromIncheonToTokyo.toFixed(4);
-  stat_components.car = isData.interpretedFootprint.passengerCar.toFixed(4);
-  stat_components.energy_needed = isData.totalEnergyNeeded.toFixed(4);
-  stat_components.tree = isData.interpretedFootprint.treeMonths.toFixed(4);
+  stat_components.plane = isData.interpretedFootprint.flightFromIncheonToTokyo.toFixed(6);
+  stat_components.car = isData.interpretedFootprint.passengerCar.toFixed(6);
+  stat_components.energy_needed = isData.totalEnergyNeeded.toFixed(6);
+  stat_components.tree = isData.interpretedFootprint.treeMonths.toFixed(6);
 
 
   return (
