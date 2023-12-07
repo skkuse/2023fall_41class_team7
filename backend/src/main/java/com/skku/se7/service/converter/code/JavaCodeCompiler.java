@@ -82,7 +82,10 @@ public class JavaCodeCompiler {
             }
         };
         compiler.run(null, System.out, outputStream, sourceFile.getPath());
-        if(!outputStream.toString().isBlank()) throw new CompileException();
+        if(!outputStream.toString().isBlank()) {
+            log.warn("outputStream.toString() : {}", outputStream.toString());
+            throw new CompileException();
+        }
     }
 
 }
