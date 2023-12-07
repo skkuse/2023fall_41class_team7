@@ -32,11 +32,11 @@ const region_components = {
 const ShowStats = () => {
   const isData = useData()
 
-  stat_components.carbon = isData.totalCarbonFootprint
-  stat_components.plane = isData.totalCarbonFootprint
-  stat_components.car = isData.totalCarbonFootprint
-  stat_components.energy_needed = isData.totalCarbonFootprint
-  stat_components.tree = isData.totalCarbonFootprint
+  stat_components.carbon = isData.totalCarbonFootprint.toFixed(4);
+  stat_components.plane = isData.interpretedFootprint.flightFromIncheonToTokyo.toFixed(4);
+  stat_components.car = isData.interpretedFootprint.passengerCar.toFixed(4);
+  stat_components.energy_needed = isData.totalEnergyNeeded.toFixed(4);
+  stat_components.tree = isData.interpretedFootprint.treeMonths.toFixed(4);
 
 
   return (
@@ -82,7 +82,7 @@ const ShowStats = () => {
         <div class="flex-grow bg-stat-skyblue h-16"></div>
         <div class="flex items-center flex flex-col w-96">
           <div class="font-bold text-4xl text-black py-2">{stat_components.plane}%</div>
-          <div class="italic text-2xl text-black">flight from Incheon to London</div>
+          <div class="italic text-2xl text-black">flight from Incheon to Tokyo</div>
         </div>
       </div>
 
