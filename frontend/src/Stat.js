@@ -31,15 +31,12 @@ const region_components = {
 
 const ShowStats = () => {
   const isData = useData()
-  stat_components.carbon = isData.totalCarbonFootprint;
-  stat_components.car = isData.interpretedFootprint.passengerCar;
-  stat_components.plane = isData.interpretedFootprint.flightFromIncheonToTokyo;
-  stat_components.energy_needed = isData.totalEnergyNeeded;
-  stat_components.tree = isData.interpretedFootprint.treeMonths;
 
-  hw_components.cpu_rate = isData.hwFootprint.cpuCarbonFootprint;
-  hw_components.gpu_rate = isData.hwFootprint.gpuCarbonFootprint;
-  hw_components.memory_rate = isData.hwFootprint.memoryCarbonFootprint;
+  stat_components.carbon = isData.totalCarbonFootprint
+  stat_components.plane = isData.totalCarbonFootprint
+  stat_components.car = isData.totalCarbonFootprint
+  stat_components.energy_needed = isData.totalCarbonFootprint
+  stat_components.tree = isData.totalCarbonFootprint
 
 
   return (
