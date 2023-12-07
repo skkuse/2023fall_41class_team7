@@ -67,25 +67,11 @@ public class JavaCodeCompiler {
     public static void compileSourceFile(String filePath){
         JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         File sourceFile = new File(filePath);
-
-        OutputStream outputStream = new OutputStream() {
-            private StringBuilder sb = new StringBuilder();
-
-            @Override
-            public void write(int b) throws IOException {
-                this.sb.append((char) b);
-            }
-
-            @Override
-            public String toString() {
-                return sb.toString();
-            }
-        };
-        compiler.run(null, System.out, outputStream, sourceFile.getPath());
-        if(!outputStream.toString().isBlank()) {
-            log.warn("outputStream.toString() : {}", outputStream.toString());
-            throw new CompileException();
-        }
+        compiler.run(null, System.out, System.out, sourceFile.getPath());
+//        if(!outputStream.toString().isBlank()) {
+//            log.warn("outputStream.toString() : {}", outputStream.toString());
+//            throw new CompileException();
+//        }
     }
 
 }
