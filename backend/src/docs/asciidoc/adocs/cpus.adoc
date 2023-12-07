@@ -1,0 +1,1 @@
+operation::view/model/cpu[snippets='http-request,http-response,response-fields']

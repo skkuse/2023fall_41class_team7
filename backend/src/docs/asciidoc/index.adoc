@@ -1,0 +1,91 @@
+= 소공개 7조 API 문서
+// backtony.github.io(부제)
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:docinfo: shared-head
+
+= 탄소 배출량 조회 API
+Post /green
+
+== 정상 흐름
+include::adocs/normal-full.adoc[]
+
+include::adocs/normal-model.adoc[]
+
+include::adocs/normal-tdp.adoc[]
+
+== 예외 목록
+
+=== 필수값 누락
+===== BindException
+operation::/green/exception/required[snippets='http-request']
+
+=== 범위 이탈
+===== BindException
+operation::/green/exception/range[snippets='http-request']
+
+=== Cpu, Gpu 모두 누락
+===== WithoutProcessorException
+operation::/green/exception/noProcessor[snippets='http-request']
+
+=== Cpu 모델명과 Tdp값이 같이 옴
+===== CpuTdpWithModelNameException
+operation::/green/exception/cpuTdpWithName[snippets='http-request']
+
+=== Gpu 모델명과 Tdp값이 같이 옴
+===== GpuTdpWithModelNameException
+operation::/green/exception/gpuTdpWithName[snippets='http-request']
+
+=== 목록에 없는 Cpu 모델명
+===== NoMatchCpuModelNameException
+operation::/green/exception/badCpuName[snippets='http-request']
+
+=== 목록에 없는 Gpu 모델명
+===== NoMatchGpuModelNameException
+operation::/green/exception/badGpuName[snippets='http-request']
+
+=== Cpu/Gpu의 모델명과 tdp 모두 누락
+===== CannotInferTdpException
+operation::/green/exception/infer[snippets='http-request']
+
+=== 대륙 정보와 맞지 않는 국가 정보 입력
+===== NoMatchCountryException
+operation::/green/exception/badCountry[snippets='http-request']
+
+=== 대륙,국가 정보와 맞지 않는 지역 정보 입력
+===== NoMatchRegionException
+operation::/green/exception/badRegion[snippets='http-request']
+
+== ----------------------------------------------
+
+= 화면 송출 데이터 조회 API
+
+=== Cpu 모델명 리스트 조회
+==== Get /model/cpu
+include::adocs/cpus.adoc[]
+
+=== Gpu 모델명 리스트 조회
+==== Get /model/gpu
+include::adocs/gpus.adoc[]
+
+=== 대륙 리스트 조회
+==== Get /location
+include::adocs/contients.adoc[]
+
+=== 국가 리스트 조회
+==== Get /location/{continent}
+include::adocs/countries.adoc[]
+
+=== 지역 리스트 조회
+==== Get /location/{continent}/{country}
+include::adocs/regions.adoc[]
+
+== 예외
+
+=== 목록에 없는 대륙
+===== MethodArgumentTypeMismatchException
+operation::/view/exception/badContinent[snippets='http-request']
