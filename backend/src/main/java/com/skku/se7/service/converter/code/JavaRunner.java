@@ -41,7 +41,7 @@ public class JavaRunner {
         long timeConsumed = 0;
 
         try {
-            String[] cmd = {"/bin/bash", "-c", "cd " +curPath + " && java " + className};
+            String[] cmd = {"/bin/sh", "-c", "cd " +curPath + " && java " + className};
             long startTime = System.currentTimeMillis();
             Process process = Runtime.getRuntime().exec(cmd);
             process.waitFor(timeLimit, TimeUnit.MILLISECONDS);
