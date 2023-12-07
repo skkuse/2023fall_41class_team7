@@ -246,12 +246,9 @@ function Stat() {
             Overview
           </h1>
         </div>
-        <div class='flex w-full'>
+        <div class='flex w-2/3'>
           <div class='flex-grow'>
             <ShowHWRate hw_components={hw_components} />
-          </div>
-          <div class='flex-grow'>
-            <ShowRegionGraph region_components={region_components} />
           </div>
         </div>
       </div>

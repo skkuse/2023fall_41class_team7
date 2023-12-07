@@ -22,9 +22,9 @@ const CarbonContext = createContext();
 const CarbonProvider = ({ children }) => {
     const [carbonValue, setCarbonValue] = useState({
         hwFootprint: {
-            cpuCarbonFootprint: 0,
-            gpuCarbonFootprint: 0,
-            memoryCarbonFootprint: 0,
+            cpuCarbonFootprint: 1,
+            gpuCarbonFootprint: 1,
+            memoryCarbonFootprint: 1,
         },
         interpretedFootprint: {
             flightFromIncheonToTokyo: 0,

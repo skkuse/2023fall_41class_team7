@@ -22,15 +22,23 @@ function Innercomponent() {
   }
 }`);
 
-  const CarbonList = (sender) => {
-    axios.post("http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green", sender)
-      .then((res => {
-        setCarbonValue(res.data);
-      }))
-      .catch((e) => {
-        console.log(e);
-      })
+const CarbonList = async (sender) => {
+  try {
+    const response = await axios.post(
+      "http://ec2-3-35-3-126.ap-northeast-2.compute.amazonaws.com:8080/green",
+      sender,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    setCarbonValue(response.data);
+  } catch (error) {
+    console.error("Error:", error);
   }
+};
 
   function onChange(newValue) {
 
